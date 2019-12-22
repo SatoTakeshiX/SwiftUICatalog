@@ -15,43 +15,58 @@ struct ContentView: View {
     // photoとcameraのときのクロージャーが必要
     var actionSheet: ActionSheet {
         let buttons = viewModel.selectedOption.map { (photAction) -> ActionSheet.Button in
-            
+
             ActionSheet.Button.default(Text(photAction.message), action: photAction.action)
-            
+
         }
         let cancelButton = ActionSheet.Button.cancel(Text("キャンセル"))
         return ActionSheet(title: Text("画像選択"), message: nil, buttons: buttons + [cancelButton])
     }
     @State var image: Image? = nil
     var body: some View {
-        VStack {
-            if self.image != nil {
+        ZStack {
+            VStack {
+                // safe areaつっきって下に張り付いているViewを作るにはZStackでラップして、Spacerをいれればいいんだ。
                 Spacer()
-                self.image?.resizable()
-                    .scaledToFit()
-                Spacer()
-            } else {
-                EmptyImageView()
+                Rectangle()
+                    .frame(width: UIScreen.main.bounds.width, height: 110)
+                    .foregroundColor(.gray)
+                    .opacity(0.3)
+                    .offset(x: 0, y: 0)
+
             }
-            
-            Button(action: {
-                self.viewModel.tappedButton()
-            }) {
-                VStack {
-                    Image(systemName: "camera")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30, height: 30)
-                    Text("画像登録")
+        .shadow(radius: 10)
+            .edgesIgnoringSafeArea(.bottom)
+
+            VStack {
+                if self.image != nil {
+                    Spacer()
+                    self.image?.resizable()
+                        .scaledToFit()
+                    Spacer()
+                } else {
+                    EmptyImageView()
+                }
+
+                Button(action: {
+                    self.viewModel.tappedButton()
+                }) {
+                    VStack {
+                        Image(systemName: "camera")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                        Text("画像登録")
+                    }
                 }
             }
-        }
-        .edgesIgnoringSafeArea(.top)
-        .actionSheet(isPresented: $viewModel.isShowActionSheet) { () -> ActionSheet in
-            self.actionSheet
-        }
-        .sheet(isPresented: $viewModel.isShowImagePickerView) {
-            ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$image, sourceType: self.viewModel.selectedSourceType)
+            .edgesIgnoringSafeArea(.top)
+            .actionSheet(isPresented: $viewModel.isShowActionSheet) { () -> ActionSheet in
+                self.actionSheet
+            }
+            .sheet(isPresented: $viewModel.isShowImagePickerView) {
+                ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$image, sourceType: self.viewModel.selectedSourceType)
+            }
         }
     }
 }
@@ -64,7 +79,7 @@ struct EmptyImageView: View {
                 .foregroundColor(.gray)
             Spacer()
         }
-        
+
     }
 }
 
@@ -75,20 +90,19 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 final class ImagePickerViewModel: ObservableObject, Identifiable {
-    
+
     @Published var image: UIImage?
     @Published var isShowActionSheet = false
     @Published var isShowImagePickerView = false
     private(set) var selectedSourceType: UIImagePickerController.SourceType = .camera
     private(set) var selectedOption: [PhotoAction] = []
-    private var cancellables: [AnyCancellable] = []
-    
+
     private(set) lazy var tappedButton: () -> Void = { [weak self] in
         guard let self = self else { return }
         self.selectedOption = self.generatePhotoActions()
         self.isShowActionSheet = true
     }
-    
+
     private func generatePhotoActions() -> [PhotoAction] {
         var photoActions: [PhotoAction] = []
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -99,7 +113,7 @@ final class ImagePickerViewModel: ObservableObject, Identifiable {
             }, message: "写真を撮る", imagePickerSourceType: .camera)
             photoActions.append(cameraAction)
         }
-        
+
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let photoLibraryAction = PhotoAction(action: {
                 print("photoLibraryAction")
@@ -110,11 +124,10 @@ final class ImagePickerViewModel: ObservableObject, Identifiable {
         }
         return photoActions
     }
-    
+
     struct PhotoAction {
         var action: () -> Void
         var message: String
         var imagePickerSourceType: UIImagePickerController.SourceType
     }
-    
 }
