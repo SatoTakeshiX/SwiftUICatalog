@@ -145,7 +145,7 @@ extension DrawEditor {
                              startPoint: .constant(startPoint),
                              selectedColor: .constant(selectedColor),
                              canvasRect: .constant(canvasRect))
-        let hosting = UIHostingController(rootView: canvas)
+        let hosting = UIHostingController(rootView: canvas.body)
         hosting.view.frame = window.frame
         window.addSubview(hosting.view)
         window.makeKeyAndVisible()

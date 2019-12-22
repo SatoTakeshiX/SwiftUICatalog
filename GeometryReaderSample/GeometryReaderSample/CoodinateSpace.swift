@@ -14,6 +14,24 @@ struct CoodinateSpace: View {
             GeometryReader { geometry in
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.pink)
+                    .overlay(VStack {
+                        Text("X: \(geometry.frame(in: .global).origin.x) Y: \(geometry.frame(in: .global).origin.y) width: \(geometry.frame(in: .global).width) height: \(geometry.frame(in: .global).height)")
+                            .foregroundColor(.white)
+
+                    }.padding())
+            }
+            .frame(height: 400)
+            Spacer()
+        }
+    }
+}
+
+struct CoodinateSpace2: View {
+    var body: some View {
+        VStack {
+            GeometryReader { geometry in
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.pink)
                     .overlay(
                         Group {
                             VStack(alignment: .leading) {
@@ -31,6 +49,7 @@ struct CoodinateSpace: View {
                             VStack(alignment: .leading) {
                                 Text("size")
                                 Text("size: \(geometry.size.debugDescription)")
+                                    .fontWeight(.medium)
                             }
                         }
                         .foregroundColor(.white)

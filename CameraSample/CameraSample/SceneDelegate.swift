@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  GeometryReaderSample
+//  CameraSample
 //
-//  Created by satoutakeshi on 2019/12/15.
+//  Created by satoutakeshi on 2019/12/21.
 //  Copyright © 2019 satoutakeshi. All rights reserved.
 //
 
@@ -20,12 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let coodinateSpace = DrawEditor()
+        let contentView = ContentView(viewModel: ImagePickerViewModel())
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: coodinateSpace)
+            window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
             window.makeKeyAndVisible()
         }
