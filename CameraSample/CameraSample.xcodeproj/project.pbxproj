@@ -15,6 +15,7 @@
 		306830F323AE612F0070F473 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 306830F123AE612F0070F473 /* LaunchScreen.storyboard */; };
 		306830FE23AE612F0070F473 /* CameraSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830FD23AE612F0070F473 /* CameraSampleTests.swift */; };
 		3068310923AE612F0070F473 /* CameraSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068310823AE612F0070F473 /* CameraSampleUITests.swift */; };
+		3068311723AF98E50070F473 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068311623AF98E50070F473 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		3068310423AE612F0070F473 /* CameraSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CameraSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3068310823AE612F0070F473 /* CameraSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSampleUITests.swift; sourceTree = "<group>"; };
 		3068310A23AE612F0070F473 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3068311623AF98E50070F473 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				306830F123AE612F0070F473 /* LaunchScreen.storyboard */,
 				306830F423AE612F0070F473 /* Info.plist */,
 				306830EE23AE612F0070F473 /* Preview Content */,
+				3068311623AF98E50070F473 /* ImagePicker.swift */,
 			);
 			path = CameraSample;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				306830E723AE612C0070F473 /* AppDelegate.swift in Sources */,
+				3068311723AF98E50070F473 /* ImagePicker.swift in Sources */,
 				306830E923AE612C0070F473 /* SceneDelegate.swift in Sources */,
 				306830EB23AE612C0070F473 /* ContentView.swift in Sources */,
 			);
