@@ -29,13 +29,15 @@ struct ContentView: View {
                 // safe areaつっきって下に張り付いているViewを作るにはZStackでラップして、Spacerをいれればいいんだ。
                 Spacer()
                 Rectangle()
-                    .frame(width: UIScreen.main.bounds.width, height: 110)
+                    .frame(width: UIScreen.main.bounds.width, height: 112)
                     .foregroundColor(.gray)
                     .opacity(0.3)
-                    .offset(x: 0, y: 0)
-
+                    .overlay(Path { path in
+                        path.move(to: CGPoint(x: 0, y: 0))
+                        path.addLine(to: CGPoint(x: UIScreen.main.bounds.maxX, y: 0))
+                    }.stroke(lineWidth: 1)
+                        .fill(Color.gray))
             }
-        .shadow(radius: 10)
             .edgesIgnoringSafeArea(.bottom)
 
             VStack {
