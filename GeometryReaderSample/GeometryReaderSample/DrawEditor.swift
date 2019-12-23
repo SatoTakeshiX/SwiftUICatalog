@@ -162,38 +162,40 @@ struct Canvas: View {
 
     var body: some View {
         GeometryReader { geometry in
-            Rectangle()
-                .foregroundColor(Color.white)
-                .overlay(
-                    DrawPathView(drawPointsArray: self.endedDrawPoints)
-                        .overlay(
-                            // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
-                            Path { path in
-                                path.addLines(self.tmpDrawPoints.points)
-                            }
-                            .stroke(self.tmpDrawPoints.color, lineWidth: 10)
-                    )
-            )
-                .border(Color.black, width: 2)
-                .gesture(
-                    DragGesture()
-                        .onChanged({ (value) in
+            ZStack {
+                Rectangle()
+                    .foregroundColor(Color.white)
+                    .overlay(
+                        DrawPathView(drawPointsArray: self.endedDrawPoints)
 
-                            if self.startPoint != value.startLocation {
-                                self.tmpDrawPoints.points.append(value.location)
-                                self.tmpDrawPoints.color = self.selectedColor.color
+                )
+                    .border(Color.black, width: 2)
+                    .gesture(
+                        DragGesture()
+                            .onChanged({ (value) in
 
-                            }
-                        })
-                        .onEnded({ (value) in
-                            self.startPoint = value.startLocation
-                            self.endedDrawPoints.append(self.tmpDrawPoints)
-                            self.tmpDrawPoints = DrawPoints(points: [], color: self.selectedColor.color)
-                        })
-            )
-                .onAppear {
-                    self.canvasRect = geometry.frame(in: .global)
+                                if self.startPoint != value.startLocation {
+                                    self.tmpDrawPoints.points.append(value.location)
+                                    self.tmpDrawPoints.color = self.selectedColor.color
+
+                                }
+                            })
+                            .onEnded({ (value) in
+                                self.startPoint = value.startLocation
+                                self.endedDrawPoints.append(self.tmpDrawPoints)
+                                self.tmpDrawPoints = DrawPoints(points: [], color: self.selectedColor.color)
+                            })
+                )
+                    .onAppear {
+                        self.canvasRect = geometry.frame(in: .global)
+                }
+                // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
+                Path { path in
+                    path.addLines(self.tmpDrawPoints.points)
+                }
+                .stroke(self.tmpDrawPoints.color, lineWidth: 10)
             }
+
         }
     }
 }
