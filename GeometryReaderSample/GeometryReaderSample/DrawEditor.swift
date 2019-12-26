@@ -167,13 +167,11 @@ struct Canvas: View {
                     .foregroundColor(Color.white)
                     .overlay(
                         DrawPathView(drawPointsArray: self.endedDrawPoints)
-
                 )
                     .border(Color.black, width: 2)
                     .gesture(
-                        DragGesture()
+                        DragGesture(minimumDistance: 0)
                             .onChanged({ (value) in
-
                                 if self.startPoint != value.startLocation {
                                     self.tmpDrawPoints.points.append(value.location)
                                     self.tmpDrawPoints.color = self.selectedColor.color
@@ -195,7 +193,6 @@ struct Canvas: View {
                 }
                 .stroke(self.tmpDrawPoints.color, lineWidth: 10)
             }
-
         }
     }
 }
