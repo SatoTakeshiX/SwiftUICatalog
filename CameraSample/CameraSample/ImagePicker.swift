@@ -27,30 +27,29 @@ extension ImagePicker: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-
+        //@Bindingの値が変わったときに呼ばれる
+        // parentパターンはImagePickerのプロパティとCoordinatorのプロパティをそのまま使いたいからっぽい
     }
 
     func makeCoordinator() -> Coordinator {
-      return Coordinator(isShown: $isShown, image: $image)
+        return Coordinator(parent: self)
     }
 }
 
 final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    @Binding var isCoordinatorShown: Bool
-    @Binding var imageInCoordinator: Image?
+    let parent: ImagePicker
 
-    init(isShown: Binding<Bool>, image: Binding<Image?>) {
-        _isCoordinatorShown = isShown
-        _imageInCoordinator = image
+    init(parent: ImagePicker) {
+        self.parent = parent
     }
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        imageInCoordinator = Image(uiImage: originalImage)
-        isCoordinatorShown = false
+        parent.image = Image(uiImage: originalImage)
+        parent.isShown = false
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        isCoordinatorShown = false
+        parent.isShown = false
     }
 }
 
