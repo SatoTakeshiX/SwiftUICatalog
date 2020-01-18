@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 import UIKit
 
-struct ContentView: View {
+struct HomeView: View {
     struct EmptyImageView: View {
         var body: some View {
             VStack {
@@ -19,29 +19,45 @@ struct ContentView: View {
                     .foregroundColor(.gray)
                 Spacer()
             }
-
         }
     }
 
-    struct CustomToolBarView: View {
+    struct CustomToolBar: View {
         var body: some View {
-            VStack {
-                // SafeAreaの下部まで表示するViewを作るにはZStack配下にいれ、Spacerを入れればいい
-                Spacer()
-                Rectangle()
-                    .frame(width: UIScreen.main.bounds.width, height: 112)
-                    .foregroundColor(.gray)
-                    .opacity(0.3)
-                    .overlay(Path { path in
-                        path.move(to: CGPoint(x: 0, y: 0))
-                        path.addLine(to: CGPoint(x: UIScreen.main.bounds.maxX, y: 0))
-                    }.stroke(lineWidth: 1)
-                        .fill(Color.gray))
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width, height: 112)
+                .foregroundColor(.gray)
+                .opacity(0.3)
+                .overlay(Path { path in
+                    path.move(to: CGPoint(x: 0, y: 0))
+                    path.addLine(to: CGPoint(x: UIScreen.main.bounds.maxX, y: 0))
+                }.stroke(lineWidth: 1)
+                    .fill(Color.gray))
+        }
+    }
+
+    struct CameraButton: View {
+        private var viewModel: HomeViewModel
+        init(viewModel: HomeViewModel) {
+            self.viewModel = viewModel
+        }
+        var body: some View {
+            Button(action: {
+                self.viewModel.apply(.tappedButton)
+            }) {
+                VStack {
+                    Image(systemName: "camera")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                    Text("画像登録")
+                }
+            .frame(width: 80, height: 60)
             }
         }
     }
 
-    @ObservedObject private var viewModel: ImagePickerViewModel
+    @ObservedObject private var viewModel: HomeViewModel
     private var actionSheet: ActionSheet {
         let buttons = viewModel.selectedOption.map { (photAction) -> ActionSheet.Button in
             ActionSheet.Button.default(Text(photAction.message), action: photAction.action)
@@ -51,14 +67,18 @@ struct ContentView: View {
     }
     @State private var image: Image? = nil
 
-    init(viewModel: ImagePickerViewModel) {
+    init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
         ZStack {
-            CustomToolBarView()
-                .edgesIgnoringSafeArea(.bottom)
+            VStack {
+                // SafeAreaの下部まで表示するViewを作るにはZStack配下にいれ、Spacerを入れればいい
+                Spacer()
+                CustomToolBar()
+            }
+            .edgesIgnoringSafeArea(.bottom)
 
             VStack {
                 if self.image != nil {
@@ -68,22 +88,11 @@ struct ContentView: View {
                 } else {
                     EmptyImageView()
                 }
-
             }
 
             VStack {
                 Spacer()
-                Button(action: {
-                    self.viewModel.apply(.tappedButton)
-                }) {
-                    VStack {
-                        Image(systemName: "camera")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                        Text("画像登録")
-                    }
-                }
+                CameraButton(viewModel: self.viewModel)
             }
         }
         .actionSheet(isPresented: $viewModel.isShowActionSheet) { () -> ActionSheet in
@@ -97,6 +106,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: ImagePickerViewModel())
+        HomeView(viewModel: HomeViewModel())
     }
 }

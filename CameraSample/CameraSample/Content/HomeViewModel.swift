@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-final class ImagePickerViewModel: ObservableObject, Identifiable {
+final class HomeViewModel: ObservableObject, Identifiable {
 
     private var cancellables: [AnyCancellable] = []
 
