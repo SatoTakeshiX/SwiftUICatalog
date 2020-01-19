@@ -28,7 +28,7 @@ extension ImagePicker: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
         //@Bindingの値が変わったときに呼ばれる
-        // parentパターンはImagePickerのプロパティとCoordinatorのプロパティをそのまま使いたいからっぽい
+        // parentパターンはImagePickerのプロパティとCoordinatorのプロパティをそのまま使いたいから
     }
 
     func makeCoordinator() -> Coordinator {

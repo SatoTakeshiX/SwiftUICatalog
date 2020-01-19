@@ -23,8 +23,8 @@ final class HomeViewModel: ObservableObject, Identifiable {
     @Published var image: UIImage?
     @Published var isShowActionSheet = false
     @Published var isShowImagePickerView = false
-    @Published private(set) var selectedSourceType: UIImagePickerController.SourceType = .camera
-    @Published private(set) var selectedOption: [PhotoAction] = []
+    private(set) var selectedSourceType: UIImagePickerController.SourceType = .camera
+    private(set) var selectedOption: [PhotoAction] = []
 
     init() {
         bindOutputs()
@@ -49,16 +49,12 @@ final class HomeViewModel: ObservableObject, Identifiable {
         }
         .assign(to: \.selectedOption, on: self)
         let isShow = tappedButtonStream
-            .map { () -> Bool in
-                return true
-        }.assign(to: \.isShowActionSheet, on: self)
+            .map { true }.assign(to: \.isShowActionSheet, on: self)
 
         let selectedType = tappedActionSheet
             .assign(to: \.selectedSourceType, on: self)
         let isShowImagePickerView = tappedActionSheet
-            .map{ type -> Bool in
-                return true
-        }
+            .map{ _ in true }
         .assign(to: \.isShowImagePickerView, on: self)
 
         cancellables += [

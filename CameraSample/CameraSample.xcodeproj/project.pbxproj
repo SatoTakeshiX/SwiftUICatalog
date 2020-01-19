@@ -106,11 +106,11 @@
 				306830E623AE612C0070F473 /* AppDelegate.swift */,
 				306830E823AE612C0070F473 /* SceneDelegate.swift */,
 				3079188E23D334C000538080 /* Content */,
+				3068311623AF98E50070F473 /* ImagePicker.swift */,
 				306830EC23AE612F0070F473 /* Assets.xcassets */,
 				306830F123AE612F0070F473 /* LaunchScreen.storyboard */,
 				306830F423AE612F0070F473 /* Info.plist */,
 				306830EE23AE612F0070F473 /* Preview Content */,
-				3068311623AF98E50070F473 /* ImagePicker.swift */,
 			);
 			path = CameraSample;
 			sourceTree = "<group>";
