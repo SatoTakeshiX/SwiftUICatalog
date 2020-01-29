@@ -62,7 +62,7 @@ struct CardView: View {
             .fixedSize(horizontal: false, vertical: true)
         }
     .padding()
-    .frame(maxWidth: 280)
+    .frame(maxWidth: 280, maxHeight: 240)
     }
 }
 

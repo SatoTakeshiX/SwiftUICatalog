@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3059245523DF30A20069263F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059245423DF30A20069263F /* AppDelegate.swift */; };
 		3059245723DF30A20069263F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059245623DF30A20069263F /* SceneDelegate.swift */; };
-		3059245923DF30A20069263F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059245823DF30A20069263F /* ContentView.swift */; };
+		3059245923DF30A20069263F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059245823DF30A20069263F /* CardView.swift */; };
 		3059245B23DF30A50069263F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3059245A23DF30A50069263F /* Assets.xcassets */; };
 		3059245E23DF30A50069263F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3059245D23DF30A50069263F /* Preview Assets.xcassets */; };
 		3059246123DF30A50069263F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3059245F23DF30A50069263F /* LaunchScreen.storyboard */; };
@@ -44,7 +44,7 @@
 		3059245123DF30A20069263F /* GitHubApiClientSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubApiClientSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3059245423DF30A20069263F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3059245623DF30A20069263F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3059245823DF30A20069263F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3059245823DF30A20069263F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3059245A23DF30A50069263F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3059245D23DF30A50069263F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3059246023DF30A50069263F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,9 +113,9 @@
 			children = (
 				3059248423E065370069263F /* Service */,
 				3059248923E0769D0069263F /* Models */,
+				3059249223E1BDF50069263F /* Views */,
 				3059245423DF30A20069263F /* AppDelegate.swift */,
 				3059245623DF30A20069263F /* SceneDelegate.swift */,
-				3059245823DF30A20069263F /* ContentView.swift */,
 				3059245A23DF30A50069263F /* Assets.xcassets */,
 				3059245F23DF30A50069263F /* LaunchScreen.storyboard */,
 				3059246223DF30A50069263F /* Info.plist */,
@@ -168,6 +168,14 @@
 				3059249023E078A90069263F /* SearchRepositoryResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3059249223E1BDF50069263F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3059245823DF30A20069263F /* CardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,7 +314,7 @@
 				3059248D23E0778F0069263F /* Owner.swift in Sources */,
 				3059245723DF30A20069263F /* SceneDelegate.swift in Sources */,
 				3059248623E0657D0069263F /* APIService.swift in Sources */,
-				3059245923DF30A20069263F /* ContentView.swift in Sources */,
+				3059245923DF30A20069263F /* CardView.swift in Sources */,
 				3059249123E078A90069263F /* SearchRepositoryResponse.swift in Sources */,
 				3059248B23E076C60069263F /* Repository.swift in Sources */,
 				3059248F23E078800069263F /* SearchRepositoryRequest.swift in Sources */,
