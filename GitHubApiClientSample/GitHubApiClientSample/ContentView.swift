@@ -15,34 +15,64 @@ struct ContentView: View {
 }
 
 struct CardView: View {
+
+    struct Input {
+        let iconImage: UIImage
+        let title: String
+        let language: String
+        let star: Int
+        let description: String
+    }
+
+    let input: Input
+
+    init(input: Input) {
+        self.input = input
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "camera")
-                    //.resizable()
-                    //.renderingMode(.original)
-                    .frame(width: 30, height: 30)
-                    .padding(.trailing, 20.0)
-                    .foregroundColor(.white)
 
-                Text("sss")
-                .font(.headline)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
+            Image(uiImage: input.iconImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 60, height: 60)
+
+            Text(input.title)
+                .font(.title)
+            HStack {
+                Text(input.language)
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                Spacer()
+
+                HStack(spacing: 4) {
+                    Image(systemName: "star")
+                        .renderingMode(.template)
+                        .foregroundColor(.gray)
+                    Text(String(input.star))
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                }
+
             }
-            Text("ssss")
-                .foregroundColor(Color.white)
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight:
-            0, maxHeight: 200)
+            Text(input.description)
+               // .font(.body)
+            .lineLimit(nil)
+            .fixedSize(horizontal: false, vertical: true)
         }
-        .background(Color.black)
-    .cornerRadius(10)
+    .padding()
+    .frame(maxWidth: 280)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView()
+        CardView(input: .init(iconImage: UIImage(named: "rocket")!,
+                              title: "SwiftUI",
+                              language: "Swift",
+                              star: 1000,
+                              description: "deacriptiondeacriptiondeacriptiondeacriptiondeacriptiondeacription"))
         .previewLayout(.sizeThatFits)
     }
 }
