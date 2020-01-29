@@ -62,11 +62,8 @@ struct CardView: View {
             .lineLimit(nil)
             .fixedSize(horizontal: false, vertical: true)
         }
-    .padding()
+        .padding()
         .frame(minWidth: 140, maxWidth: 280, minHeight: 180)
-
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-        //.cornerRadius(4)
         .overlay(RoundedRectangle(cornerRadius: 10)
             .stroke(Color.gray, lineWidth: 1))
 
