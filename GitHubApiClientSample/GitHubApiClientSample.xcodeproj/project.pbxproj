@@ -21,6 +21,7 @@
 		3059248D23E0778F0069263F /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059248C23E0778F0069263F /* Owner.swift */; };
 		3059248F23E078800069263F /* SearchRepositoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059248E23E078800069263F /* SearchRepositoryRequest.swift */; };
 		3059249123E078A90069263F /* SearchRepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059249023E078A90069263F /* SearchRepositoryResponse.swift */; };
+		3059249423E1BE680069263F /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059249323E1BE680069263F /* SectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		3059248C23E0778F0069263F /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		3059248E23E078800069263F /* SearchRepositoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryRequest.swift; sourceTree = "<group>"; };
 		3059249023E078A90069263F /* SearchRepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryResponse.swift; sourceTree = "<group>"; };
+		3059249323E1BE680069263F /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				3059245823DF30A20069263F /* CardView.swift */,
+				3059249323E1BE680069263F /* SectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				3059245523DF30A20069263F /* AppDelegate.swift in Sources */,
 				3059248823E06B730069263F /* APIServiceError.swift in Sources */,
+				3059249423E1BE680069263F /* SectionView.swift in Sources */,
 				3059248D23E0778F0069263F /* Owner.swift in Sources */,
 				3059245723DF30A20069263F /* SceneDelegate.swift in Sources */,
 				3059248623E0657D0069263F /* APIService.swift in Sources */,

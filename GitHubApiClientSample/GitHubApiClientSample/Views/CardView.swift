@@ -37,6 +37,7 @@ struct CardView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 60, height: 60)
+                .cornerRadius(10)
 
             Text(input.title)
                 .font(.title)
@@ -62,7 +63,13 @@ struct CardView: View {
             .fixedSize(horizontal: false, vertical: true)
         }
     .padding()
-    .frame(maxWidth: 280, maxHeight: 240)
+        .frame(minWidth: 140, maxWidth: 280, minHeight: 180)
+
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+        //.cornerRadius(4)
+        .overlay(RoundedRectangle(cornerRadius: 10)
+            .stroke(Color.gray, lineWidth: 1))
+
     }
 }
 
@@ -72,7 +79,7 @@ struct ContentView_Previews: PreviewProvider {
                               title: "SwiftUI",
                               language: "Swift",
                               star: 1000,
-                              description: "deacriptiondeacriptiondeacriptiondeacriptiondeacriptiondeacription"))
+                              description: "ssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
         .previewLayout(.sizeThatFits)
     }
 }
