@@ -22,7 +22,16 @@ struct SectionView: View {
                 .font(.title)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
-                    CardView(input: .init(iconImage: UIImage(named: "rocket")!, title: "swiftui", language: "swift", star: 1000, description: "brabarabarabarabrabarabarabarabrabarabarabara"))
+                    VStack {
+                        NavigationLink(destination: Text("hhhhh")) {
+                            EmptyView()
+                        }
+
+                        
+
+                        CardView(input: .init(iconImage: UIImage(named: "rocket")!, title: "swiftui", language: "swift", star: 1000, description: "brabarabarabarabrabarabarabarabrabarabarabara"))
+
+                    }
                     ForEach(input.repogitories) { repository in
                         CardView(input: .init(iconImage: UIImage(systemName: "camera")!, title: "swiftui", language: "swift", star: 1000, description: "brabarabarabarabrabarabarabarabrabarabarabara"))
 
