@@ -15,6 +15,7 @@ struct SectionView: View {
     }
 
     let input: Input
+    @State private var isActive: Bool = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,25 +23,17 @@ struct SectionView: View {
                 .font(.title)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
-                    VStack {
-                        NavigationLink(destination: Text("hhhhh")) {
-                            EmptyView()
-                        }
-
-                        
-
-                        CardView(input: .init(iconImage: UIImage(named: "rocket")!, title: "swiftui", language: "swift", star: 1000, description: "brabarabarabarabrabarabarabarabrabarabarabara"))
-
-                    }
                     ForEach(input.repogitories) { repository in
-                        CardView(input: .init(iconImage: UIImage(systemName: "camera")!, title: "swiftui", language: "swift", star: 1000, description: "brabarabarabarabrabarabarabarabrabarabarabara"))
-
+                        CardView(input: .init(iconImage: UIImage(named: "rocket")!, title: "swiftui", language: "swift", star: 1000, description: "brabarabarabarabrabarabarabarabrabarabarabara"))
+                            .contentShape(Rectangle())
+                            .sheet(isPresented: self.$isActive, content: {
+                                Text("ddd")
+                            })
                             .onTapGesture {
-                                print("sssss")
+                                self.isActive = true
                         }
                     }
                 }
-
             }
         }
     }
