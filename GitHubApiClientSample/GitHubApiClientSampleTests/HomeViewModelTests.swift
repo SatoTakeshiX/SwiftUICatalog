@@ -33,7 +33,7 @@ class HomeViewModelTests: XCTestCase {
 
         let viewModel = HomeViewModel(apiService: apiService)
         viewModel.apply(inputs: .onEnter(text: "sss"))
-        XCTAssertTrue(!viewModel.repositories.isEmpty)
+        XCTAssertTrue(!viewModel.cardViewInputs.isEmpty)
     }
 
     func testOnError() {

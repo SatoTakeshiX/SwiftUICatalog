@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class HomeViewModel: ObservableObject {
 
@@ -15,13 +16,16 @@ final class HomeViewModel: ObservableObject {
     enum Inputs {
         case onEnter(text: String)
         case tappedErrorAlert
+        case showRepository(urlString: String)
     }
 
     // MARK: - Outputs
-    @Published private(set) var repositories: [Repository] = []
-    @Published private(set) var inputText: String = ""
+    @Published private(set) var cardViewInputs: [CardView.Input] = []
+    @Published var inputText: String = ""
     @Published var isShowError = false
     @Published var isShowIndicator = false
+    @Published var isShowSheet = false
+    @Published var repositoryUrl: String = ""
 
     init(apiService: APIServiceType) {
         self.apiService = apiService
@@ -31,11 +35,13 @@ final class HomeViewModel: ObservableObject {
 
     func apply(inputs: Inputs) {
         switch inputs {
-            case .onEnter(let query):
-                onEnterSubject.send(query)
+            case .onEnter(let inputText):
+                onEnterSubject.send(inputText)
             case .tappedErrorAlert:
                 tappedErrorAlertSubject.send(())
-
+            case .showRepository(let urlString):
+                repositoryUrl = urlString
+                isShowSheet = true
         }
     }
 
@@ -80,7 +86,7 @@ final class HomeViewModel: ObservableObject {
         let repositoriesStream = responseSubject
             .map { $0.items }
             .sink(receiveValue: { (repositories) in
-                self.repositories = repositories
+                self.cardViewInputs = self.convertInput(repositories: repositories)
                 self.inputText = ""
                 self.isShowIndicator = false
             })
@@ -93,5 +99,23 @@ final class HomeViewModel: ObservableObject {
             repositoriesStream,
             errorStream
         ]
+    }
+
+    private func convertInput(repositories: [Repository]) -> [CardView.Input] {
+        return repositories.compactMap { (repo) -> CardView.Input? in
+            do {
+                let data = try Data(contentsOf: URL(string: repo.owner.avatarUrl)!)
+                let image = UIImage(data: data)!
+                return CardView.Input(iconImage: image,
+                                      title: repo.name,
+                                      language: repo.language,
+                                      star: repo.stargazersCount,
+                                      description: repo.description,
+                                      url: repo.url)
+
+            } catch {
+                return nil
+            }
+        }
     }
 }

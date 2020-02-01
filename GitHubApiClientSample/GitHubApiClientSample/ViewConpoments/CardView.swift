@@ -16,12 +16,14 @@ struct ContentView: View {
 
 struct CardView: View {
 
-    struct Input {
+    struct Input: Identifiable {
+        let id: UUID = UUID()
         let iconImage: UIImage
         let title: String
-        let language: String
+        let language: String?
         let star: Int
-        let description: String
+        let description: String?
+        let url: String
     }
 
     let input: Input
@@ -47,7 +49,7 @@ struct CardView: View {
                 .font(.title)
                 .fontWeight(.bold)
             HStack {
-                Text(input.language)
+                Text(input.language ?? "")
                     .font(.footnote)
                     .foregroundColor(.gray)
                 Spacer()
@@ -62,7 +64,7 @@ struct CardView: View {
                 }
 
             }
-            Text(input.description)
+            Text(input.description ?? "")
                 .foregroundColor(.black)
             .lineLimit(nil)
             .fixedSize(horizontal: false, vertical: true)
@@ -82,7 +84,7 @@ struct ContentView_Previews: PreviewProvider {
                               title: "SwiftUI",
                               language: "Swift",
                               star: 1000,
-                              description: "ssssssssssssssssssssssssssssssssssssssssssssssssssssssss"))
+                              description: "ssssssssssssssssssssssssssssssssssssssssssssssssssssssss", url: "https:exmaple.com"))
         .previewLayout(.sizeThatFits)
     }
 }
