@@ -115,6 +115,7 @@
 		3059245323DF30A20069263F /* GitHubApiClientSample */ = {
 			isa = PBXGroup;
 			children = (
+				3070D99E23E51F8100A97392 /* ViewConpoments */,
 				3059248423E065370069263F /* Service */,
 				3059248923E0769D0069263F /* Models */,
 				3059249223E1BDF50069263F /* Views */,
@@ -190,6 +191,13 @@
 				3059249523E1CD010069263F /* HomeView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		3070D99E23E51F8100A97392 /* ViewConpoments */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewConpoments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

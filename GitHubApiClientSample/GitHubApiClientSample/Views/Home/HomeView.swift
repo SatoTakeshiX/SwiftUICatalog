@@ -16,18 +16,19 @@ struct HomeView: View {
 
         // https://stackoverflow.com/questions/57499359/adding-a-textfield-to-navigationbar-with-swiftui
         NavigationView {
+            ScrollView(showsIndicators: false) {
 
-            ScrollView {
-                SectionView(input: .init(repogitories: [repo, repo], searchKeyword: "swift"))
-                .padding(.bottom, 16)
-                .previewLayout(.sizeThatFits)
+                ForEach([repo]) { repo in
+                    Button(action: {
+                        print("dd")
+                    }) {
+                        CardView(input: .init(iconImage: UIImage(named: "rocket")!, title: "swiftui", language: "swift", star: 1000, description: "brabarabarabarabrabarabarabarabrabarabarabara"))
+                    }
 
-                SectionView(input: .init(repogitories: [repo, repo], searchKeyword: "swift"))
-                .previewLayout(.sizeThatFits)
-                SectionView(input: .init(repogitories: [repo, repo], searchKeyword: "swift"))
-                .previewLayout(.sizeThatFits)
+
+                }
             }
-            .padding(.all, 20)
+            .padding()
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading: HStack {
                 TextField("検索キーワードを入力", text: self.$text, onCommit: {
