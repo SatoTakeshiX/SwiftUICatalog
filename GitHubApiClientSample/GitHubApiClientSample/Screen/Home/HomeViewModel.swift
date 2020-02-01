@@ -14,6 +14,7 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Inputs
     enum Inputs {
         case onEnter(text: String)
+        case tappedErrorAlert
     }
 
     // MARK: - Outputs
@@ -32,12 +33,16 @@ final class HomeViewModel: ObservableObject {
         switch inputs {
             case .onEnter(let query):
                 onEnterSubject.send(query)
+            case .tappedErrorAlert:
+                tappedErrorAlertSubject.send(())
+
         }
     }
 
     // MARK: - Private
     private let apiService: APIServiceType
     private let onEnterSubject = PassthroughSubject<String, Never>()
+    private let tappedErrorAlertSubject = PassthroughSubject<Void, Never>()
     private let responseSubject = PassthroughSubject<SearchRepositoryResponse, Never>()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
     private var cancellables: [AnyCancellable] = []
@@ -56,13 +61,18 @@ final class HomeViewModel: ObservableObject {
             .map { _ in true }
             .assign(to: \.isShowIndicator, on: self)
 
+        let tappedErrorAlertPublisher = tappedErrorAlertSubject
+            .map { _ in false }
+            .assign(to: \.isShowError, on: self)
+
         let responseStream = responsePublisher
             .share()
             .subscribe(responseSubject)
 
         cancellables += [
             responseStream,
-            loadingStartPublisher
+            loadingStartPublisher,
+            tappedErrorAlertPublisher
         ]
     }
 
