@@ -25,6 +25,7 @@
 		3070D9A123E522C600A97392 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3070D9A023E522C600A97392 /* HomeViewModel.swift */; };
 		3070D9A323E566C600A97392 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3070D9A223E566C600A97392 /* HomeViewModelTests.swift */; };
 		3070D9A523E569C800A97392 /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3070D9A423E569C800A97392 /* MockAPIService.swift */; };
+		30E5815D23E5AB3C00CF9C59 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E5815C23E5AB3C00CF9C59 /* SafariView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		3070D9A023E522C600A97392 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		3070D9A223E566C600A97392 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		3070D9A423E569C800A97392 /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
+		30E5815C23E5AB3C00CF9C59 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 		3059249223E1BDF50069263F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30E5815C23E5AB3C00CF9C59 /* SafariView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				3070D9A123E522C600A97392 /* HomeViewModel.swift in Sources */,
 				3059248823E06B730069263F /* APIServiceError.swift in Sources */,
 				3059248D23E0778F0069263F /* Owner.swift in Sources */,
+				30E5815D23E5AB3C00CF9C59 /* SafariView.swift in Sources */,
 				3059245723DF30A20069263F /* SceneDelegate.swift in Sources */,
 				3059249623E1CD010069263F /* HomeView.swift in Sources */,
 				3059248623E0657D0069263F /* APIService.swift in Sources */,

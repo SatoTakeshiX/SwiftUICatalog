@@ -14,6 +14,6 @@ struct Repository: Decodable, Hashable, Identifiable {
     var description: String?
     var stargazersCount: Int = 0
     var language: String?
-    var url: String
+    var htmlUrl: String
     var owner: Owner
 }

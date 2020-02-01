@@ -23,7 +23,7 @@ final class HomeViewModel: ObservableObject {
     @Published private(set) var cardViewInputs: [CardView.Input] = []
     @Published var inputText: String = ""
     @Published var isShowError = false
-    @Published var isShowIndicator = false
+    @Published var isLoading = false
     @Published var isShowSheet = false
     @Published var repositoryUrl: String = ""
 
@@ -65,7 +65,7 @@ final class HomeViewModel: ObservableObject {
 
         let loadingStartPublisher = onEnterSubject
             .map { _ in true }
-            .assign(to: \.isShowIndicator, on: self)
+            .assign(to: \.isLoading, on: self)
 
         let tappedErrorAlertPublisher = tappedErrorAlertSubject
             .map { _ in false }
@@ -88,7 +88,7 @@ final class HomeViewModel: ObservableObject {
             .sink(receiveValue: { (repositories) in
                 self.cardViewInputs = self.convertInput(repositories: repositories)
                 self.inputText = ""
-                self.isShowIndicator = false
+                self.isLoading = false
             })
 
         let errorStream = errorSubject
@@ -111,7 +111,7 @@ final class HomeViewModel: ObservableObject {
                                       language: repo.language,
                                       star: repo.stargazersCount,
                                       description: repo.description,
-                                      url: repo.url)
+                                      url: repo.htmlUrl)
 
             } catch {
                 return nil
