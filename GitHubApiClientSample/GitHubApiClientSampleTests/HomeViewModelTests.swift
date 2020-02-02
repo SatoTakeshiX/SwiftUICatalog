@@ -23,7 +23,7 @@ class HomeViewModelTests: XCTestCase {
                           name: "takeshi",
                           description: "brabrabara",
                           stargazersCount: 100,
-                          language: "Swift", url: "https://example.com",
+                          language: "Swift", htmlUrl: "https://example.com",
                           owner: Owner(id: 1,
                                        avatarUrl: "https://example.com/photo.png"))
                                     ]

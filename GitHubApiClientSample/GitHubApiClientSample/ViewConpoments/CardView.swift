@@ -70,10 +70,11 @@ struct CardView: View {
             .fixedSize(horizontal: false, vertical: true)
         }
         .padding(24)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.gray, lineWidth: 1)
+        )
         .frame(minWidth: 140, minHeight: 180)
-            .background(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 1))
-            .clipped()
-        .background(Color.white)
 
     }
 }
