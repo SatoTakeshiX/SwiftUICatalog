@@ -85,15 +85,19 @@ final class HomeViewModel: ObservableObject {
     private func bindOutputs() {
         let repositoriesStream = responseSubject
             .map { $0.items }
-            .sink(receiveValue: { (repositories) in
+            .sink(receiveValue: { [weak self] (repositories) in
+                guard let self = self else { return }
                 self.cardViewInputs = self.convertInput(repositories: repositories)
                 self.inputText = ""
                 self.isLoading = false
             })
 
         let errorStream = errorSubject
-            .map { _ in true }
-            .assign(to: \.isShowError, on: self)
+            .sink(receiveValue: { [weak self] (error) in
+                guard let self = self else { return }
+                self.isShowError = true
+                self.isLoading = false
+            })
 
         cancellables += [
             repositoriesStream,

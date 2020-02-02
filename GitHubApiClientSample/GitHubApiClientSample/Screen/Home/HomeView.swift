@@ -13,11 +13,8 @@ struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
     @State private var text = ""
     var body: some View {
-        
         // https://stackoverflow.com/questions/57499359/adding-a-textfield-to-navigationbar-with-swiftui
         NavigationView {
-            
-            
             if self.viewModel.isLoading {
                 Text("読込中...")
                     .font(.headline)
@@ -25,7 +22,6 @@ struct HomeView: View {
                     .offset(x: 0, y: -200)
             } else {
                 ScrollView(showsIndicators: false) {
-                    
                     ForEach(viewModel.cardViewInputs) { input in
                         Button(action: {
                             self.viewModel.apply(inputs: .showRepository(urlString: input.url))
@@ -47,10 +43,11 @@ struct HomeView: View {
                     .sheet(isPresented: $viewModel.isShowSheet) {
                         SafariView(url: URL(string: self.viewModel.repositoryUrl)!)
                 }
+                .alert(isPresented: $viewModel.isShowError) {
+                    Alert(title: Text("通信時にエラーが発生しました。もう一度やり直してください"))
+                }
             }
         }
-        
-        
     }
 }
 
