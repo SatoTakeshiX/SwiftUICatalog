@@ -8,6 +8,14 @@
 
 import SwiftUI
 
+struct FigureOutOfSize: View {
+    var body: some View {
+        GeometryReader { geometry in
+            Text("geometry: \(geometry.size.debugDescription)")
+        }
+    }
+}
+
 struct CoodinateSpace: View {
     var body: some View {
         VStack {
@@ -64,6 +72,10 @@ struct CoodinateSpace2: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CoodinateSpace()
+        Group {
+            FigureOutOfSize()
+            CoodinateSpace()
+        }
+
     }
 }
