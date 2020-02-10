@@ -37,20 +37,20 @@ struct Home: View {
                     NavigationLink(destination: ScrollViewSample()) {
                         Text("ScrollView")
                     }
-                    NavigationLink(destination: Text("sss")) {
+                    NavigationLink(destination: TextFieldSample()) {
                         Text("TextField")
                     }
                     
                 }
 
                 Section(header: Text("View Presentations")) {
-                    NavigationLink(destination: Text("dd")) {
+                    NavigationLink(destination: AlertSample()) {
                         Text(".alert")
                     }
-                    NavigationLink(destination: Text("dd")) {
+                    NavigationLink(destination: SheetSample()) {
                         Text(".sheet")
                     }
-                    NavigationLink(destination: Text("dd")) {
+                    NavigationLink(destination: ActionSheetSample()) {
                         Text(".actionSheet")
                     }
                 }
