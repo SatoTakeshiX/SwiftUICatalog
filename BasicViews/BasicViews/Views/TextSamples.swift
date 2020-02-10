@@ -41,8 +41,9 @@ struct TextSamples: View {
                 .underline()
                 .strikethrough()
                 .lineSpacing(30)
-
                     .frame(width: 100)
+
+                
             }
         }
         .padding()

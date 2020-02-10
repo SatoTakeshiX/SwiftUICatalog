@@ -16,33 +16,31 @@ struct Home: View {
                     NavigationLink(destination: TextSamples()) {
                         Text("Text")
                     }
-                    NavigationLink(destination: Text("sss")) {
+                    NavigationLink(destination: ImageSample()) {
                         Text("Image")
                     }
-                    NavigationLink(destination: Text("sss")) {
+                    NavigationLink(destination: ButtonSample()) {
                         Text("Button")
                     }
-                    NavigationLink(destination: Text("sss")) {
+                    NavigationLink(destination: PathSample()) {
                         Text("Path")
                     }
-                    NavigationLink(destination: Text("sss")) {
+                    NavigationLink(destination: RoundedRectangleSample()) {
                         Text("RoundedRectangle")
                     }
-                    NavigationLink(destination: Text("sss")) {
+                    NavigationLink(destination: SpacerSample()) {
                         Text("Spacer")
                     }
-                    NavigationLink(destination: Text("sss")) {
+                    NavigationLink(destination: NavigationViewSample()) {
                         Text("NavigationView")
                     }
-                    NavigationLink(destination: Text("sss")) {
+                    NavigationLink(destination: ScrollViewSample()) {
                         Text("ScrollView")
                     }
                     NavigationLink(destination: Text("sss")) {
                         Text("TextField")
                     }
-                    NavigationLink(destination: Text("sss")) {
-                        Text("Text")
-                    }
+                    
                 }
 
                 Section(header: Text("View Presentations")) {
