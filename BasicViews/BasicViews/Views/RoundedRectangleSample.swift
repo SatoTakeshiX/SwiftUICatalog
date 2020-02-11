@@ -10,9 +10,13 @@ import SwiftUI
 
 struct RoundedRectangleSample: View {
     var body: some View {
-        RoundedRectangle(cornerRadius: 30)
-        .foregroundColor(.gray)
-            .frame(width: 200, height: 200)
+        NavigationView {
+            RoundedRectangle(cornerRadius: 30)
+                .foregroundColor(.gray)
+                .frame(width: 200, height: 200)
+                .navigationBarTitle("RoundedRectangle", displayMode: .inline)
+
+        }
     }
 }
 

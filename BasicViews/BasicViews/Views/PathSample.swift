@@ -16,12 +16,8 @@ struct PathSample: View {
                                CGPoint(x: UIScreen.main.bounds.width, y: 0),
                                CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/3),
                                CGPoint(x: 0, y: 0)])
-
-
             }
             .stroke(Color.red, lineWidth: 4)
-
-
             Path { path in
                 path.addRect(CGRect(x: (UIScreen.main.bounds.width - 100)/2,
                                     y: 0,

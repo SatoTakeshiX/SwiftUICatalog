@@ -33,16 +33,9 @@ struct ScrollViewSample: View {
                         FixedSizeRectangle(color: .blue)
                     }
                 }
-                ScrollView(.horizontal) {
-                    HStack {
-                        FixedSizeRectangle(color: .green)
-                        FixedSizeRectangle(color: .green)
-                        FixedSizeRectangle(color: .green)
-                    }
-                }
             }
         .padding()
-            .frame(width: UIScreen.main.bounds.width)
+        .frame(width: UIScreen.main.bounds.width)
         }
     }
 }

@@ -12,7 +12,7 @@ struct TextFieldSample: View {
     @State private var inputTextOne: String = ""
     @State private var inputTextTwo: String = ""
     var body: some View {
-
+        
         ScrollView {
             VStack {
                 TextField("input search keyword", text: $inputTextOne, onEditingChanged: {_ in
@@ -20,20 +20,19 @@ struct TextFieldSample: View {
                 }, onCommit: {
                     print("onCommit")
                 })
-     .textFieldStyle(RoundedBorderTextFieldStyle())
-     .keyboardType(.asciiCapable)
-
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.asciiCapable)
+                
                 TextField("input numbers", text: $inputTextTwo, onEditingChanged: {_ in
-                               print("onEditingChanged")
-                           }, onCommit: {
-                               print("onCommit")
-                           })
-                .textFieldStyle(PlainTextFieldStyle())
+                    print("onEditingChanged")
+                }, onCommit: {
+                    print("onCommit")
+                })
+                    .textFieldStyle(PlainTextFieldStyle())
                     .keyboardType(.decimalPad)
             }
         }
-    .padding()
-
+        .padding()
     }
 }
 

@@ -18,12 +18,13 @@ struct ButtonSample: View {
                     VStack {
                         Image(systemName: "camera")
                             .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
                         Text("Select Phot")
                     }.frame(width: 150, height: 100)
                 }
-
                 .border(Color.gray)
+                .cornerRadius(10)
 
                 Button(action: {
                     print("tapped button")
@@ -32,14 +33,13 @@ struct ButtonSample: View {
                         Image(systemName: "camera")
                             .resizable()
                             .renderingMode(.original)
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
                         Text("Select Phot")
                             .foregroundColor(.black)
                     }
                     .frame(width: 150, height: 100)
                 }
-
-
                 .border(Color.gray)
 
                 Button(action: {
@@ -49,6 +49,7 @@ struct ButtonSample: View {
                         Image(systemName: "camera")
                             .resizable()
                             .renderingMode(.original)
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
                         Text("Select Phot")
                             .foregroundColor(.black)
@@ -65,6 +66,23 @@ struct ButtonSample: View {
                         Image(systemName: "camera")
                             .resizable()
                             .renderingMode(.original)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 40, height: 40)
+                        Text("Select Phot")
+                            .foregroundColor(.black)
+                    }
+                    .frame(width: 150, height: 100)
+                }
+                .border(Color.gray)
+
+                Button(action: {
+                    print("tapped button")
+                }) {
+                    VStack {
+                        Image(systemName: "camera")
+                            .resizable()
+                            .renderingMode(.original)
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
                         Text("Select Phot")
                             .foregroundColor(.black)
