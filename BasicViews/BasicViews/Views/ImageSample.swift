@@ -11,37 +11,33 @@ import SwiftUI
 struct ImageSample: View {
     var body: some View {
         ScrollView {
-        VStack(spacing: 16) {
-            Image("wing")
-                .frame(width: 80, height: 100)
+            VStack(spacing: 16) {
+                Image("wing")
+                    .frame(width: 80, height: 100)
 
-            Image(systemName: "moon")
-                .resizable()
-                .frame(width: 70, height: 100)
+                Image(systemName: "moon")
+                    .resizable()
+                    .frame(width: 70, height: 100)
 
-            Image(systemName: "moon")
-             .resizable()
-            .aspectRatio(contentMode: .fill)
-             .frame(width: 70, height: 100)
-            Image(systemName: "moon")
-            .resizable()
+                Image(systemName: "moon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 70, height: 100)
 
-                .aspectRatio(contentMode: .fit)
-            .frame(width: 80, height: 100)
+                Image(systemName: "moon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 80, height: 100)
 
-            Image(systemName: "sunset.fill")
-            .resizable()
-            .renderingMode(.template)
-                .aspectRatio(contentMode: .fit)
-            .foregroundColor(Color.red)
-            .frame(width: 80, height: 100)
-
-            
-
+                Image(systemName: "sunset.fill")
+                    .resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(Color.red)
+                    .frame(width: 80, height: 100)
             }
-
         }
-    .padding()
+        .padding()
         .frame(width: UIScreen.main.bounds.width)
     }
 }

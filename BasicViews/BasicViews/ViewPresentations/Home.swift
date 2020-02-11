@@ -31,7 +31,7 @@ struct Home: View {
                     NavigationLink(destination: SpacerSample()) {
                         Text("Spacer")
                     }
-                    NavigationLink(destination: NavigationViewSample()) {
+                    NavigationLink(destination: NavigationLinkSample()) {
                         Text("NavigationView")
                     }
                     NavigationLink(destination: ScrollViewSample()) {

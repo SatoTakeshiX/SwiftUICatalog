@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct NavigationViewSample: View {
+struct NavigationLinkSample: View {
     var body: some View {
         NavigationLink(destination: Text("navigation")) {
             Text("NavigationViewSample")
@@ -18,6 +18,6 @@ struct NavigationViewSample: View {
 
 struct NavigationViewSample_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationViewSample()
+        NavigationLinkSample()
     }
 }

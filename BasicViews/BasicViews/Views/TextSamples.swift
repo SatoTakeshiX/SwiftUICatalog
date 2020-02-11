@@ -11,39 +11,57 @@ import SwiftUI
 struct TextSamples: View {
     var body: some View {
         ScrollView {
+
+            VStack(spacing: 16) {
+                Text("largeTitle")
+                    .font(.largeTitle)
+                Text("title")
+                    .font(.title)
+                Text("headline")
+                    .font(.headline)
+                Text("subheadline")
+                    .font(.subheadline)
+                Text("body")
+                    .font(.body)
+                Text("callout")
+                    .font(.callout)
+                Text("footnote")
+                    .font(.footnote)
+                Text("caption")
+                    .font(.caption)
+            }
+            .padding()
+
             VStack(spacing: 16) {
                 Text("longlonglonglonglonglongText")
                     .font(.title)
-                .lineLimit(nil)
-                .frame(width: 200)
-                    .border(Color.gray)
+                    .lineLimit(1)
+                    .frame(width: 200)
+
                 Text("longlonglonglonglonglongText")
                     .font(.title)
-                .lineLimit(nil)
+                    .lineLimit(1)
+                    .frame(width: 200, height: 50)
+                    .truncationMode(.head)
 
-                .fixedSize(horizontal: true, vertical: false)
-                    .truncationMode(.tail)
-                .frame(width: 200)
+                Text("longlonglonglonglonglongText")
+                    .font(.title)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .frame(width: 200, alignment: .leading)
                     .border(Color.gray)
 
-                Text("longlonglonglon")
-                .lineLimit(1)
-                .frame(width: 100, height: 50)
-                .truncationMode(.head)
-
-                Text("ddd")
+                Text("change color")
+                    .font(.title)
                     .foregroundColor(.green)
 
-                Text("dddddddd")
-                .kerning(2)
-                //.bold()
-                    .font(.title).fontWeight(.heavy)
-                .underline()
-                .strikethrough()
-                .lineSpacing(30)
+                Text("SwiftUI")
+                    .kerning(8)
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    .underline()
+                    .strikethrough()
+                    .lineSpacing(30)
                     .frame(width: 100)
-
-                
             }
         }
         .padding()
