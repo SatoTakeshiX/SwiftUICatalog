@@ -14,26 +14,23 @@ class News {
 class NewsSubscriber: Subscriber {
     typealias Input = Notification
     typealias Failure = Never
+    var publisher: NotificationCenter.Publisher
+    var subscription: Subscription?
 
-    var newsNotification: Notification {
-        didSet {
-            guard let news = newsNotification.object as? String else { return }
-            print(news)
-        }
-    }
-
-    init(newsNotification: Notification) {
-        self.newsNotification = newsNotification
+    init(notificationPublisher: NotificationCenter.Publisher) {
+        self.publisher = notificationPublisher
+        self.publisher.subscribe(self)
     }
 
     func receive(subscription: Subscription) {
         print(subscription)
+        self.subscription = subscription
         subscription.request(.unlimited)
     }
 
     func receive(_ input: Notification) -> Subscribers.Demand {
-        print(input)
-        newsNotification = input
+        let news = input.object as? News
+        print(news?.info ?? "")
         return .unlimited
     }
 
@@ -42,24 +39,13 @@ class NewsSubscriber: Subscriber {
     }
 }
 
-class NewsSubscription: Subscription {
-    func request(_ demand: Subscribers.Demand) {}
-    func cancel() {}
-}
-
 extension Notification.Name {
     static let News = Notification.Name("com.combine_introduce.news")
 }
 do {
     let notificationPublisher = NotificationCenter.Publisher(center: .default, name: Notification.Name("SEND_NEWS"), object: nil)
-    let newsSubscriber = NewsSubscriber(newsNotification: Notification(name: Notification.Name("SEND_NEWS"), object: News(info: ""), userInfo: nil))
-    let ssggg = notificationPublisher.subscribe(newsSubscriber)
-    NotificationCenter.default.post(Notification(name: Notification.Name("SEND_NEWS")))
-    let sss = notificationPublisher.center.post(Notification(name: Notification.Name("SEND_NEWS"), object: News(info: "ssss"), userInfo: nil))
-    //newsSubscriber.receive(subscription: NewsSubscription())
-//    let newNotification = Notification(name: Notification.Name("SEND_NEWS"), object: News(info: "it's rain today"), userInfo: nil)
-//    newsSubscriber.receive(newNotification)
-//    newsSubscriber.receive(completion: .finished)
+    let _ = NewsSubscriber(notificationPublisher: notificationPublisher)
+    notificationPublisher.center.post(name: Notification.Name("SEND_NEWS"), object: News(info: "you got a news!"))
 }
 
 do {
