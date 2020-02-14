@@ -30,8 +30,11 @@ struct ActionSheetSample: View {
                             .default(Text("電車"), action: {
                                 print("電車を選んだ")
                             }),
-                            .default(Text("飛行機"), action: {
-                                print("飛行機を選んだ")
+                            .destructive(Text("徒歩"), action: {
+                                print("徒歩を選んだ。大変だよ")
+                            }),
+                            .cancel(Text("選択しない"), action: {
+                                print("選択しない")
                             })
             ])
         }

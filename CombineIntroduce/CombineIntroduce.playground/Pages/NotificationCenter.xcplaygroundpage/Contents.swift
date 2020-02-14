@@ -51,13 +51,15 @@ extension Notification.Name {
     static let News = Notification.Name("com.combine_introduce.news")
 }
 do {
-    let notificationPublisher = NotificationCenter.Publisher(center: .default, name: Notification.Name("SEND_NEWS"), object: News(info: ""))
+    let notificationPublisher = NotificationCenter.Publisher(center: .default, name: Notification.Name("SEND_NEWS"), object: nil)
     let newsSubscriber = NewsSubscriber(newsNotification: Notification(name: Notification.Name("SEND_NEWS"), object: News(info: ""), userInfo: nil))
-    notificationPublisher.subscribe(newsSubscriber)
-    newsSubscriber.receive(subscription: NewsSubscription())
-    let newNotification = Notification(name: Notification.Name("SEND_NEWS"), object: News(info: "it's rain today"), userInfo: nil)
-    newsSubscriber.receive(newNotification)
-    newsSubscriber.receive(completion: .finished)
+    let ssggg = notificationPublisher.subscribe(newsSubscriber)
+    NotificationCenter.default.post(Notification(name: Notification.Name("SEND_NEWS")))
+    let sss = notificationPublisher.center.post(Notification(name: Notification.Name("SEND_NEWS"), object: News(info: "ssss"), userInfo: nil))
+    //newsSubscriber.receive(subscription: NewsSubscription())
+//    let newNotification = Notification(name: Notification.Name("SEND_NEWS"), object: News(info: "it's rain today"), userInfo: nil)
+//    newsSubscriber.receive(newNotification)
+//    newsSubscriber.receive(completion: .finished)
 }
 
 do {

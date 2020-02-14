@@ -13,7 +13,7 @@ struct AlertSample: View {
     @State private var isShowErrorAlert: Bool = false
     @State private var isShowRetryAlert: Bool = false
     var okAlert: Alert = Alert(title: Text("Download Success!"))
-    var errorAlert: Alert = Alert(title: Text("Something Happen"), message: Text("please retry!"), dismissButton: Alert.Button.default(Text("OK")))
+    var errorAlert: Alert = Alert(title: Text("An error occurred"), message: Text("Retry later!"), dismissButton: .default(Text("Close")))
     var retryAlert: Alert = Alert(title: Text("Error"), message: Text("please wait a minute"), primaryButton: .default(Text("Retry"), action: {
         print("tapped retry button")
     }), secondaryButton: .cancel())
