@@ -125,7 +125,6 @@
 				3070D99E23E51F8100A97392 /* ViewConpoments */,
 				3059248423E065370069263F /* Service */,
 				3059248923E0769D0069263F /* Models */,
-				3059249223E1BDF50069263F /* Views */,
 				3059245423DF30A20069263F /* AppDelegate.swift */,
 				3059245623DF30A20069263F /* SceneDelegate.swift */,
 				3059245A23DF30A50069263F /* Assets.xcassets */,
@@ -184,14 +183,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		3059249223E1BDF50069263F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				30E5815C23E5AB3C00CF9C59 /* SafariView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		3059249723E1CD070069263F /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				3059245823DF30A20069263F /* CardView.swift */,
+				30E5815C23E5AB3C00CF9C59 /* SafariView.swift */,
 			);
 			path = ViewConpoments;
 			sourceTree = "<group>";

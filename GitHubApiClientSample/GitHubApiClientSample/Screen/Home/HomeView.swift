@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    let repo = Repository(id: 1, name: "swift", description: "brabra", stargazersCount: 100, language: "swift", htmlUrl: "https://goog.com", owner: Owner(id: 1, avatarUrl: "mark"))
     @ObservedObject var viewModel: HomeViewModel
     @State private var text = ""
     var body: some View {

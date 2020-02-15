@@ -59,22 +59,23 @@ struct CardView: View {
                         .renderingMode(.template)
                         .foregroundColor(.gray)
                     Text(String(input.star))
-                    .font(.footnote)
-                    .foregroundColor(.gray)
+                        .font(.footnote)
+                        .foregroundColor(.gray)
                 }
 
             }
             Text(input.description ?? "")
                 .foregroundColor(.black)
-            .lineLimit(nil)
-            .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(24)
         .overlay(
             RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.gray, lineWidth: 1)
         )
-        .frame(minWidth: 140, minHeight: 180)
+            .frame(minWidth: 140, minHeight: 180)
+            .padding()
 
     }
 }
@@ -85,7 +86,7 @@ struct ContentView_Previews: PreviewProvider {
                               title: "SwiftUI",
                               language: "Swift",
                               star: 1000,
-                              description: "ssssssssssssssssssssssssssssssssssssssssssssssssssssssss", url: "https:exmaple.com"))
-        .previewLayout(.sizeThatFits)
+                              description: "Declare the user interface and behavior for your app on every platform.", url: "https:exmaple.com"))
+            .previewLayout(.sizeThatFits)
     }
 }
