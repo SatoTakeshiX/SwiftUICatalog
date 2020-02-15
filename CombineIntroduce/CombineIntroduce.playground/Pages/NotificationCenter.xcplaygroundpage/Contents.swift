@@ -43,22 +43,20 @@ extension Notification.Name {
     static let News = Notification.Name("com.combine_introduce.news")
 }
 do {
-    let notificationPublisher = NotificationCenter.Publisher(center: .default, name: Notification.Name("SEND_NEWS"), object: nil)
+    let notificationPublisher = NotificationCenter.Publisher(center: .default, name: .News, object: nil)
     let _ = NewsSubscriber(notificationPublisher: notificationPublisher)
-    notificationPublisher.center.post(name: Notification.Name("SEND_NEWS"), object: News(info: "you got a news!"))
+    notificationPublisher.center.post(name: .News, object: News(info: "you got a news!"))
 }
 
 do {
-    let news = News(info: "")
     NotificationCenter.default.publisher(for: .News ,object: nil)
         .map { (notification) -> String in
             print("map")
             return (notification.object as? News)?.info ?? ""
     }.sink(receiveCompletion: { (complition) in
         print("complition")
-    }, receiveValue: { value in
-        news.info = value
-        print(news.info)
+    }, receiveValue: { newsString in
+        print(newsString)
     })
     NotificationCenter.default.post(name: .News, object: News(info: "it's rain today"))
 }
