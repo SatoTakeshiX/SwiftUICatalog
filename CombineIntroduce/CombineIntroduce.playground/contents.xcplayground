@@ -3,5 +3,6 @@
     <pages>
         <page name='URLSession'/>
         <page name='NotificationCenter'/>
+        <page name='Subjects'/>
     </pages>
 </playground>
