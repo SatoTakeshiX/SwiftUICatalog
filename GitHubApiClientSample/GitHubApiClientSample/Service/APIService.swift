@@ -17,7 +17,7 @@ protocol APIRequestType {
 }
 
 protocol APIServiceType {
-    func response<Request>(from request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request: APIRequestType
+    func request<Request>(with request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request: APIRequestType
 }
 
 final class APIService: APIServiceType {
@@ -27,7 +27,7 @@ final class APIService: APIServiceType {
         self.baseURLString = baseURLString
     }
 
-   func response<Request>(from request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request: APIRequestType {
+   func request<Request>(with request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request: APIRequestType {
 
     guard let pathURL = URL(string: request.path, relativeTo: URL(string: baseURLString)) else {
         return Fail(error: APIServiceError.invalidURL).eraseToAnyPublisher()

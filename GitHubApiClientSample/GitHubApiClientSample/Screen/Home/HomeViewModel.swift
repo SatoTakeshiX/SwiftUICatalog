@@ -14,9 +14,9 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Inputs
     enum Inputs {
-        case onEnter(text: String)
+        case onCommit(text: String)
         case tappedErrorAlert
-        case showRepository(urlString: String)
+        case tappedCardView(urlString: String)
     }
 
     // MARK: - Outputs
@@ -29,17 +29,16 @@ final class HomeViewModel: ObservableObject {
 
     init(apiService: APIServiceType) {
         self.apiService = apiService
-        bindInputs()
-        bindOutputs()
+        bind()
     }
 
     func apply(inputs: Inputs) {
         switch inputs {
-            case .onEnter(let inputText):
-                onEnterSubject.send(inputText)
+            case .onCommit(let inputText):
+                onCommitSubject.send(inputText)
             case .tappedErrorAlert:
                 tappedErrorAlertSubject.send(())
-            case .showRepository(let urlString):
+            case .tappedCardView(let urlString):
                 repositoryUrl = urlString
                 isShowSheet = true
         }
@@ -47,44 +46,22 @@ final class HomeViewModel: ObservableObject {
 
     // MARK: - Private
     private let apiService: APIServiceType
-    private let onEnterSubject = PassthroughSubject<String, Never>()
+    private let onCommitSubject = PassthroughSubject<String, Never>()
     private let tappedErrorAlertSubject = PassthroughSubject<Void, Never>()
     private let responseSubject = PassthroughSubject<SearchRepositoryResponse, Never>()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
     private var cancellables: [AnyCancellable] = []
 
-    private func bindInputs() {
-        let responsePublisher = onEnterSubject
+    private func bind() {
+        let responseSubscriber = onCommitSubject
             .flatMap { [apiService] (query) in
-                apiService.response(from: SearchRepositoryRequest(query: query))
+                apiService.request(with: SearchRepositoryRequest(query: query))
                     .catch { [weak self] error -> Empty<SearchRepositoryResponse, Never> in
                         self?.errorSubject.send(error)
                         return .init()
-                }
-        }
-
-        let loadingStartPublisher = onEnterSubject
-            .map { _ in true }
-            .assign(to: \.isLoading, on: self)
-
-        let tappedErrorAlertPublisher = tappedErrorAlertSubject
-            .map { _ in false }
-            .assign(to: \.isShowError, on: self)
-
-        let responseStream = responsePublisher
-            .share()
-            .subscribe(responseSubject)
-
-        cancellables += [
-            responseStream,
-            loadingStartPublisher,
-            tappedErrorAlertPublisher
-        ]
-    }
-
-    private func bindOutputs() {
-        let repositoriesStream = responseSubject
-            .map { $0.items }
+                    }
+            }
+            .map{ $0.items }
             .sink(receiveValue: { [weak self] (repositories) in
                 guard let self = self else { return }
                 self.cardViewInputs = self.convertInput(repositories: repositories)
@@ -92,7 +69,15 @@ final class HomeViewModel: ObservableObject {
                 self.isLoading = false
             })
 
-        let errorStream = errorSubject
+        let loadingStartSubscriber = onCommitSubject
+            .map { _ in true }
+            .assign(to: \.isLoading, on: self)
+
+        let tappedErrorAlertSubscriber = tappedErrorAlertSubject
+            .map { _ in false }
+            .assign(to: \.isShowError, on: self)
+
+        let errorSubscriber = errorSubject
             .sink(receiveValue: { [weak self] (error) in
                 guard let self = self else { return }
                 self.isShowError = true
@@ -100,8 +85,10 @@ final class HomeViewModel: ObservableObject {
             })
 
         cancellables += [
-            repositoriesStream,
-            errorStream
+            responseSubscriber,
+            loadingStartSubscriber,
+            tappedErrorAlertSubscriber,
+            errorSubscriber
         ]
     }
 

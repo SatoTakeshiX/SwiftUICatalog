@@ -19,11 +19,12 @@ struct HomeView: View {
                     .font(.headline)
                     .foregroundColor(.gray)
                     .offset(x: 0, y: -200)
+                    .navigationBarTitle("", displayMode: .inline)
             } else {
                 ScrollView(showsIndicators: false) {
                     ForEach(viewModel.cardViewInputs) { input in
                         Button(action: {
-                            self.viewModel.apply(inputs: .showRepository(urlString: input.url))
+                            self.viewModel.apply(inputs: .tappedCardView(urlString: input.url))
                         }) {
                             CardView(input: input)
                         }
@@ -33,7 +34,7 @@ struct HomeView: View {
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: HStack {
                     TextField("検索キーワードを入力", text: $text, onCommit: {
-                        self.viewModel.apply(inputs: .onEnter(text: self.text))
+                        self.viewModel.apply(inputs: .onCommit(text: self.text))
                     })
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.asciiCapable)

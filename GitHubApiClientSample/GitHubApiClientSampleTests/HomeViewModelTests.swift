@@ -32,7 +32,7 @@ class HomeViewModelTests: XCTestCase {
         }
 
         let viewModel = HomeViewModel(apiService: apiService)
-        viewModel.apply(inputs: .onEnter(text: "sss"))
+        viewModel.apply(inputs: .onCommit(text: "sss"))
         XCTAssertTrue(!viewModel.cardViewInputs.isEmpty)
     }
 
@@ -44,7 +44,7 @@ class HomeViewModelTests: XCTestCase {
             ).eraseToAnyPublisher()
         }
         let viewModel = HomeViewModel(apiService: apiService)
-        viewModel.apply(inputs: .onEnter(text: "sss"))
+        viewModel.apply(inputs: .onCommit(text: "sss"))
         XCTAssertTrue(viewModel.isShowError)
     }
 

@@ -19,7 +19,7 @@ final class MockAPIService: APIServiceType {
         stubs.append(response)
     }
 
-    func response<Request>(from request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request: APIRequestType {
+    func request<Request>(with request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request: APIRequestType {
 
         let response = stubs.compactMap { stub -> AnyPublisher<Request.Response, APIServiceError>? in
             let stub = stub as? ((Request) -> AnyPublisher<Request.Response, APIServiceError>)
