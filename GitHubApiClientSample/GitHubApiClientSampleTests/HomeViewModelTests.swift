@@ -47,16 +47,4 @@ class HomeViewModelTests: XCTestCase {
         viewModel.apply(inputs: .onCommit(text: "sss"))
         XCTAssertTrue(viewModel.isShowError)
     }
-
-    func testTappedErrorAlert() {
-        let apiService = MockAPIService()
-        apiService.stub(for: SearchRepositoryRequest.self) { _ in
-            Result.Publisher(
-                APIServiceError.responseError
-            ).eraseToAnyPublisher()
-        }
-        let viewModel = HomeViewModel(apiService: apiService)
-        viewModel.apply(inputs: .tappedErrorAlert)
-        XCTAssertTrue(!viewModel.isShowError)
-    }
 }

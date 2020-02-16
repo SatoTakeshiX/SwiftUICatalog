@@ -15,7 +15,6 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Inputs
     enum Inputs {
         case onCommit(text: String)
-        case tappedErrorAlert
         case tappedCardView(urlString: String)
     }
 
@@ -36,8 +35,6 @@ final class HomeViewModel: ObservableObject {
         switch inputs {
             case .onCommit(let inputText):
                 onCommitSubject.send(inputText)
-            case .tappedErrorAlert:
-                tappedErrorAlertSubject.send(())
             case .tappedCardView(let urlString):
                 repositoryUrl = urlString
                 isShowSheet = true
@@ -47,7 +44,6 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Private
     private let apiService: APIServiceType
     private let onCommitSubject = PassthroughSubject<String, Never>()
-    private let tappedErrorAlertSubject = PassthroughSubject<Void, Never>()
     private let responseSubject = PassthroughSubject<SearchRepositoryResponse, Never>()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
     private var cancellables: [AnyCancellable] = []
@@ -73,10 +69,6 @@ final class HomeViewModel: ObservableObject {
             .map { _ in true }
             .assign(to: \.isLoading, on: self)
 
-        let tappedErrorAlertSubscriber = tappedErrorAlertSubject
-            .map { _ in false }
-            .assign(to: \.isShowError, on: self)
-
         let errorSubscriber = errorSubject
             .sink(receiveValue: { [weak self] (error) in
                 guard let self = self else { return }
@@ -87,7 +79,6 @@ final class HomeViewModel: ObservableObject {
         cancellables += [
             responseSubscriber,
             loadingStartSubscriber,
-            tappedErrorAlertSubscriber,
             errorSubscriber
         ]
     }
