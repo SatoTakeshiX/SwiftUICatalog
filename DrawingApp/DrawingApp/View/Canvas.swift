@@ -20,9 +20,6 @@ struct Canvas: View {
             ZStack {
                 Rectangle()
                     .foregroundColor(Color.white)
-                    .overlay(
-                        DrawPathView(drawPointsArray: self.endedDrawPoints)
-                )
                     .border(Color.black, width: 2)
                     .gesture(
                         DragGesture(minimumDistance: 0)
@@ -42,6 +39,8 @@ struct Canvas: View {
                     .onAppear {
                         self.canvasRect = geometry.frame(in: .local)
                 }
+
+                DrawPathView(drawPointsArray: self.endedDrawPoints)
                 // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
                 Path { path in
                     path.addLines(self.tmpDrawPoints.points)
