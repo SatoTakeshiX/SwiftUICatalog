@@ -16,7 +16,6 @@
 		306830CF23A636430070F473 /* ResearchGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830CE23A636430070F473 /* ResearchGeometry.swift */; };
 		306830D123A636D40070F473 /* MinMidMaxSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830D023A636D40070F473 /* MinMidMaxSpace.swift */; };
 		306830D323A6370E0070F473 /* ScrollRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830D223A6370E0070F473 /* ScrollRectangle.swift */; };
-		306830D523A638170070F473 /* DrawEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830D423A638170070F473 /* DrawEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		306830CE23A636430070F473 /* ResearchGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchGeometry.swift; sourceTree = "<group>"; };
 		306830D023A636D40070F473 /* MinMidMaxSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinMidMaxSpace.swift; sourceTree = "<group>"; };
 		306830D223A6370E0070F473 /* ScrollRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollRectangle.swift; sourceTree = "<group>"; };
-		306830D423A638170070F473 /* DrawEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +72,6 @@
 				306830C823A630390070F473 /* Info.plist */,
 				306830C223A630390070F473 /* Preview Content */,
 				306830D223A6370E0070F473 /* ScrollRectangle.swift */,
-				306830D423A638170070F473 /* DrawEditor.swift */,
 			);
 			path = GeometryReaderSample;
 			sourceTree = "<group>";
@@ -163,7 +160,6 @@
 				306830D323A6370E0070F473 /* ScrollRectangle.swift in Sources */,
 				306830BD23A630390070F473 /* SceneDelegate.swift in Sources */,
 				306830CF23A636430070F473 /* ResearchGeometry.swift in Sources */,
-				306830D523A638170070F473 /* DrawEditor.swift in Sources */,
 				306830BF23A630390070F473 /* CoodinateSpace.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
