@@ -22,48 +22,48 @@ struct DrawingView: View {
                     Button(action: {
                         self.selectedColor = .red
 
-                    }) { Text("赤")
+                    }) {
+                        Text("赤")
+                        .frame(width: 80, height: 100, alignment: .center)
+                        .background(Color.red)
+                        .cornerRadius(20)
+                        .foregroundColor(.white)
                     }
-                    .frame(width: 80, height: 100, alignment: .center)
-                    .background(Color.red)
-                    .cornerRadius(20)
-                    .foregroundColor(.white)
+
                     Button(action: {
                         self.selectedColor = .clear
-                    }) { Text("消しゴム")
+                    }) {
+                        Text("消しゴム")
+                        .frame(width: 80, height: 100, alignment: .center)
+                        .background(Color.white)
+                        .cornerRadius(20)
+                        .foregroundColor(.red)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.black, lineWidth: 4)
+                        )
                     }
-                    .frame(width: 80, height: 100, alignment: .center)
-                    .background(Color.white)
-                    .cornerRadius(20)
-                    .foregroundColor(.red)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.black, lineWidth: 4)
-                    )
+
                     Button(action: {
                         let image = self.capture(rect: geometry.frame(in: .global))
                         let croppedImage = self.cropImage(with: image, rect: self.canvasRect)
 
                         print(croppedImage)
 
-                    }) { Text("保存")
+                    }) {
+                        Text("保存")
+                        .frame(width: 80, height: 100, alignment: .center)
+                        .background(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.black, lineWidth: 4)
+                        )
                     }
-                    .frame(width: 80, height: 100, alignment: .center)
-                    .background(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.black, lineWidth: 4)
-                    )
-
-                    //.foregroundColor(.red)
 
                     Spacer()
                 }
-                .frame(minWidth: 0.0, maxWidth: CGFloat.infinity)
-                //.background(Color.gray)
             }
         }
-        // .edgesIgnoringSafeArea(.top)
     }
 }
 

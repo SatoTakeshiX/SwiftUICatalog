@@ -15,12 +15,6 @@ struct Canvas: View {
     @Binding var selectedColor: DrawType
     @Binding var canvasRect: CGRect
 
-//    init(selectedColor: Binding<DrawType>, canvasRect: Binding<CGRect>) {
-//        self.selectedColor = selectedColor
-//        self.canvasRect = canvasRect
-//    }
-
-
     var body: some View {
         GeometryReader { geometry in
             ZStack {
