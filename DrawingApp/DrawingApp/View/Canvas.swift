@@ -40,7 +40,7 @@ struct Canvas: View {
                             })
                 )
                     .onAppear {
-                        self.canvasRect = geometry.frame(in: .global)
+                        self.canvasRect = geometry.frame(in: .local)
                 }
                 // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
                 Path { path in

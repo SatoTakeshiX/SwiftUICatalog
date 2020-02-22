@@ -16,78 +16,82 @@ struct DrawingView: View {
     @State var canvasRect: CGRect = .zero
 
     var body: some View {
-        VStack {
-            Canvas(endedDrawPoints: $endedDrawPoints,
-                   tmpDrawPoints: $tmpDrawPoints,
-                   startPoint: $startPoint,
-                   selectedColor: $selectedColor,
-                   canvasRect: $canvasRect)
-            HStack(spacing: 10) {
-                Spacer()
-                Button(action: {
-                    self.selectedColor = .red
+        GeometryReader { geometry in
+            VStack {
+                Canvas(endedDrawPoints: self.$endedDrawPoints,
+                       tmpDrawPoints: self.$tmpDrawPoints,
+                       startPoint: self.$startPoint,
+                       selectedColor: self.$selectedColor,
+                       canvasRect: self.$canvasRect)
+                HStack(spacing: 10) {
+                    Spacer()
+                    Button(action: {
+                        self.selectedColor = .red
 
-                }) { Text("赤")
+                    }) { Text("赤")
+                    }
+                    .frame(width: 80, height: 100, alignment: .center)
+                    .background(Color.red)
+                    .cornerRadius(20)
+                    .foregroundColor(.white)
+                    Button(action: {
+                        self.selectedColor = .clear
+                    }) { Text("消しゴム")
+                    }
+                    .frame(width: 80, height: 100, alignment: .center)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .foregroundColor(.red)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.black, lineWidth: 4)
+                    )
+                    Button(action: {
+                        let image = self.capture(rect: geometry.frame(in: .global))
+                        let croppedImage = self.cropImage(with: image, rect: self.canvasRect)
+
+                        print(croppedImage)
+                        
+
+                    }) { Text("保存")
+                    }
+                    .frame(width: 80, height: 100, alignment: .center)
+                    .background(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.black, lineWidth: 4)
+                    )
+
+                    //.foregroundColor(.red)
+
+                    Spacer()
                 }
-                .frame(width: 80, height: 100, alignment: .center)
-                .background(Color.red)
-                .cornerRadius(20)
-                .foregroundColor(.white)
-                Button(action: {
-                    self.selectedColor = .clear
-                }) { Text("消しゴム")
-                }
-                .frame(width: 80, height: 100, alignment: .center)
-                .background(Color.white)
-                .cornerRadius(20)
-                .foregroundColor(.red)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.black, lineWidth: 4)
-                )
-                Button(action: {
-                    let image = self.captureCanvas(canvasRect: self.canvasRect, endedDrawPoints: self.endedDrawPoints, tmpDrawPoints: self.tmpDrawPoints, startPoint: self.startPoint, selectedColor: self.selectedColor)
-                    print(image)
-
-                }) { Text("保存")
-                }
-                .frame(width: 80, height: 100, alignment: .center)
-                .background(Color.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.black, lineWidth: 4)
-                )
-
-                //.foregroundColor(.red)
-
-                Spacer()
+                .frame(minWidth: 0.0, maxWidth: CGFloat.infinity)
+                //.background(Color.gray)
             }
-            .frame(minWidth: 0.0, maxWidth: CGFloat.infinity)
-            //.background(Color.gray)
         }
         // .edgesIgnoringSafeArea(.top)
     }
 }
 
 extension DrawingView {
-    func captureCanvas(canvasRect: CGRect,
-                       endedDrawPoints: [DrawPoints],
-                       tmpDrawPoints: DrawPoints,
-                       startPoint: CGPoint,
-                       selectedColor: DrawType) -> UIImage {
+    func capture(rect: CGRect) -> UIImage {
 
-        let window = UIWindow(frame: CGRect(origin: canvasRect.origin,
-                                            size: canvasRect.size))
-        let canvas =  Canvas(endedDrawPoints: .constant(endedDrawPoints),
-                             tmpDrawPoints: .constant(tmpDrawPoints),
-                             startPoint: .constant(startPoint),
-                             selectedColor: .constant(selectedColor),
-                             canvasRect: .constant(canvasRect))
-        let hosting = UIHostingController(rootView: canvas.body)
+        let window = UIWindow(frame: CGRect(origin: rect.origin,
+                                            size: rect.size))
+
+        let hosting = UIHostingController(rootView: self.body)
         hosting.view.frame = window.frame
         window.addSubview(hosting.view)
         window.makeKeyAndVisible()
         return hosting.view.renderedImage
+    }
+
+    func cropImage(with image: UIImage, rect: CGRect) -> UIImage? {
+        let ajustRect = CGRect(x: rect.origin.x * image.scale, y: rect.origin.y * image.scale, width: rect.width * image.scale, height: rect.height * image.scale)
+        guard let img = image.cgImage?.cropping(to: ajustRect) else { return nil }
+        let croppedImage = UIImage(cgImage: img, scale: image.scale, orientation: image.imageOrientation)
+        return croppedImage
     }
 }
 
