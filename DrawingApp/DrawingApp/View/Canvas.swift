@@ -9,11 +9,17 @@
 import SwiftUI
 
 struct Canvas: View {
-    @Binding var endedDrawPoints: [DrawPoints]
-    @Binding var tmpDrawPoints: DrawPoints
-    @Binding var startPoint: CGPoint
+    @State private var endedDrawPoints: [DrawPoints] = []
+    @State private var tmpDrawPoints: DrawPoints = DrawPoints(points: [], color: .red)
+    @State private  var startPoint: CGPoint = .zero
     @Binding var selectedColor: DrawType
     @Binding var canvasRect: CGRect
+
+//    init(selectedColor: Binding<DrawType>, canvasRect: Binding<CGRect>) {
+//        self.selectedColor = selectedColor
+//        self.canvasRect = canvasRect
+//    }
+
 
     var body: some View {
         GeometryReader { geometry in

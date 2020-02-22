@@ -9,19 +9,13 @@
 import SwiftUI
 
 struct DrawingView: View {
-    @State var tmpDrawPoints: DrawPoints = DrawPoints(points: [], color: .red)
-    @State var endedDrawPoints: [DrawPoints] = []
-    @State var startPoint: CGPoint = CGPoint.zero
     @State var selectedColor: DrawType = .red
     @State var canvasRect: CGRect = .zero
 
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Canvas(endedDrawPoints: self.$endedDrawPoints,
-                       tmpDrawPoints: self.$tmpDrawPoints,
-                       startPoint: self.$startPoint,
-                       selectedColor: self.$selectedColor,
+                Canvas(selectedColor: self.$selectedColor,
                        canvasRect: self.$canvasRect)
                 HStack(spacing: 10) {
                     Spacer()
@@ -51,7 +45,6 @@ struct DrawingView: View {
                         let croppedImage = self.cropImage(with: image, rect: self.canvasRect)
 
                         print(croppedImage)
-                        
 
                     }) { Text("保存")
                     }
@@ -92,6 +85,15 @@ extension DrawingView {
         guard let img = image.cgImage?.cropping(to: ajustRect) else { return nil }
         let croppedImage = UIImage(cgImage: img, scale: image.scale, orientation: image.imageOrientation)
         return croppedImage
+    }
+
+    //MARK: - Add image to Library
+    func imageSaveCompletion(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+
+        } else {
+
+        }
     }
 }
 
