@@ -40,7 +40,13 @@ struct Canvas: View {
                         self.canvasRect = geometry.frame(in: .local)
                 }
 
-                DrawPathView(drawPointsArray: self.endedDrawPoints)
+                ForEach(self.endedDrawPoints) { data in
+                    Path { path in
+                        path.addLines(data.points)
+                    }
+                    .stroke(data.color, lineWidth: 10)
+                }
+                
                 // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
                 Path { path in
                     path.addLines(self.tmpDrawPoints.points)

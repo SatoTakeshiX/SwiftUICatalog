@@ -18,7 +18,6 @@
 		306C24D12400DDFB0042D79C /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C24D02400DDFB0042D79C /* DrawingView.swift */; };
 		306C24D32400DF870042D79C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C24D22400DF870042D79C /* UIView+Extension.swift */; };
 		306C24D72400E0C40042D79C /* DrawPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C24D62400E0C40042D79C /* DrawPoints.swift */; };
-		306C24D92400E1480042D79C /* DrawPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C24D82400E1480042D79C /* DrawPathView.swift */; };
 		306C24DB2400E17C0042D79C /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C24DA2400E17C0042D79C /* Canvas.swift */; };
 		306C24DD2401FFF50042D79C /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306C24DC2401FFF50042D79C /* DrawingViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 		306C24D02400DDFB0042D79C /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		306C24D22400DF870042D79C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		306C24D62400E0C40042D79C /* DrawPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawPoints.swift; sourceTree = "<group>"; };
-		306C24D82400E1480042D79C /* DrawPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawPathView.swift; sourceTree = "<group>"; };
 		306C24DA2400E17C0042D79C /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		306C24DC2401FFF50042D79C /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,7 +162,6 @@
 			children = (
 				306C24D02400DDFB0042D79C /* DrawingView.swift */,
 				306C24DC2401FFF50042D79C /* DrawingViewModel.swift */,
-				306C24D82400E1480042D79C /* DrawPathView.swift */,
 				306C24DA2400E17C0042D79C /* Canvas.swift */,
 			);
 			path = View;
@@ -309,7 +306,6 @@
 				306C24DD2401FFF50042D79C /* DrawingViewModel.swift in Sources */,
 				306C24D72400E0C40042D79C /* DrawPoints.swift in Sources */,
 				306C24D12400DDFB0042D79C /* DrawingView.swift in Sources */,
-				306C24D92400E1480042D79C /* DrawPathView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
