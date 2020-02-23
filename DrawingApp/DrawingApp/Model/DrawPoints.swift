@@ -14,7 +14,7 @@ struct DrawPoints: Identifiable {
     var id = UUID()
 }
 
-enum DrawType {
+enum DrawColor {
     case red
     case clear
     case black

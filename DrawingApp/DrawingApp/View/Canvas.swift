@@ -12,7 +12,7 @@ struct Canvas: View {
     @Binding var endedDrawPoints: [DrawPoints]
     @State private var tmpDrawPoints: DrawPoints = DrawPoints(points: [], color: .red)
     @State private var startPoint: CGPoint = .zero
-    @Binding var selectedColor: DrawType
+    @Binding var selectedColor: DrawColor
     @Binding var canvasRect: CGRect
     
     var body: some View {
@@ -39,13 +39,13 @@ struct Canvas: View {
                     .onAppear {
                         self.canvasRect = geometry.frame(in: .local)
                 }
-                
+
                 DrawPathView(drawPointsArray: self.endedDrawPoints)
                 // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
                 Path { path in
                     path.addLines(self.tmpDrawPoints.points)
                 }
-                .stroke(self.tmpDrawPoints.color, lineWidth: 10)
+                .stroke(self.selectedColor.color, lineWidth: 10)
             }
         }
     }

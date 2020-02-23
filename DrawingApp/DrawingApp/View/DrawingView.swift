@@ -11,7 +11,7 @@ import SwiftUI
 struct DrawingView: View {
     @State var endedDrawPoints: [DrawPoints] = []
     @State var startPoint: CGPoint = CGPoint.zero
-    @State var selectedColor: DrawType = .red
+    @State var selectedColor: DrawColor = .red
     @State var canvasRect: CGRect = .zero
     @ObservedObject var viewModel = DrawingViewModel()
     
