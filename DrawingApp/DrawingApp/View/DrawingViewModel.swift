@@ -33,12 +33,7 @@ final class DrawingViewModel: NSObject, ObservableObject {
 
      //MARK: - Add image to Library
     @objc func imageSaveCompletion(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-         if let error = error {
-            alertTitle = error.localizedDescription
-            isShowAlert = true
-         } else {
-            alertTitle = "画像が保存されました"
-            isShowAlert = true
-         }
+        alertTitle = error == nil ? "画像が保存されました" : error?.localizedDescription ?? ""
+        isShowAlert = true
      }
 }
