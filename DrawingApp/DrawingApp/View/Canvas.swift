@@ -11,7 +11,6 @@ import SwiftUI
 struct Canvas: View {
     @Binding var endedDrawPoints: [DrawPoints]
     @State private var tmpDrawPoints: DrawPoints = DrawPoints(points: [], color: .red)
-    @State private var startPoint: CGPoint = .zero
     @Binding var selectedColor: DrawColor
     @Binding var canvasRect: CGRect
     
@@ -24,14 +23,10 @@ struct Canvas: View {
                     .gesture(
                         DragGesture(minimumDistance: 0)
                             .onChanged({ (value) in
-                                if self.startPoint != value.startLocation {
-                                    self.tmpDrawPoints.points.append(value.location)
-                                    self.tmpDrawPoints.color = self.selectedColor.color
-                                    
-                                }
+                                self.tmpDrawPoints.points.append(value.location)
+                                self.tmpDrawPoints.color = self.selectedColor.color
                             })
                             .onEnded({ (value) in
-                                self.startPoint = value.startLocation
                                 self.endedDrawPoints.append(self.tmpDrawPoints)
                                 self.tmpDrawPoints = DrawPoints(points: [], color: self.selectedColor.color)
                             })
