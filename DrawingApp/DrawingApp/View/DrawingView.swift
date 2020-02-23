@@ -11,6 +11,7 @@ import SwiftUI
 struct DrawingView: View {
     @State var selectedColor: DrawType = .red
     @State var canvasRect: CGRect = .zero
+    @ObservedObject var viewModel = DrawingViewModel()
 
     var body: some View {
         GeometryReader { geometry in
@@ -45,10 +46,8 @@ struct DrawingView: View {
                     }
 
                     Button(action: {
-                        let image = self.capture(rect: geometry.frame(in: .global))
-                        let croppedImage = self.cropImage(with: image, rect: self.canvasRect)
-
-                        print(croppedImage)
+                        let captureImage = self.capture(rect: geometry.frame(in: .global))
+                        self.viewModel.apply(inputs: .tappedCaptureButton(canvasRect: self.canvasRect, image: captureImage))
 
                     }) {
                         Text("保存")
@@ -56,12 +55,15 @@ struct DrawingView: View {
                         .background(Color.white)
                         .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.black, lineWidth: 4)
+                                .stroke(Color.black, lineWidth: 4.0)
                         )
                     }
 
                     Spacer()
                 }
+            }
+            .alert(isPresented: self.$viewModel.isShowAlert) {
+                Alert(title: Text(self.viewModel.alertTitle))
             }
         }
     }
