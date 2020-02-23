@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct DrawingView: View {
+    //@State var tmpDrawPoints: DrawPoints = DrawPoints(points: [], color: .red)
+    @State var endedDrawPoints: [DrawPoints] = []
+    @State var startPoint: CGPoint = CGPoint.zero
     @State var selectedColor: DrawType = .red
     @State var canvasRect: CGRect = .zero
     @ObservedObject var viewModel = DrawingViewModel()
@@ -16,8 +19,11 @@ struct DrawingView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Canvas(selectedColor: self.$selectedColor,
-                       canvasRect: self.$canvasRect)
+                Canvas(endedDrawPoints: self.$endedDrawPoints,
+                //tmpDrawPoints: self.$tmpDrawPoints,
+                startPoint: self.$startPoint,
+                selectedColor: self.$selectedColor,
+                canvasRect: self.$canvasRect)
                 HStack(spacing: 10) {
                     Spacer()
                     Button(action: {

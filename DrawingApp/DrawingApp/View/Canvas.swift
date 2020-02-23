@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct Canvas: View {
-    @State private var endedDrawPoints: [DrawPoints] = []
+    @Binding var endedDrawPoints: [DrawPoints]
     @State private var tmpDrawPoints: DrawPoints = DrawPoints(points: [], color: .red)
-    @State private  var startPoint: CGPoint = .zero
+    @Binding var startPoint: CGPoint
     @Binding var selectedColor: DrawType
     @Binding var canvasRect: CGRect
 
