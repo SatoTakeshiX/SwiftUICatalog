@@ -11,10 +11,10 @@ import SwiftUI
 struct Canvas: View {
     @Binding var endedDrawPoints: [DrawPoints]
     @State private var tmpDrawPoints: DrawPoints = DrawPoints(points: [], color: .red)
-    @Binding var startPoint: CGPoint
+    @State private var startPoint: CGPoint = .zero
     @Binding var selectedColor: DrawType
     @Binding var canvasRect: CGRect
-
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -27,7 +27,7 @@ struct Canvas: View {
                                 if self.startPoint != value.startLocation {
                                     self.tmpDrawPoints.points.append(value.location)
                                     self.tmpDrawPoints.color = self.selectedColor.color
-
+                                    
                                 }
                             })
                             .onEnded({ (value) in
@@ -39,7 +39,7 @@ struct Canvas: View {
                     .onAppear {
                         self.canvasRect = geometry.frame(in: .local)
                 }
-
+                
                 DrawPathView(drawPointsArray: self.endedDrawPoints)
                 // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
                 Path { path in

@@ -25,8 +25,8 @@ struct DrawPathView: View {
     }
 }
 
-struct DrawPathView_Previews: PreviewProvider {
-    static var previews: some View {
-        DrawPathView(drawPointsArray: [])
-    }
-}
+//struct DrawPathView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DrawPathView(drawPointsArray: [])
+//    }
+//}
