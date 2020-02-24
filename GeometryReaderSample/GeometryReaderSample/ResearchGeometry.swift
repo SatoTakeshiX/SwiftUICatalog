@@ -35,8 +35,10 @@ struct GeometryRectangle: View {
                     VStack {
                         Text("X: \(Int(geometry.frame(in: .global).origin.x)) Y: \(Int(geometry.frame(in: .global).origin.y)) width: \(Int(geometry.frame(in: .global).width)) height: \(Int(geometry.frame(in: .global).height))")
                             .foregroundColor(.white)
+                            .fontWeight(.heavy)
                         Text("size: \(geometry.size.debugDescription)")
                             .foregroundColor(.white)
+                            .fontWeight(.heavy)
                 })
 
 
