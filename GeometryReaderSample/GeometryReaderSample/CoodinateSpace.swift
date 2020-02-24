@@ -28,7 +28,7 @@ struct CoodinateSpace: View {
 
                     }.padding())
             }
-            .frame(height: 400)
+            .frame(height: 200)
             Spacer()
         }
     }

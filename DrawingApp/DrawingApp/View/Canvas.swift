@@ -46,7 +46,7 @@ struct Canvas: View {
                 Path { path in
                     path.addLines(self.tmpDrawPoints.points)
                 }
-                .stroke(self.selectedColor.color, lineWidth: 10)
+                .stroke(self.tmpDrawPoints.color, lineWidth: 10)
             }
         }
     }

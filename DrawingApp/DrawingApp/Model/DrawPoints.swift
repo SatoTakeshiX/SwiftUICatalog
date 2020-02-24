@@ -17,7 +17,6 @@ struct DrawPoints: Identifiable {
 enum DrawColor {
     case red
     case clear
-    case black
 
     var color: Color {
         switch self {
@@ -25,8 +24,6 @@ enum DrawColor {
                 return Color.red
             case .clear:
                 return Color.white
-            case .black:
-                return Color.black
         }
     }
 }
