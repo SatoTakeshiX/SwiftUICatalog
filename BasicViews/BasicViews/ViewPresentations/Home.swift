@@ -25,7 +25,7 @@ struct Home: View {
                     NavigationLink(destination: PathSample()) {
                         Text("Path")
                     }
-                    NavigationLink(destination: RoundedRectangleSample()) {
+                    NavigationLink(destination: RectangleSample()) {
                         Text("RoundedRectangle")
                     }
                     NavigationLink(destination: SpacerSample()) {
