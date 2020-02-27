@@ -12,9 +12,15 @@ struct ScrollRectangle: View {
     var body: some View {
         ScrollView {
             VStack {
-                GeometryRectangle(color: Color.pink)
-                GeometryRectangle(color: Color.red)
-                GeometryRectangle(color: Color.blue)
+                GeometryReader { geometry in
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.pink)
+                        .overlay(
+                            Text("Y: \(Int(geometry.frame(in: .global).origin.y))")
+                            .foregroundColor(.white)
+                            .fontWeight(.heavy))
+                            .font(.largeTitle)
+                }.frame(height: 100)
                 Spacer()
             }
         }
