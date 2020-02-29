@@ -9,7 +9,7 @@
 import Foundation
 
 struct Repository: Decodable, Hashable, Identifiable {
-    var id: Int64
+    var id: Int
     var name: String
     var description: String?
     var stargazersCount: Int = 0

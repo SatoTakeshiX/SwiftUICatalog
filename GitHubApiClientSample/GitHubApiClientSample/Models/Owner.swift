@@ -9,6 +9,6 @@
 import Foundation
 
 struct Owner: Decodable, Hashable, Identifiable {
-    var id: Int64
+    var id: Int
     var avatarUrl: String
 }
