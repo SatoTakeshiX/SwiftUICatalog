@@ -86,8 +86,11 @@ final class HomeViewModel: ObservableObject {
     private func convertInput(repositories: [Repository]) -> [CardView.Input] {
         return repositories.compactMap { (repo) -> CardView.Input? in
             do {
-                let data = try Data(contentsOf: URL(string: repo.owner.avatarUrl)!)
-                let image = UIImage(data: data)!
+                guard let url = URL(string: repo.owner.avatarUrl) else {
+                    return nil
+                }
+                let data = try Data(contentsOf: url)
+                guard let image = UIImage(data: data) else { return nil }
                 return CardView.Input(iconImage: image,
                                       title: repo.name,
                                       language: repo.language,

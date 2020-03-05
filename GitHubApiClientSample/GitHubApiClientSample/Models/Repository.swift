@@ -9,11 +9,11 @@
 import Foundation
 
 struct Repository: Decodable, Hashable, Identifiable {
-    var id: Int
-    var name: String
-    var description: String?
-    var stargazersCount: Int = 0
-    var language: String?
-    var htmlUrl: String
-    var owner: Owner
+    let id: Int
+    let name: String
+    let description: String?
+    let stargazersCount: Int = 0
+    let language: String?
+    let htmlUrl: String
+    let owner: Owner
 }
