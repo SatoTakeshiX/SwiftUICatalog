@@ -22,20 +22,6 @@ struct HomeView: View {
         }
     }
 
-    struct CustomToolBar: View {
-        var body: some View {
-            Rectangle()
-                .frame(width: UIScreen.main.bounds.width, height: 112)
-                .foregroundColor(.gray)
-                .opacity(0.3)
-                .overlay(Path { path in
-                    path.move(to: CGPoint(x: 0, y: 0))
-                    path.addLine(to: CGPoint(x: UIScreen.main.bounds.maxX, y: 0))
-                }.stroke(lineWidth: 1)
-                    .fill(Color.gray))
-        }
-    }
-
     struct CameraButton: View {
         private var viewModel: HomeViewModel
         init(viewModel: HomeViewModel) {
