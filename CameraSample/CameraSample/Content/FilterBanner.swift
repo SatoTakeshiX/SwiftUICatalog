@@ -158,34 +158,34 @@ enum FilterType: String, CaseIterable {
 
 struct FileterImage: View {
     @State private var image: Image?
-    @Binding var selected: Bool
-    //@State private var isSelected: Bool = false
+    @Binding var filterItem: FilterItem
     let uiimage: UIImage?
-    let filterType: FilterType
     var body: some View {
         Button(action: {
-            self.selected.toggle()
+            self.$filterItem.selected.wrappedValue.toggle()
         }) {
             VStack {
                 image?
                     .resizable()
                     .renderingMode(.original)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 140, alignment: .center)
                     .scaledToFit()
-                Text(filterType.rawValue)
+                Text(filterItem.filter.rawValue)
                     .foregroundColor(.black)
             }
         .padding()
 
         }
             // @bindingのデータをここで更新を検知できないので親ビューで枠をつける
-       // .border(Color.red, width: self.isSelected ? 4 : 0)
+          //  .border(Color.red, width: self.filterItem.selected ? 4 : 0)
 
         .onAppear(perform: loadImage)
     }
 
     func loadImage() {
        guard let inputImage = uiimage else { return }
-        if let outimage = filterType.filter(inputImage: inputImage) {
+        if let outimage = filterItem.filter.filter(inputImage: inputImage) {
             // convert that to a SwiftUI image
             image = Image(uiImage: outimage)
         }
@@ -196,50 +196,43 @@ struct FileterImage: View {
 struct FileterImage_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FileterImage(selected: .constant(false), uiimage: UIImage(named: "snap"), filterType: .gaussianBlur)
-            .previewLayout(.fixed(width: 200, height: 200))
-            FileterImage(selected: .constant(true), uiimage: UIImage(named: "snap"), filterType: .gaussianBlur)
-            .previewLayout(.fixed(width: 200, height: 200))
-                .border(Color.red, width: 4)
+            FileterImage(filterItem: .constant(FilterItem(filter: .gaussianBlur, selected: true)), uiimage: UIImage(named: "snap"))
+                .previewLayout(.fixed(width: 200, height: 200))
+            FileterImage(filterItem: .constant(FilterItem(filter: .gaussianBlur, selected: false)), uiimage: UIImage(named: "snap"))
+                .previewLayout(.fixed(width: 200, height: 200))
         }
-
     }
 }
 
 struct FilterItem: Identifiable {
     var filter: FilterType
-    @Binding var selected: Bool
+    var selected: Bool
     let id = UUID()
 }
 
+final class FilterBannerViewModel: ObservableObject {
+    @Published var items: [FilterItem] = []
+    func loadItems() {
+        var allFilter = FilterType.allCases.map { (filterType) -> FilterItem in
+            return FilterItem(filter: filterType, selected: false)
+        }
+        allFilter[0].selected.toggle()
+        items = allFilter
+    }
+}
 
 struct FilterBannerView: View {
-
-    @State var filters: [FilterItem] = FilterType.allCases.map { (filter) -> FilterItem in
-        return FilterItem(filter: filter, selected: .constant(false))
-    }
-
-
-
-    func makeFilters() {
-        let allFilter = FilterType.allCases.map { (filterType) -> FilterItem in
-            return FilterItem(filter: filterType, selected: .constant(false))
-        }
-        filters = allFilter
-        filters[0].selected.toggle()
-    }
-
+    @ObservedObject var viewModel = FilterBannerViewModel()
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                ForEach(filters) { (item) in
-                    FileterImage(selected: item.$selected, uiimage: UIImage(named: "snap"), filterType: item.filter)
-                        .font(.title)
+                ForEach(viewModel.items.indices, id: \.self) { (index) in
+                    FileterImage(filterItem: self.$viewModel.items[index], uiimage: UIImage(named: "snap"))
                 }
             }
         }
         .onAppear {
-            self.makeFilters()
+            self.viewModel.loadItems()
         }
     }
 }

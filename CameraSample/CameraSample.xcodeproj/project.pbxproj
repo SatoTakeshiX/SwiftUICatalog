@@ -10,6 +10,7 @@
 		30153A9624B4CBBA0047E99E /* CustomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30153A9524B4CBBA0047E99E /* CustomToolBar.swift */; };
 		30153A9824B4CD080047E99E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30153A9724B4CD080047E99E /* ContentView.swift */; };
 		30153A9A24B76F430047E99E /* FilterBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30153A9924B76F430047E99E /* FilterBanner.swift */; };
+		30153A9C24B9DC810047E99E /* SingleSelectableBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30153A9B24B9DC810047E99E /* SingleSelectableBoxView.swift */; };
 		306830E723AE612C0070F473 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830E623AE612C0070F473 /* AppDelegate.swift */; };
 		306830E923AE612C0070F473 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830E823AE612C0070F473 /* SceneDelegate.swift */; };
 		306830EB23AE612C0070F473 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830EA23AE612C0070F473 /* HomeView.swift */; };
@@ -43,6 +44,7 @@
 		30153A9524B4CBBA0047E99E /* CustomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBar.swift; sourceTree = "<group>"; };
 		30153A9724B4CD080047E99E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		30153A9924B76F430047E99E /* FilterBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBanner.swift; sourceTree = "<group>"; };
+		30153A9B24B9DC810047E99E /* SingleSelectableBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSelectableBoxView.swift; sourceTree = "<group>"; };
 		306830E323AE612C0070F473 /* CameraSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		306830E623AE612C0070F473 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		306830E823AE612C0070F473 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				306830E623AE612C0070F473 /* AppDelegate.swift */,
 				306830E823AE612C0070F473 /* SceneDelegate.swift */,
+				30153A9B24B9DC810047E99E /* SingleSelectableBoxView.swift */,
 				3079188E23D334C000538080 /* Content */,
 				3068311623AF98E50070F473 /* ImagePicker.swift */,
 				306830EC23AE612F0070F473 /* Assets.xcassets */,
@@ -293,6 +296,7 @@
 				30153A9824B4CD080047E99E /* ContentView.swift in Sources */,
 				30153A9A24B76F430047E99E /* FilterBanner.swift in Sources */,
 				306830E723AE612C0070F473 /* AppDelegate.swift in Sources */,
+				30153A9C24B9DC810047E99E /* SingleSelectableBoxView.swift in Sources */,
 				3079189023D334E400538080 /* HomeViewModel.swift in Sources */,
 				30153A9624B4CBBA0047E99E /* CustomToolBar.swift in Sources */,
 				3068311723AF98E50070F473 /* ImagePicker.swift in Sources */,
