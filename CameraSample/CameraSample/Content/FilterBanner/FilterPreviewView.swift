@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct FilterPreviewView: View {
+struct FilterPreviewContentView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -16,6 +16,6 @@ struct FilterPreviewView: View {
 
 struct FilterPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterPreviewView()
+        FilterPreviewContentView()
     }
 }
