@@ -169,7 +169,7 @@ struct FileterImage: View {
                     .resizable()
                     .renderingMode(.original)
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 140, alignment: .center)
+                    //.frame(width: 200, height: 140, alignment: .center)
                     .scaledToFit()
                 Text(filterItem.filter.rawValue)
                     .foregroundColor(.black)
@@ -212,27 +212,39 @@ struct FilterItem: Identifiable {
 
 final class FilterBannerViewModel: ObservableObject {
     @Published var items: [FilterItem] = []
-    func loadItems() {
-        var allFilter = FilterType.allCases.map { (filterType) -> FilterItem in
-            return FilterItem(filter: filterType, selected: false)
-        }
-        allFilter[0].selected.toggle()
-        items = allFilter
-    }
+    @Published var pixellate: FilterItem = FilterItem(filter: .pixellate, selected: true)
+    @Published var sepiaTone: FilterItem = FilterItem(filter: .sepiaTone, selected: false)
+    @Published var sharpenLuminance: FilterItem = FilterItem(filter: .sharpenLuminance, selected: false)
+    @Published var photoEffectMono: FilterItem = FilterItem(filter: .photoEffectMono, selected: false)
+    @Published var gaussianBlur: FilterItem = FilterItem(filter: .gaussianBlur, selected: false)
 }
 
+/*
+ case pixellate
+ case sepiaTone
+ case sharpenLuminance
+ case photoEffectMono
+ case gaussianBlur
+ */
 struct FilterBannerView: View {
     @ObservedObject var viewModel = FilterBannerViewModel()
+    let uiImage = UIImage(named: "snap")
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                ForEach(viewModel.items.indices, id: \.self) { (index) in
-                    FileterImage(filterItem: self.$viewModel.items[index], uiimage: UIImage(named: "snap"))
-                }
+                FileterImage(filterItem: $viewModel.pixellate, uiimage: uiImage)
+                    .frame(width: 100, height: 200)
+                FileterImage(filterItem: $viewModel.sepiaTone, uiimage: uiImage)
+                    .frame(width: 100, height: 200)
+                FileterImage(filterItem: $viewModel.sharpenLuminance, uiimage: uiImage)
+                    .frame(width: 100, height: 200)
+                FileterImage(filterItem: $viewModel.photoEffectMono, uiimage: uiImage)
+                    .frame(width: 100, height: 200)
+                FileterImage(filterItem: $viewModel.gaussianBlur, uiimage: uiImage)
+                    .frame(width: 100, height: 200)
             }
         }
         .onAppear {
-            self.viewModel.loadItems()
         }
     }
 }
@@ -241,7 +253,7 @@ struct FilterBanner2_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             FilterBannerView()
-            .previewLayout(.fixed(width: 400, height: 600))
+            .previewLayout(.fixed(width: 800, height: 600))
 
         }
     }
