@@ -171,10 +171,10 @@ struct FileterImage: View {
                     .aspectRatio(contentMode: .fit)
                     //.frame(width: 200, height: 140, alignment: .center)
                     .scaledToFit()
-                Text(filterItem.filter.rawValue)
-                    .foregroundColor(.black)
+//                Text(filterItem.filter.rawValue)
+//                    .foregroundColor(.black)
             }
-        .padding()
+        //.padding()
 
         }
             // @bindingのデータをここで更新を検知できないので親ビューで枠をつける
@@ -211,7 +211,6 @@ struct FilterItem: Identifiable {
 }
 
 final class FilterBannerViewModel: ObservableObject {
-    @Published var items: [FilterItem] = []
     @Published var pixellate: FilterItem = FilterItem(filter: .pixellate, selected: true)
     @Published var sepiaTone: FilterItem = FilterItem(filter: .sepiaTone, selected: false)
     @Published var sharpenLuminance: FilterItem = FilterItem(filter: .sharpenLuminance, selected: false)
@@ -219,13 +218,6 @@ final class FilterBannerViewModel: ObservableObject {
     @Published var gaussianBlur: FilterItem = FilterItem(filter: .gaussianBlur, selected: false)
 }
 
-/*
- case pixellate
- case sepiaTone
- case sharpenLuminance
- case photoEffectMono
- case gaussianBlur
- */
 struct FilterBannerView: View {
     @ObservedObject var viewModel = FilterBannerViewModel()
     let uiImage = UIImage(named: "snap")
