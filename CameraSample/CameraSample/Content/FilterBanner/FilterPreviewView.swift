@@ -21,11 +21,11 @@ struct FilterPreviewContentView: View {
             .frame(height: 120)
                 // おー、color. opacityで背景色だけ透明に
                 //https://stackoverflow.com/questions/58805852/how-can-i-make-a-background-in-swiftui-translucent
-            .background(Color.black.opacity(0.5))
                 //背景は透明でもなかのコンテンツはしっかり見えてほしい。
+            .background(Color.black.opacity(0.5))
             .foregroundColor(.yellow)
-                .offset(x: 0, y: isShowBanner ? 0 : 120)
-                .animation(.easeIn)
+            .offset(x: 0, y: isShowBanner ? 0 : 120)
+            .animation(.easeIn)
         }
     }
 }
