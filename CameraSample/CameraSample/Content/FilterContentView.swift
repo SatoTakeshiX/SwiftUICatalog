@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FilterContentView: View {
     @State private var isShowBanner = false
+    @State private var selectedFilterType: FilterType?
     @State private var image: Image? = Image("snap")
     var body: some View {
         NavigationView {
@@ -58,14 +59,13 @@ struct FilterContentView: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             withAnimation {
-                                print("ddd")
                                 self.isShowBanner.toggle()
                             }
                     }
                 }
 
               //  if isShowBanner {
-                FilterPreviewContentView(isShowBanner: $isShowBanner)
+                FilterBannerView(isShowBanner: $isShowBanner, selectedFilterType: $selectedFilterType)
                // }
 
                 // transitionでアニメーションするよりは.offsetで移動させたほうがきれいなアニメーションになるな
