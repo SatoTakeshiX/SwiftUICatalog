@@ -172,9 +172,8 @@ struct FilterImage: View {
                     .scaledToFit()
             }
         }
-            // @bindingのデータをここで更新を検知できないので親ビューで枠をつける
-          //  .border(Color.red, width: self.filterItem.selected ? 4 : 0)
-
+            .frame(width: 70, height: 80)
+            .border(Color.white, width: selectedFilter == filterType ? 4 : 0)
         .onAppear(perform: loadImage)
     }
 

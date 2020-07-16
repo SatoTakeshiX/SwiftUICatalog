@@ -19,8 +19,6 @@ struct FilterContentView: View {
 
                 // emptyviewはサイズがないview。
                 // rectangleと見比べた。rectangleのほうが子ビューを生成していたから、emptyを使っていこう
-
-
                 EmptyView()
 
                     //https://www.hackingwithswift.com/quick-start/swiftui/how-to-control-the-tappable-area-of-a-view-using-contentshape
@@ -47,6 +45,7 @@ struct FilterContentView: View {
 
                 if image != nil {
                     HStack {
+                        // 画面全部をタップするためにSpacerを両方置いている
                         Spacer()
                         image?
                             .resizable()
@@ -63,11 +62,7 @@ struct FilterContentView: View {
                             }
                     }
                 }
-
-              //  if isShowBanner {
                 FilterBannerView(isShowBanner: $isShowBanner, selectedFilterType: $selectedFilterType)
-               // }
-
                 // transitionでアニメーションするよりは.offsetで移動させたほうがきれいなアニメーションになるな
             }
         }

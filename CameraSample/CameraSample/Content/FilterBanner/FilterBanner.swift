@@ -25,20 +25,10 @@ struct FilterBannerView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         FilterImage(filterType: .pixellate, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                            .frame(width: 70, height: 80)
-                            .border(Color.white, width: viewModel.isSelectedPixellate ? 4 : 0)
                         FilterImage(filterType: .sepiaTone, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                            .frame(width: 70, height: 80)
-                        .border(Color.white, width: viewModel.isSelectedSepiaTone ? 4 : 0)
                         FilterImage(filterType: .sharpenLuminance, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                            .frame(width: 70, height: 80)
-                        .border(Color.white, width: viewModel.isSelectedSharpenLuminance ? 4 : 0)
                         FilterImage(filterType: .photoEffectMono, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                            .frame(width: 70, height: 80)
-                        .border(Color.white, width: viewModel.isSelectedPhotoEffectMono ? 4 : 0)
                         FilterImage(filterType: .gaussianBlur, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                            .frame(width: 70, height: 80)
-                        .border(Color.white, width: viewModel.isSelectedGaussianBlur ? 4 : 0)
                     }
                     .padding([.leading, .trailing], 16)
                 }
