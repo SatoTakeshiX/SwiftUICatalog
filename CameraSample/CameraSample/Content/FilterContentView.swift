@@ -26,7 +26,7 @@ final class FilterContentViewModel: ObservableObject {
     @Published var isShowActionSheet = false
     @Published var isShowImagePickerView = false
     @Published var selectedSourceType: UIImagePickerController.SourceType = .camera
-
+    @Published var isShowBanner = false
     lazy var actionSheet: ActionSheet = {
 
         var buttons: [ActionSheet.Button] = []
@@ -95,20 +95,10 @@ final class FilterContentViewModel: ObservableObject {
 struct FilterContentView: View {
     @ObservedObject var viewModel = FilterContentViewModel()
     @State private var isShowBanner = false
-    //@State private var image: Image? = Image("snap")
     var body: some View {
         NavigationView {
             ZStack {
                 // https://books.google.co.jp/books?id=S8DPDwAAQBAJ&pg=PT356&lpg=PT356&dq=swiftui+empty+view&source=bl&ots=_BhewlaJya&sig=ACfU3U1-vNwGbgAXhI_YHLc1ECDUhhNGxQ&hl=ja&sa=X&ved=2ahUKEwiqpLWT8MzqAhVCFogKHdkeBiUQ6AEwBnoECAoQAQ#v=onepage&q=swiftui%20empty%20view&f=false
-
-                // emptyviewはサイズがないview。
-                // rectangleと見比べた。rectangleのほうが子ビューを生成していたから、emptyを使っていこう
-                EmptyView()
-
-                    //https://www.hackingwithswift.com/quick-start/swiftui/how-to-control-the-tappable-area-of-a-view-using-contentshape
-
-
-
                 if viewModel.filteredImage != nil {
                     HStack {
                         // 画面全部をタップするためにSpacerを両方置いている
@@ -120,16 +110,22 @@ struct FilterContentView: View {
                         Spacer()
                     }
                     .border(Color.green, width: 4)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            withAnimation {
-                                self.isShowBanner.toggle()
-                            }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation {
+                            self.viewModel.isShowBanner.toggle()
+                        }
                     }
+                } else {
+                    // emptyviewはサイズがないview。
+                    // rectangleと見比べた。rectangleのほうが子ビューを生成していたから、emptyを使っていこう
+                        //https://www.hackingwithswift.com/quick-start/swiftui/how-to-control-the-tappable-area-of-a-view-using-contentshape
+                    EmptyView()
                 }
-                FilterBannerView(isShowBanner: $isShowBanner, selectedFilterType: $viewModel.selectedFilterType)
+                FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType)
                 // transitionでアニメーションするよりは.offsetで移動させたほうがきれいなアニメーションになるな
             }
+
                 .navigationBarTitle("Filter App")
                 .navigationBarItems(leading: EmptyView(), trailing: HStack {
                     Button(action: {
