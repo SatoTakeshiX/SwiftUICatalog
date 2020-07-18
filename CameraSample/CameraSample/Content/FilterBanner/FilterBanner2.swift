@@ -154,7 +154,6 @@ enum FilterType: String, CaseIterable {
     }
 }
 
-
 struct FilterImage: View {
     @State private var image: Image?
     let filterType: FilterType
@@ -179,9 +178,13 @@ struct FilterImage: View {
 
     func loadImage() {
        guard let inputImage = uiimage else { return }
-        if let outimage =  filterType.filter(inputImage: inputImage) {
-            // convert that to a SwiftUI image
-            image = Image(uiImage: outimage)
+        DispatchQueue.global(qos: .background).async {
+            if let outimage =  self.filterType.filter(inputImage: inputImage) {
+                // convert that to a SwiftUI image
+                DispatchQueue.main.async {
+                    self.image = Image(uiImage: outimage)
+                }
+            }
         }
     }
 }

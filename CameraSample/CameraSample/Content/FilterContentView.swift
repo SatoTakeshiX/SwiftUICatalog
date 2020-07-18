@@ -157,6 +157,9 @@ struct FilterContentView: View {
                             .frame(width: 30, height: 30, alignment: .bottom)
                     })
                 })
+                .onAppear {
+                    self.viewModel.apply(.onAppear)
+            }
             .actionSheet(isPresented: $viewModel.isShowActionSheet) { () -> ActionSheet in
                 self.viewModel.actionSheet
             }
