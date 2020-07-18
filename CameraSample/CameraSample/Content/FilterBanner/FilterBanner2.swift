@@ -159,7 +159,7 @@ struct FilterImage: View {
     @State private var image: Image?
     let filterType: FilterType
     @Binding var selectedFilter: FilterType?
-    let uiimage: UIImage?
+    @Binding var uiimage: UIImage?
     var body: some View {
         Button(action: {
             self.selectedFilter = self.filterType
@@ -172,8 +172,8 @@ struct FilterImage: View {
                     .scaledToFit()
             }
         }
-            .frame(width: 70, height: 80)
-            .border(Color.white, width: selectedFilter == filterType ? 4 : 0)
+        .frame(width: 70, height: 80)
+        .border(Color.white, width: selectedFilter == filterType ? 4 : 0)
         .onAppear(perform: loadImage)
     }
 
@@ -190,9 +190,9 @@ struct FilterImage: View {
 struct FileterImage_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil), uiimage: UIImage(named: "snap"))
+            FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
                 .previewLayout(.fixed(width: 200, height: 200))
-            FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil), uiimage: UIImage(named: "snap"))
+            FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
                 .previewLayout(.fixed(width: 200, height: 200))
         }
     }
@@ -250,11 +250,11 @@ struct FilterBannerView2: View {
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                FilterImage(filterType: .pixellate, selectedFilter: .constant(nil), uiimage: UIImage(named: "snap"))
-                FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil), uiimage: UIImage(named: "snap"))
-                FilterImage(filterType: .sharpenLuminance, selectedFilter: .constant(nil), uiimage: UIImage(named: "snap"))
-                FilterImage(filterType: .photoEffectMono, selectedFilter: .constant(nil), uiimage: UIImage(named: "snap"))
-                FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil), uiimage: UIImage(named: "snap"))
+                FilterImage(filterType: .pixellate, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
+                FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
+                FilterImage(filterType: .sharpenLuminance, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
+                FilterImage(filterType: .photoEffectMono, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
+                FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
             }
         }
         .onAppear {

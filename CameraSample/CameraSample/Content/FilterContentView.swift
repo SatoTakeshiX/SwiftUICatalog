@@ -20,7 +20,7 @@ final class FilterContentViewModel: ObservableObject {
     }
 
     //MARK: Outputs
-    @Published var image: UIImage? = UIImage(named: "snap")
+    @Published var image: UIImage? //= UIImage(named: "snap")
     @Published var filteredImage: Image?
     @Published var selectedFilterType: FilterType?
     @Published var isShowActionSheet = false
@@ -122,7 +122,7 @@ struct FilterContentView: View {
                         //https://www.hackingwithswift.com/quick-start/swiftui/how-to-control-the-tappable-area-of-a-view-using-contentshape
                     EmptyView()
                 }
-                FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType)
+                FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType, uiImage: $viewModel.image)
                 // transitionでアニメーションするよりは.offsetで移動させたほうがきれいなアニメーションになるな
             }
 

@@ -12,8 +12,7 @@ struct FilterBannerView: View {
     @Binding var isShowBanner: Bool
     @Binding var selectedFilterType: FilterType?
     @ObservedObject var viewModel = FilterBannerViewModel()
-
-    let uiImage = UIImage(named: "snap")
+    @Binding var uiImage: UIImage?
     var body: some View {
         VStack {
             Spacer()
@@ -22,16 +21,19 @@ struct FilterBannerView: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.top)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        FilterImage(filterType: .pixellate, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                        FilterImage(filterType: .sepiaTone, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                        FilterImage(filterType: .sharpenLuminance, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                        FilterImage(filterType: .photoEffectMono, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
-                        FilterImage(filterType: .gaussianBlur, selectedFilter: $viewModel.selectedFilter, uiimage: uiImage)
+                if isShowBanner {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            FilterImage(filterType: .pixellate, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
+                            FilterImage(filterType: .sepiaTone, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
+                            FilterImage(filterType: .sharpenLuminance, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
+                            FilterImage(filterType: .photoEffectMono, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
+                            FilterImage(filterType: .gaussianBlur, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
+                        }
+                        .padding([.leading, .trailing], 16)
                     }
-                    .padding([.leading, .trailing], 16)
                 }
+
 
                 HStack {
                     Button(action: {
@@ -73,6 +75,6 @@ struct FilterBannerView: View {
 }
 struct FilterPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterBannerView(isShowBanner: .constant(true), selectedFilterType: .constant(.gaussianBlur))
+        FilterBannerView(isShowBanner: .constant(true), selectedFilterType: .constant(.gaussianBlur), uiImage: .constant(UIImage(named: "snap")))
     }
 }
