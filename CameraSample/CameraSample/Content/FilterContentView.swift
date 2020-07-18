@@ -10,9 +10,46 @@ import SwiftUI
 import Combine
 
 final class FilterContentViewModel: ObservableObject {
+
+    //MARK: Inputs
+    enum Inputs {
+        case onAppear
+        case tappedImageIcon
+        case tappedSaveIcon
+        case tappedActionSheet(selectType: UIImagePickerController.SourceType)
+    }
+
+    //MARK: Outputs
     @Published var image: UIImage? = UIImage(named: "snap")
     @Published var filteredImage: Image?
     @Published var selectedFilterType: FilterType?
+    @Published var isShowActionSheet = false
+    @Published var isShowImagePickerView = false
+    @Published var selectedSourceType: UIImagePickerController.SourceType = .camera
+
+    lazy var actionSheet: ActionSheet = {
+
+        var buttons: [ActionSheet.Button] = []
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraButton = ActionSheet.Button.default(Text("写真を撮る")) {
+                self.apply(.tappedActionSheet(selectType: .camera))
+            }
+            buttons.append(cameraButton)
+        }
+
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let photoLibraryButton = ActionSheet.Button.default(Text("アルバムから選択")) {
+                self.apply(.tappedActionSheet(selectType: .photoLibrary))
+            }
+            buttons.append(photoLibraryButton)
+        }
+
+        let cancelButton = ActionSheet.Button.cancel(Text("キャンセル"))
+        buttons.append(cancelButton)
+
+        let actionSheet = ActionSheet(title: Text("画像選択"), message: nil, buttons: buttons)
+        return actionSheet
+    }()
 
     var cancellables: [Cancellable] = []
 
@@ -21,7 +58,6 @@ final class FilterContentViewModel: ObservableObject {
             guard let self = self,
                 let filterType = filterType,
                 let image = self.image else { return }
-            //self.filteredImage = self.image
             guard let filteredUIImage = self.updateImage(with: image, type: filterType) else { return }
             self.filteredImage = Image(uiImage: filteredUIImage)
         }
@@ -35,6 +71,22 @@ final class FilterContentViewModel: ObservableObject {
 
     }
 
+    func apply(_ inputs: Inputs) {
+        switch inputs {
+            case .onAppear:
+                if image == nil {
+                    isShowActionSheet = true
+                }
+            case .tappedImageIcon:
+                isShowActionSheet = true
+            case .tappedSaveIcon:
+                break
+            case .tappedActionSheet(let sourceType):
+                selectedSourceType = sourceType
+                isShowImagePickerView = true
+        }
+    }
+
     private func updateImage(with image: UIImage, type filter: FilterType) -> UIImage? {
         return filter.filter(inputImage: image)
     }
@@ -43,7 +95,7 @@ final class FilterContentViewModel: ObservableObject {
 struct FilterContentView: View {
     @ObservedObject var viewModel = FilterContentViewModel()
     @State private var isShowBanner = false
-    @State private var image: Image? = Image("snap")
+    //@State private var image: Image? = Image("snap")
     var body: some View {
         NavigationView {
             ZStack {
@@ -55,25 +107,7 @@ struct FilterContentView: View {
 
                     //https://www.hackingwithswift.com/quick-start/swiftui/how-to-control-the-tappable-area-of-a-view-using-contentshape
 
-                    .navigationBarTitle("Filter App")
-                    .navigationBarItems(leading: EmptyView(), trailing: HStack {
-                        Button(action: {
-                            print("square.and.arrow.down")
-                        }, label: {
-                            Image(systemName: "square.and.arrow.down")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 30)
-                        })
-                        Button(action: {
-                            print("photo")
-                        }, label: {
-                            Image(systemName: "photo")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 30, alignment: .bottom)
-                        })
-                    })
+
 
                 if viewModel.filteredImage != nil {
                     HStack {
@@ -95,6 +129,33 @@ struct FilterContentView: View {
                 }
                 FilterBannerView(isShowBanner: $isShowBanner, selectedFilterType: $viewModel.selectedFilterType)
                 // transitionでアニメーションするよりは.offsetで移動させたほうがきれいなアニメーションになるな
+            }
+                .navigationBarTitle("Filter App")
+                .navigationBarItems(leading: EmptyView(), trailing: HStack {
+                    Button(action: {
+                        print("square.and.arrow.down")
+                        self.viewModel.apply(.tappedSaveIcon)
+                    }, label: {
+                        Image(systemName: "square.and.arrow.down")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                    })
+                    Button(action: {
+                        print("photo")
+                        self.viewModel.apply(.tappedImageIcon)
+                    }, label: {
+                        Image(systemName: "photo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30, alignment: .bottom)
+                    })
+                })
+            .actionSheet(isPresented: $viewModel.isShowActionSheet) { () -> ActionSheet in
+                self.viewModel.actionSheet
+            }
+            .sheet(isPresented: $viewModel.isShowImagePickerView) {
+                ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$viewModel.image, sourceType: self.viewModel.selectedSourceType)
             }
         }
     }

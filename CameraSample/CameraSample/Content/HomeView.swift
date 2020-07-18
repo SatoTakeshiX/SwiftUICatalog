@@ -85,7 +85,8 @@ struct HomeView: View {
             self.actionSheet
         }
         .sheet(isPresented: $viewModel.isShowImagePickerView) {
-            ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$image, sourceType: self.viewModel.selectedSourceType)
+            Text("ddddd")
+            //ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$image, sourceType: self.viewModel.selectedSourceType)
         }
     }
 }
