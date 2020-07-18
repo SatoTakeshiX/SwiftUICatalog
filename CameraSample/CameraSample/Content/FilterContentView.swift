@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-final class FilterContentViewModel: ObservableObject {
+final class FilterContentViewModel: NSObject, ObservableObject {
 
     //MARK: Inputs
     enum Inputs {
@@ -21,12 +21,14 @@ final class FilterContentViewModel: ObservableObject {
 
     //MARK: Outputs
     @Published var image: UIImage? //= UIImage(named: "snap")
-    @Published var filteredImage: Image?
+    @Published var filteredImage: UIImage?
     @Published var selectedFilterType: FilterType?
     @Published var isShowActionSheet = false
     @Published var isShowImagePickerView = false
     @Published var selectedSourceType: UIImagePickerController.SourceType = .camera
     @Published var isShowBanner = false
+    @Published var isShowAlert = false
+    var alertTitle: String = ""
     lazy var actionSheet: ActionSheet = {
 
         var buttons: [ActionSheet.Button] = []
@@ -53,19 +55,20 @@ final class FilterContentViewModel: ObservableObject {
 
     var cancellables: [Cancellable] = []
 
-    init() {
+    override init() {
+        super.init()
         let filterSubscriber = $selectedFilterType.sink { [weak self] (filterType) in
             guard let self = self,
                 let filterType = filterType,
                 let image = self.image else { return }
             guard let filteredUIImage = self.updateImage(with: image, type: filterType) else { return }
-            self.filteredImage = Image(uiImage: filteredUIImage)
+            self.filteredImage = filteredUIImage
         }
         cancellables.append(filterSubscriber)
 
         let imageSubscriber = $image.sink { [weak self] (uiimage) in
             guard let self = self, let uiimage = uiimage else { return }
-            self.filteredImage = Image(uiImage: uiimage)
+            self.filteredImage = uiimage
         }
         cancellables.append(imageSubscriber)
 
@@ -80,7 +83,8 @@ final class FilterContentViewModel: ObservableObject {
             case .tappedImageIcon:
                 isShowActionSheet = true
             case .tappedSaveIcon:
-                break
+
+                UIImageWriteToSavedPhotosAlbum(filteredImage!, self, #selector(imageSaveCompletion(_:didFinishSavingWithError:contextInfo:)), nil)
             case .tappedActionSheet(let sourceType):
                 selectedSourceType = sourceType
                 isShowImagePickerView = true
@@ -90,6 +94,12 @@ final class FilterContentViewModel: ObservableObject {
     private func updateImage(with image: UIImage, type filter: FilterType) -> UIImage? {
         return filter.filter(inputImage: image)
     }
+
+     //MARK: - Add image to Library
+    @objc func imageSaveCompletion(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        alertTitle = error == nil ? "画像が保存されました" : error?.localizedDescription ?? ""
+        isShowAlert = true
+     }
 }
 
 struct FilterContentView: View {
@@ -103,7 +113,7 @@ struct FilterContentView: View {
                     HStack {
                         // 画面全部をタップするためにSpacerを両方置いている
                         Spacer()
-                        viewModel.filteredImage?
+                        Image(uiImage: viewModel.filteredImage!)
                             .resizable()
                             // fillだとタップイベントがきかない？
                             .aspectRatio(contentMode: .fit)
@@ -152,6 +162,9 @@ struct FilterContentView: View {
             }
             .sheet(isPresented: $viewModel.isShowImagePickerView) {
                 ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$viewModel.image, sourceType: self.viewModel.selectedSourceType)
+            }
+            .alert(isPresented: $viewModel.isShowAlert) { () -> Alert in
+                Alert(title: Text(self.viewModel.alertTitle))
             }
         }
     }
