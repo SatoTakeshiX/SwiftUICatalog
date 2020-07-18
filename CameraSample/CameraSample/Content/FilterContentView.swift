@@ -7,10 +7,42 @@
 //
 
 import SwiftUI
+import Combine
+
+final class FilterContentViewModel: ObservableObject {
+    @Published var image: UIImage? = UIImage(named: "snap")
+    @Published var filteredImage: Image?
+    @Published var selectedFilterType: FilterType?
+
+    var cancellables: [Cancellable] = []
+
+    init() {
+        let filterSubscriber = $selectedFilterType.sink { [weak self] (filterType) in
+            guard let self = self,
+                let filterType = filterType,
+                let image = self.image else { return }
+            //self.filteredImage = self.image
+            guard let filteredUIImage = self.updateImage(with: image, type: filterType) else { return }
+            self.filteredImage = Image(uiImage: filteredUIImage)
+        }
+        cancellables.append(filterSubscriber)
+
+        let imageSubscriber = $image.sink { [weak self] (uiimage) in
+            guard let self = self, let uiimage = uiimage else { return }
+            self.filteredImage = Image(uiImage: uiimage)
+        }
+        cancellables.append(imageSubscriber)
+
+    }
+
+    private func updateImage(with image: UIImage, type filter: FilterType) -> UIImage? {
+        return filter.filter(inputImage: image)
+    }
+}
 
 struct FilterContentView: View {
+    @ObservedObject var viewModel = FilterContentViewModel()
     @State private var isShowBanner = false
-    @State private var selectedFilterType: FilterType?
     @State private var image: Image? = Image("snap")
     var body: some View {
         NavigationView {
@@ -43,16 +75,15 @@ struct FilterContentView: View {
                         })
                     })
 
-                if image != nil {
+                if viewModel.filteredImage != nil {
                     HStack {
                         // 画面全部をタップするためにSpacerを両方置いている
                         Spacer()
-                        image?
+                        viewModel.filteredImage?
                             .resizable()
                             // fillだとタップイベントがきかない？
                             .aspectRatio(contentMode: .fit)
                         Spacer()
-
                     }
                     .border(Color.green, width: 4)
                         .contentShape(Rectangle())
@@ -62,7 +93,7 @@ struct FilterContentView: View {
                             }
                     }
                 }
-                FilterBannerView(isShowBanner: $isShowBanner, selectedFilterType: $selectedFilterType)
+                FilterBannerView(isShowBanner: $isShowBanner, selectedFilterType: $viewModel.selectedFilterType)
                 // transitionでアニメーションするよりは.offsetで移動させたほうがきれいなアニメーションになるな
             }
         }
