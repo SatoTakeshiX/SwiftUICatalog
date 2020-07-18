@@ -71,7 +71,6 @@ final class FilterContentViewModel: NSObject, ObservableObject {
             self.filteredImage = uiimage
         }
         cancellables.append(imageSubscriber)
-
     }
 
     func apply(_ inputs: Inputs) {
@@ -148,7 +147,6 @@ struct FilterContentView: View {
                             .frame(width: 30, height: 30)
                     })
                     Button(action: {
-                        print("photo")
                         self.viewModel.apply(.tappedImageIcon)
                     }, label: {
                         Image(systemName: "photo")
