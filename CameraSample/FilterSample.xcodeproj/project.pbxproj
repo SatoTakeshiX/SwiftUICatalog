@@ -23,7 +23,6 @@
 		3092FD8224C3EC0B001724C3 /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3092FD8124C3EC0B001724C3 /* FilterType.swift */; };
 		3092FD8424C3F0F2001724C3 /* FilterBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3092FD8324C3F0F2001724C3 /* FilterBannerViewModel.swift */; };
 		3092FD8824C3F137001724C3 /* FilterContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3092FD8724C3F137001724C3 /* FilterContentViewModel.swift */; };
-		3092FD8C24C3F402001724C3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3092FD8B24C3F402001724C3 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +65,6 @@
 		3092FD8124C3EC0B001724C3 /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
 		3092FD8324C3F0F2001724C3 /* FilterBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBannerViewModel.swift; sourceTree = "<group>"; };
 		3092FD8724C3F137001724C3 /* FilterContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterContentViewModel.swift; sourceTree = "<group>"; };
-		3092FD8B24C3F402001724C3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +104,6 @@
 		306830DA23AE612C0070F473 = {
 			isa = PBXGroup;
 			children = (
-				3092FD8B24C3F402001724C3 /* Default-568h@2x.png */,
 				306830E523AE612C0070F473 /* FilterSample */,
 				306830FC23AE612F0070F473 /* FilterSampleTests */,
 				3068310723AE612F0070F473 /* FilterSampleUITests */,
@@ -324,7 +321,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				306830F323AE612F0070F473 /* LaunchScreen.storyboard in Resources */,
-				3092FD8C24C3F402001724C3 /* Default-568h@2x.png in Resources */,
 				306830F023AE612F0070F473 /* Preview Assets.xcassets in Resources */,
 				306830ED23AE612F0070F473 /* Assets.xcassets in Resources */,
 			);
