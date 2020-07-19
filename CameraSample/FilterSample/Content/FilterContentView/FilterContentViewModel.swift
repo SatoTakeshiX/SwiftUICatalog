@@ -21,7 +21,7 @@ final class FilterContentViewModel: NSObject, ObservableObject {
     }
 
     //MARK: Outputs
-    @Published var image: UIImage? //= UIImage(named: "snap")
+    @Published var image: UIImage?
     @Published var filteredImage: UIImage?
     @Published var selectedFilterType: FilterType?
     @Published var isShowActionSheet = false

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		30153A9624B4CBBA0047E99E /* CustomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30153A9524B4CBBA0047E99E /* CustomToolBar.swift */; };
-		30153A9C24B9DC810047E99E /* SingleSelectableBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30153A9B24B9DC810047E99E /* SingleSelectableBoxView.swift */; };
 		30153A9F24BB19FD0047E99E /* FilterBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30153A9E24BB19FD0047E99E /* FilterBanner.swift */; };
 		30153AA124BDD0730047E99E /* FilterContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30153AA024BDD0730047E99E /* FilterContentView.swift */; };
 		306830E723AE612C0070F473 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306830E623AE612C0070F473 /* AppDelegate.swift */; };
@@ -44,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		30153A9524B4CBBA0047E99E /* CustomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolBar.swift; sourceTree = "<group>"; };
-		30153A9B24B9DC810047E99E /* SingleSelectableBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSelectableBoxView.swift; sourceTree = "<group>"; };
 		30153A9E24BB19FD0047E99E /* FilterBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBanner.swift; sourceTree = "<group>"; };
 		30153AA024BDD0730047E99E /* FilterContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterContentView.swift; sourceTree = "<group>"; };
 		306830E323AE612C0070F473 /* FilterSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +125,6 @@
 				3092FD8024C3EBF7001724C3 /* Model */,
 				306830E623AE612C0070F473 /* AppDelegate.swift */,
 				306830E823AE612C0070F473 /* SceneDelegate.swift */,
-				30153A9B24B9DC810047E99E /* SingleSelectableBoxView.swift */,
 				3079188E23D334C000538080 /* Content */,
 				306830EC23AE612F0070F473 /* Assets.xcassets */,
 				306830F123AE612F0070F473 /* LaunchScreen.storyboard */,
@@ -352,7 +349,6 @@
 				3092FD8224C3EC0B001724C3 /* FilterType.swift in Sources */,
 				306830E723AE612C0070F473 /* AppDelegate.swift in Sources */,
 				3092FD7F24C3EBAB001724C3 /* FilterImage.swift in Sources */,
-				30153A9C24B9DC810047E99E /* SingleSelectableBoxView.swift in Sources */,
 				30153AA124BDD0730047E99E /* FilterContentView.swift in Sources */,
 				30153A9624B4CBBA0047E99E /* CustomToolBar.swift in Sources */,
 				3092FD8824C3F137001724C3 /* FilterContentViewModel.swift in Sources */,

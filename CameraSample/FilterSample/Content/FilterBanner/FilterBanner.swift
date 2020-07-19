@@ -64,9 +64,6 @@ struct FilterBannerView: View {
                     }
                 }
             }
-                // おー、color. opacityで背景色だけ透明に
-                //https://stackoverflow.com/questions/58805852/how-can-i-make-a-background-in-swiftui-translucent
-                //背景は透明でもなかのコンテンツはしっかり見えてほしい。
             .background(Color.black.opacity(0.8))
             .foregroundColor(.white)
             .offset(x: 0, y: isShowBanner ? 0 : 300)

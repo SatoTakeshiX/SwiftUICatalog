@@ -17,7 +17,6 @@ enum FilterType: String, CaseIterable {
     case photoEffectMono = "モノクロ"
     case gaussianBlur = "ブラー"
 
-    //https://www.hackingwithswift.com/books/ios-swiftui/integrating-core-image-with-swiftui
     private func makeFilter(inputImage: CIImage?) -> CIFilterProtocol {
 
         switch self {
