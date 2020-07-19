@@ -11,7 +11,7 @@ import SwiftUI
 struct ImagePicker {
     /// MARK: - Properties
     @Binding var isShown: Bool
-    @Binding var image: Image?
+    @Binding var image: UIImage?
     var sourceType: UIImagePickerController.SourceType
 
 }
@@ -45,7 +45,7 @@ final class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePicker
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        parent.image = Image(uiImage: originalImage)
+        parent.image = originalImage
         parent.isShown = false
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
