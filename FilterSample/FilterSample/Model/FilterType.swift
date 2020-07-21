@@ -23,7 +23,7 @@ enum FilterType: String, CaseIterable {
             case .pixellate:
                 let currentFilter = CIFilter.pixellate()
                 currentFilter.inputImage = inputImage
-                currentFilter.scale = 20
+                currentFilter.scale = 40
                 return currentFilter
             case .sepiaTone:
                 let currentFilter = CIFilter.sepiaTone()

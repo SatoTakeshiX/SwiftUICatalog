@@ -25,11 +25,11 @@ struct FilterBannerView: View {
                 if isShowBanner {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            FilterImage(filterType: .pixellate, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
-                            FilterImage(filterType: .sepiaTone, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
-                            FilterImage(filterType: .sharpenLuminance, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
-                            FilterImage(filterType: .photoEffectMono, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
-                            FilterImage(filterType: .gaussianBlur, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
+                            FilterImage(filterType: .pixellate, selectedFilter: $viewModel.selectedFilter)
+                            FilterImage(filterType: .sepiaTone, selectedFilter: $viewModel.selectedFilter)
+                            FilterImage(filterType: .sharpenLuminance, selectedFilter: $viewModel.selectedFilter)
+                            FilterImage(filterType: .photoEffectMono, selectedFilter: $viewModel.selectedFilter)
+                            FilterImage(filterType: .gaussianBlur, selectedFilter: $viewModel.selectedFilter)
                         }
                         .padding([.leading, .trailing], 16)
                     }

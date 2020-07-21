@@ -12,7 +12,7 @@ struct FilterImage: View {
     @State private var image: Image?
     let filterType: FilterType
     @Binding var selectedFilter: FilterType?
-    @Binding var uiimage: UIImage?
+    let uiimage: UIImage? = UIImage(named: "photo_icon")
     var body: some View {
         Button(action: {
             self.selectedFilter = self.filterType
@@ -47,9 +47,9 @@ struct FilterImage: View {
 struct FileterImage_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
+            FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil))
                 .previewLayout(.fixed(width: 200, height: 200))
-            FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil), uiimage: .constant(UIImage(named: "snap")))
+            FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil))
                 .previewLayout(.fixed(width: 200, height: 200))
         }
     }
