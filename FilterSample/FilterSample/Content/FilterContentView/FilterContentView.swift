@@ -15,20 +15,16 @@ struct FilterContentView: View {
         NavigationView {
             ZStack {
                 if viewModel.filteredImage != nil {
-                    HStack {
-                        // 画面全部をタップするためにSpacerを両方置いている
-                        Spacer()
-                        Image(uiImage: viewModel.filteredImage!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        Spacer()
-                    }
-                    .border(Color.green, width: 4)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        withAnimation {
-                            self.viewModel.isShowBanner.toggle()
-                        }
+                    Image(uiImage: viewModel.filteredImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+
+                        .border(Color.green, width: 4)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            withAnimation {
+                                self.viewModel.isShowBanner.toggle()
+                            }
                     }
                 } else {
                     EmptyView()
