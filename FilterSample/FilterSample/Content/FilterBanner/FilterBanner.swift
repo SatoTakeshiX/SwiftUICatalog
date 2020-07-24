@@ -13,7 +13,6 @@ struct FilterBannerView: View {
     @Binding var isShowBanner: Bool
     @Binding var selectedFilterType: FilterType?
     @ObservedObject var viewModel = FilterBannerViewModel()
-    @Binding var uiImage: UIImage?
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
@@ -80,6 +79,6 @@ struct FilterBannerView: View {
 
 struct FilterPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterBannerView(isShowBanner: .constant(true), selectedFilterType: .constant(.gaussianBlur), uiImage: .constant(UIImage(named: "snap")))
+        FilterBannerView(isShowBanner: .constant(true), selectedFilterType: .constant(.gaussianBlur))
     }
 }

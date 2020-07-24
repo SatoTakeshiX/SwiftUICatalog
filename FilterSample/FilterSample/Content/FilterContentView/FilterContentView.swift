@@ -29,7 +29,7 @@ struct FilterContentView: View {
                 } else {
                     EmptyView()
                 }
-                FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType, uiImage: $viewModel.image)
+                FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType)
                     .edgesIgnoringSafeArea(.bottom)
             }
             .navigationBarTitle("Filter App")
