@@ -8,7 +8,6 @@
 
 import SwiftUI
 import Combine
-
 struct FilterContentView: View {
     @ObservedObject var viewModel = FilterContentViewModel()
     @State private var isShowBanner = false
@@ -35,6 +34,7 @@ struct FilterContentView: View {
                     EmptyView()
                 }
                 FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType, uiImage: $viewModel.image)
+                    .edgesIgnoringSafeArea(.bottom)
             }
             .navigationBarTitle("Filter App")
             .navigationBarItems(leading: EmptyView(), trailing: HStack {
