@@ -13,7 +13,6 @@ struct ImagePicker {
     @Binding var isShown: Bool
     @Binding var image: UIImage?
     var sourceType: UIImagePickerController.SourceType
-
 }
 
 extension ImagePicker: UIViewControllerRepresentable {
