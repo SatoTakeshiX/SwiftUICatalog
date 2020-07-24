@@ -15,58 +15,65 @@ struct FilterBannerView: View {
     @ObservedObject var viewModel = FilterBannerViewModel()
     @Binding var uiImage: UIImage?
     var body: some View {
-        VStack {
-            Spacer()
-            VStack {
-                Text("\(viewModel.selectedFilter?.rawValue ?? "フィルターを選択")")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding(.top)
-                if isShowBanner {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            FilterImage(filterType: .pixellate, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
-                            FilterImage(filterType: .sepiaTone, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
-                            FilterImage(filterType: .sharpenLuminance, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
-                            FilterImage(filterType: .photoEffectMono, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
-                            FilterImage(filterType: .gaussianBlur, selectedFilter: $viewModel.selectedFilter, uiimage: $uiImage)
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
+                Spacer()
+                VStack {
+                    Text("\(self.viewModel.selectedFilter?.rawValue ?? "フィルターを選択")")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.top)
+                    if self.isShowBanner {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                FilterImage(filterType: .pixellate, selectedFilter: self.$viewModel.selectedFilter)
+                                FilterImage(filterType: .sepiaTone, selectedFilter: self.$viewModel.selectedFilter)
+                                FilterImage(filterType: .sharpenLuminance, selectedFilter: self.$viewModel.selectedFilter)
+                                FilterImage(filterType: .photoEffectMono, selectedFilter: self.$viewModel.selectedFilter)
+                                FilterImage(filterType: .gaussianBlur, selectedFilter: self.$viewModel.selectedFilter)
+                            }
+                            .padding([.leading, .trailing], 16)
                         }
-                        .padding([.leading, .trailing], 16)
+                    }
+                    
+                    HStack {
+                        Button(action: {
+                            withAnimation {
+                                self.isShowBanner = false
+                            }
+                        }) {
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20, height: 20)
+                                .padding()
+                        }
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                self.isShowBanner = false
+                                self.selectedFilterType = self.$viewModel.selectedFilter.wrappedValue
+                            }
+                        }) {
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20, height: 20)
+                                .padding()
+                        }
                     }
                 }
-
-                HStack {
-                    Button(action: {
-                        withAnimation {
-                            self.isShowBanner = false
-                        }
-                    }) {
-                        Image(systemName: "xmark")
-                        .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                            .padding()
-                    }
-                    Spacer()
-                    Button(action: {
-                        withAnimation {
-                            self.isShowBanner = false
-                            self.selectedFilterType = self.$viewModel.selectedFilter.wrappedValue
-                        }
-                    }) {
-                        Image(systemName: "checkmark")
-                        .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                            .padding()
-                    }
-                }
+                .background(Color.black.opacity(0.8))
+                .foregroundColor(.white)
+                .offset(x: 0, y: self.isShowBanner ? 0 : geometry.size.height)
+                Rectangle()
+                    .foregroundColor(Color.black.opacity(0.8))
+                    .frame(height: geometry.safeAreaInsets.bottom)
+                    .edgesIgnoringSafeArea(.bottom)
+                    .offset(x: 0, y: self.isShowBanner ? 0 : geometry.size.height)
             }
-            .background(Color.black.opacity(0.8))
-            .foregroundColor(.white)
-            .offset(x: 0, y: isShowBanner ? 0 : 300)
         }
     }
 }
