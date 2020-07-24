@@ -55,13 +55,13 @@ struct FilterContentView: View {
                 .onAppear {
                     self.viewModel.apply(.onAppear)
             }
-            .actionSheet(isPresented: $viewModel.isShowActionSheet) { () -> ActionSheet in
+            .actionSheet(isPresented: $viewModel.isShowActionSheet) {
                 self.viewModel.actionSheet
             }
             .sheet(isPresented: $viewModel.isShowImagePickerView) {
                 ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$viewModel.image, sourceType: self.viewModel.selectedSourceType)
             }
-            .alert(isPresented: $viewModel.isShowAlert) { () -> Alert in
+            .alert(isPresented: $viewModel.isShowAlert) {
                 Alert(title: Text(self.viewModel.alertTitle))
             }
         }
