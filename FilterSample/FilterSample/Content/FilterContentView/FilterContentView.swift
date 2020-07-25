@@ -10,7 +10,6 @@ import SwiftUI
 import Combine
 struct FilterContentView: View {
     @ObservedObject var viewModel = FilterContentViewModel()
-    @State private var isShowBanner = false
     var body: some View {
         NavigationView {
             ZStack {
