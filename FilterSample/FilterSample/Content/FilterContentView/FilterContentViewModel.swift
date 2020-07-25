@@ -67,6 +67,7 @@ final class FilterContentViewModel: NSObject, ObservableObject {
         }
         cancellables.append(filterSubscriber)
 
+        //新しい画像に更新する
         let imageSubscriber = $image.sink { [weak self] (uiimage) in
             guard let self = self, let uiimage = uiimage else { return }
             self.filteredImage = uiimage
@@ -83,7 +84,6 @@ final class FilterContentViewModel: NSObject, ObservableObject {
             case .tappedImageIcon:
                 isShowActionSheet = true
             case .tappedSaveIcon:
-
                 UIImageWriteToSavedPhotosAlbum(filteredImage!, self, #selector(imageSaveCompletion(_:didFinishSavingWithError:contextInfo:)), nil)
             case .tappedActionSheet(let sourceType):
                 selectedSourceType = sourceType
