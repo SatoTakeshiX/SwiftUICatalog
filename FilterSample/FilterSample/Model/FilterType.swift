@@ -58,7 +58,7 @@ enum FilterType: String, CaseIterable {
         // attempt to get a CGImage from our CIImage
         if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
             // convert that to a UIImage
-            return UIImage(cgImage: cgimg)
+            return UIImage(cgImage: cgimg, scale: 0, orientation: inputImage.imageOrientation)
         } else {
             return nil
         }
