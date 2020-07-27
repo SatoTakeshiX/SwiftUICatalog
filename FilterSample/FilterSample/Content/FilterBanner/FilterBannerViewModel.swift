@@ -9,30 +9,30 @@
 import Combine
 
 final class FilterBannerViewModel: ObservableObject {
-    @Published var selectedFilter: FilterType?
+    @Published var selectingFilter: FilterType?
     private var cancelables: [Cancellable] = []
     var isSelectedPixellate: Bool {
-        return selectedFilter == .pixellate
+        return selectingFilter == .pixellate
     }
 
     var isSelectedSepiaTone: Bool {
-        return selectedFilter == .sepiaTone
+        return selectingFilter == .sepiaTone
     }
 
     var isSelectedSharpenLuminance: Bool {
-        return selectedFilter == .sharpenLuminance
+        return selectingFilter == .sharpenLuminance
     }
 
     var isSelectedPhotoEffectMono: Bool {
-        return selectedFilter == .photoEffectMono
+        return selectingFilter == .photoEffectMono
     }
 
     var isSelectedGaussianBlur: Bool {
-        return selectedFilter == .gaussianBlur
+        return selectingFilter == .gaussianBlur
     }
 
     init() {
-        let subscriber = $selectedFilter.sink { (type) in
+        let subscriber = $selectingFilter.sink { (type) in
             print("\(type.debugDescription)")
         }
         cancelables.append(subscriber)

@@ -18,18 +18,18 @@ struct FilterBannerView: View {
             VStack(spacing: 0) {
                 Spacer()
                 VStack {
-                    Text("\(self.viewModel.selectedFilter?.rawValue ?? "フィルターを選択")")
+                    Text("\(self.viewModel.selectingFilter?.rawValue ?? "フィルターを選択")")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(.top)
                     if self.isShowBanner {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                FilterImage(filterType: .pixellate, selectedFilter: self.$viewModel.selectedFilter)
-                                FilterImage(filterType: .sepiaTone, selectedFilter: self.$viewModel.selectedFilter)
-                                FilterImage(filterType: .sharpenLuminance, selectedFilter: self.$viewModel.selectedFilter)
-                                FilterImage(filterType: .photoEffectMono, selectedFilter: self.$viewModel.selectedFilter)
-                                FilterImage(filterType: .gaussianBlur, selectedFilter: self.$viewModel.selectedFilter)
+                                FilterImage(filterType: .pixellate, selectedFilter: self.$viewModel.selectingFilter)
+                                FilterImage(filterType: .sepiaTone, selectedFilter: self.$viewModel.selectingFilter)
+                                FilterImage(filterType: .sharpenLuminance, selectedFilter: self.$viewModel.selectingFilter)
+                                FilterImage(filterType: .photoEffectMono, selectedFilter: self.$viewModel.selectingFilter)
+                                FilterImage(filterType: .gaussianBlur, selectedFilter: self.$viewModel.selectingFilter)
                             }
                             .padding([.leading, .trailing], 16)
                         }
@@ -52,7 +52,7 @@ struct FilterBannerView: View {
                         Button(action: {
                             withAnimation {
                                 self.isShowBanner = false
-                                self.selectedFilterType = self.$viewModel.selectedFilter.wrappedValue
+                                self.selectedFilterType = self.$viewModel.selectingFilter.wrappedValue
                             }
                         }) {
                             Image(systemName: "checkmark")
