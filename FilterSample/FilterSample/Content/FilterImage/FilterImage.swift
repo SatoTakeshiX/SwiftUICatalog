@@ -47,10 +47,60 @@ struct FilterImage: View {
 struct FileterImage_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil))
-                .previewLayout(.fixed(width: 200, height: 200))
-            FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil))
-                .previewLayout(.fixed(width: 200, height: 200))
+            HStack {
+                Image("photo_icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                FilterImage(filterType: .pixellate, selectedFilter: .constant(nil))
+                
+            }
+            .previewLayout(.fixed(width: 200, height: 200))
+            .previewDisplayName("pixellate")
+            HStack {
+                Image("photo_icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil))
+                
+            }
+            .previewLayout(.fixed(width: 200, height: 200))
+            .previewDisplayName("sepiaTone")
+            HStack {
+                Image("photo_icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                FilterImage(filterType: .sharpenLuminance, selectedFilter: .constant(nil))
+                    .previewLayout(.fixed(width: 200, height: 200))
+                
+            }
+            .previewLayout(.fixed(width: 200, height: 200))
+            .previewDisplayName("sharpenLuminance")
+            HStack {
+                Image("photo_icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                FilterImage(filterType: .photoEffectMono, selectedFilter: .constant(nil))
+                    .previewLayout(.fixed(width: 200, height: 200))
+                
+            }
+            .previewLayout(.fixed(width: 200, height: 200))
+            .previewDisplayName("photoEffectMono")
+            HStack {
+                Image("photo_icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
+                FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil))
+                    .previewLayout(.fixed(width: 200, height: 200))
+                
+            }
+            .previewLayout(.fixed(width: 200, height: 200))
+            .previewDisplayName("gaussianBlur")
+            
         }
     }
 }

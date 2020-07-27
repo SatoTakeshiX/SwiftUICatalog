@@ -10,7 +10,7 @@ import UIKit
 import CoreImage
 import CoreImage.CIFilterBuiltins
 
-enum FilterType: String, CaseIterable {
+enum FilterType: String {
     case pixellate = "モザイク"
     case sepiaTone = "セピア"
     case sharpenLuminance = "シャープ"
@@ -33,6 +33,7 @@ enum FilterType: String, CaseIterable {
             case .sharpenLuminance:
                 let currentFilter = CIFilter.sharpenLuminance()
                 currentFilter.inputImage = inputImage
+                currentFilter.sharpness = 0.5
                 currentFilter.radius = 100
                 return currentFilter
             case .photoEffectMono:
