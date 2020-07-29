@@ -17,7 +17,6 @@ struct FilterContentView: View {
                     Image(uiImage: viewModel.filteredImage!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-
                         .border(Color.green, width: 4)
                         .contentShape(Rectangle())
                         .onTapGesture {
