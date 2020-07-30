@@ -13,7 +13,6 @@ struct ImagePicker {
     @Binding var isShown: Bool
     @Binding var image: UIImage?
     var sourceType: UIImagePickerController.SourceType
-
 }
 
 extension ImagePicker: UIViewControllerRepresentable {
@@ -26,10 +25,7 @@ extension ImagePicker: UIViewControllerRepresentable {
         return imagePicker
     }
 
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-        //@Bindingの値が変わったときに呼ばれる
-        // parentパターンはImagePickerのプロパティとCoordinatorのプロパティをそのまま使いたいから
-    }
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
 
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)

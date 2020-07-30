@@ -13,24 +13,23 @@ struct FilterBannerView: View {
     @Binding var isShowBanner: Bool
     @Binding var selectedFilterType: FilterType?
     @ObservedObject var viewModel = FilterBannerViewModel()
-    @Binding var uiImage: UIImage?
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 Spacer()
                 VStack {
-                    Text("\(self.viewModel.selectedFilter?.rawValue ?? "フィルターを選択")")
+                    Text("\(self.viewModel.selectingFilter?.rawValue ?? "フィルターを選択")")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(.top)
                     if self.isShowBanner {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                FilterImage(filterType: .pixellate, selectedFilter: self.$viewModel.selectedFilter)
-                                FilterImage(filterType: .sepiaTone, selectedFilter: self.$viewModel.selectedFilter)
-                                FilterImage(filterType: .sharpenLuminance, selectedFilter: self.$viewModel.selectedFilter)
-                                FilterImage(filterType: .photoEffectMono, selectedFilter: self.$viewModel.selectedFilter)
-                                FilterImage(filterType: .gaussianBlur, selectedFilter: self.$viewModel.selectedFilter)
+                                FilterImage(filterType: .pixellate, selectedFilter: self.$viewModel.selectingFilter)
+                                FilterImage(filterType: .sepiaTone, selectedFilter: self.$viewModel.selectingFilter)
+                                FilterImage(filterType: .sharpenLuminance, selectedFilter: self.$viewModel.selectingFilter)
+                                FilterImage(filterType: .photoEffectMono, selectedFilter: self.$viewModel.selectingFilter)
+                                FilterImage(filterType: .gaussianBlur, selectedFilter: self.$viewModel.selectingFilter)
                             }
                             .padding([.leading, .trailing], 16)
                         }
@@ -45,7 +44,6 @@ struct FilterBannerView: View {
                             Image(systemName: "xmark")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .aspectRatio(contentMode: .fit)
                                 .frame(width: 20, height: 20)
                                 .padding()
                         }
@@ -53,12 +51,11 @@ struct FilterBannerView: View {
                         Button(action: {
                             withAnimation {
                                 self.isShowBanner = false
-                                self.selectedFilterType = self.$viewModel.selectedFilter.wrappedValue
+                                self.selectedFilterType = self.$viewModel.selectingFilter.wrappedValue
                             }
                         }) {
                             Image(systemName: "checkmark")
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 20, height: 20)
                                 .padding()
@@ -80,6 +77,6 @@ struct FilterBannerView: View {
 
 struct FilterPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterBannerView(isShowBanner: .constant(true), selectedFilterType: .constant(.gaussianBlur), uiImage: .constant(UIImage(named: "snap")))
+        FilterBannerView(isShowBanner: .constant(true), selectedFilterType: .constant(.gaussianBlur))
     }
 }

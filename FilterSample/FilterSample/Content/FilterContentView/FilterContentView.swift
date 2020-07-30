@@ -10,7 +10,6 @@ import SwiftUI
 import Combine
 struct FilterContentView: View {
     @ObservedObject var viewModel = FilterContentViewModel()
-    @State private var isShowBanner = false
     var body: some View {
         NavigationView {
             ZStack {
@@ -18,7 +17,6 @@ struct FilterContentView: View {
                     Image(uiImage: viewModel.filteredImage!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-
                         .border(Color.green, width: 4)
                         .contentShape(Rectangle())
                         .onTapGesture {
@@ -29,7 +27,7 @@ struct FilterContentView: View {
                 } else {
                     EmptyView()
                 }
-                FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType, uiImage: $viewModel.image)
+                FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType)
                     .edgesIgnoringSafeArea(.bottom)
             }
             .navigationBarTitle("Filter App")
@@ -52,16 +50,16 @@ struct FilterContentView: View {
                         .frame(width: 30, height: 30, alignment: .bottom)
                 })
             })
-                .onAppear {
-                    self.viewModel.apply(.onAppear)
+            .onAppear {
+                self.viewModel.apply(.onAppear)
             }
-            .actionSheet(isPresented: $viewModel.isShowActionSheet) { () -> ActionSheet in
+            .actionSheet(isPresented: $viewModel.isShowActionSheet) {
                 self.viewModel.actionSheet
             }
             .sheet(isPresented: $viewModel.isShowImagePickerView) {
                 ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$viewModel.image, sourceType: self.viewModel.selectedSourceType)
             }
-            .alert(isPresented: $viewModel.isShowAlert) { () -> Alert in
+            .alert(isPresented: $viewModel.isShowAlert) {
                 Alert(title: Text(self.viewModel.alertTitle))
             }
         }
