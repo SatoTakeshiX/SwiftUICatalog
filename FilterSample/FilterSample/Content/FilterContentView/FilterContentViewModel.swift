@@ -82,6 +82,7 @@ final class FilterContentViewModel: NSObject, ObservableObject {
                     isShowActionSheet = true
                 }
             case .tappedImageIcon:
+                selectedFilterType = nil
                 isShowActionSheet = true
             case .tappedSaveIcon:
                 UIImageWriteToSavedPhotosAlbum(filteredImage!, self, #selector(imageSaveCompletion(_:didFinishSavingWithError:contextInfo:)), nil)

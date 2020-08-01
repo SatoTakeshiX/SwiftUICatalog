@@ -20,7 +20,6 @@
 		3068311723AF98E50070F473 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3068311623AF98E50070F473 /* ImagePicker.swift */; };
 		3092FD7F24C3EBAB001724C3 /* FilterImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3092FD7E24C3EBAB001724C3 /* FilterImage.swift */; };
 		3092FD8224C3EC0B001724C3 /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3092FD8124C3EC0B001724C3 /* FilterType.swift */; };
-		3092FD8424C3F0F2001724C3 /* FilterBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3092FD8324C3F0F2001724C3 /* FilterBannerViewModel.swift */; };
 		3092FD8824C3F137001724C3 /* FilterContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3092FD8724C3F137001724C3 /* FilterContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +60,6 @@
 		3068311623AF98E50070F473 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		3092FD7E24C3EBAB001724C3 /* FilterImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImage.swift; sourceTree = "<group>"; };
 		3092FD8124C3EC0B001724C3 /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
-		3092FD8324C3F0F2001724C3 /* FilterBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBannerViewModel.swift; sourceTree = "<group>"; };
 		3092FD8724C3F137001724C3 /* FilterContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				30153A9E24BB19FD0047E99E /* FilterBanner.swift */,
-				3092FD8324C3F0F2001724C3 /* FilterBannerViewModel.swift */,
 			);
 			path = FilterBanner;
 			sourceTree = "<group>";
@@ -344,7 +341,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3092FD8424C3F0F2001724C3 /* FilterBannerViewModel.swift in Sources */,
 				30153A9F24BB19FD0047E99E /* FilterBanner.swift in Sources */,
 				3092FD8224C3EC0B001724C3 /* FilterType.swift in Sources */,
 				306830E723AE612C0070F473 /* AppDelegate.swift in Sources */,
