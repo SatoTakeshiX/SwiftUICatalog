@@ -14,6 +14,7 @@
 		30941D1F24E21ECF002566B9 /* TodoReminderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30941D1E24E21ECF002566B9 /* TodoReminderTests.swift */; };
 		30941D2A24E21ECF002566B9 /* TodoReminderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30941D2924E21ECF002566B9 /* TodoReminderUITests.swift */; };
 		30941D3A24E21FB1002566B9 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30941D3824E21FB1002566B9 /* Todo.xcdatamodeld */; };
+		30941D3C24E2223F002566B9 /* TodoListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30941D3B24E2223F002566B9 /* TodoListStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		30941D2924E21ECF002566B9 /* TodoReminderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoReminderUITests.swift; sourceTree = "<group>"; };
 		30941D2B24E21ECF002566B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30941D3924E21FB1002566B9 /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
+		30941D3B24E2223F002566B9 /* TodoListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				30941D3824E21FB1002566B9 /* Todo.xcdatamodeld */,
+				30941D3B24E2223F002566B9 /* TodoListStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30941D0F24E21ECD002566B9 /* ContentView.swift in Sources */,
+				30941D3C24E2223F002566B9 /* TodoListStore.swift in Sources */,
 				30941D3A24E21FB1002566B9 /* Todo.xcdatamodeld in Sources */,
 				30941D0D24E21ECD002566B9 /* TodoReminderApp.swift in Sources */,
 			);
