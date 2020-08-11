@@ -8,17 +8,12 @@
 import Foundation
 import CoreData
 
-//protocol CoreDataStoreType {
-//    func insert(item: FloorPlanData) throws
-//    func fetchAll() throws -> [FloorPlan]
-//    func delete(item: FloorPlan) throws
-//}
-
-struct TodoListData {
+struct TodoListData: Identifiable {
     var deadline: Date?
     var note: String?
     var priority: Int32
     var title: String?
+    var id: UUID = UUID()
 }
 
 enum CoreDataStoreError: Error {
@@ -67,7 +62,16 @@ final class TodoListStore {
     }
 
     // MARK: - private
+    // https://stackoverflow.com/questions/41684256/accessing-core-data-from-both-container-app-and-extension
+    //https://developer.apple.com/forums/thread/51803
     private lazy var persistentContainer: NSPersistentContainer = {
+        /*
+         let container = NSPersistentContainer(name: "Data")
+         container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: try FileManager.default.containerURLForSecurityApplicationGroupIdentifier("your.group.identifier")!.appendingPathComponent("Data.sqlite"))]
+         container.loadPersistentStores { (persistentStoreDescription, error) in
+            // do things!
+         }
+         */
         let container = NSPersistentContainer(name: TodoListStore.containerName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
