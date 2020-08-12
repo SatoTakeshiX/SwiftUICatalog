@@ -9,21 +9,31 @@ import SwiftUI
 
 @main
 struct TodoReminderApp: App {
+    @State var isShow: Bool = false
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                NavigationLink(
-                    destination: AddTodoView(),
-                    label: {
-                        Text("tapped!")
+            Button(action: {
+                isShow.toggle()
+            }, label: {
+                Text("tapped")
+            })
+            .onAppear(perform: {
+                print("onAppear")
+            })
+            .sheet(isPresented: $isShow, onDismiss: {
+                print("ssss")
+            }, content: {
+                VStack {
+                    Text("ddd")
+                    Button(action: {
+                        isShow.toggle()
+                    }, label: {
+                        Text("tapped")
                     })
-//                Button(action: {
-//                    isShow.toggle()
-//                }, label: {
-//
-//
-//                })
-            }
+                }
+
+            })
+
         }
     }
 }
