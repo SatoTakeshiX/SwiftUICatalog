@@ -9,10 +9,10 @@ import Foundation
 import CoreData
 
 struct TodoListData: Identifiable {
-    var deadline: Date?
-    var note: String?
-    var priority: Int32
-    var title: String?
+    var deadline: Date
+    var note: String
+    var priority: Int
+    var title: String
     var id: UUID = UUID()
 }
 
@@ -21,10 +21,13 @@ enum CoreDataStoreError: Error {
 }
 
 extension TodoList {
-    func convert() -> TodoListData {
+    func convert() -> TodoListData? {
+        guard let deadline = deadline,
+              let note = note,
+              let title = title else { return nil }
         return TodoListData(deadline: deadline,
                             note: note,
-                            priority: priority,
+                            priority: Int(priority),
                             title: title)
     }
 }
@@ -38,7 +41,7 @@ final class TodoListStore {
         let newItem = NSEntityDescription.insertNewObject(forEntityName: TodoListStore.entityName, into: persistentContainer.viewContext) as? Entity
         newItem?.deadline = item.deadline
         newItem?.note = item.note
-        newItem?.priority = item.priority
+        newItem?.priority = Int32(item.priority)
         newItem?.title = item.title
         try saveContext()
     }
@@ -49,7 +52,6 @@ final class TodoListStore {
             guard let result = try persistentContainer.viewContext.fetch(fetchRequest) as? [Entity] else {
                 throw CoreDataStoreError.failureFetch
             }
-            print("result count: \(result.count)")
             return result
         } catch let error {
             throw error

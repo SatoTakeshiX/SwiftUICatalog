@@ -30,9 +30,9 @@ struct TodoListView: View {
                                     .frame(width: 40)
                             }
                             VStack(alignment: .leading) {
-                                Text("\(todo.title ?? "")")
+                                Text("\(todo.title)")
                                     .font(.title)
-                                Text("\(todo.deadline?.description ?? "")")
+                                Text("\(todo.deadline.description ?? "")")
                                     .font(.subheadline)
                             }
                         }

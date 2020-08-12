@@ -11,7 +11,19 @@ import SwiftUI
 struct TodoReminderApp: App {
     var body: some Scene {
         WindowGroup {
-            TodoListView()
+            NavigationView {
+                NavigationLink(
+                    destination: AddTodoView(),
+                    label: {
+                        Text("tapped!")
+                    })
+//                Button(action: {
+//                    isShow.toggle()
+//                }, label: {
+//
+//
+//                })
+            }
         }
     }
 }
