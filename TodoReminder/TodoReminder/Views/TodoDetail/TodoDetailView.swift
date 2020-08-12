@@ -10,10 +10,10 @@ import SwiftUI
 struct TodoDetailView: View {
     @State var todo: TodoListData
     var body: some View {
-        NavigationView {
+        //NavigationView {
             Form {
                 Section(header: Text("Title")) {
-                    Text(todo.title ?? "")
+                    Text(todo.title)
                 }
                 Section(header: Text("優先度")) {
                     Picker("優先度", selection: Binding.constant(todo.priority)) {
@@ -28,16 +28,16 @@ struct TodoDetailView: View {
                 }
 
                 Section(header: Text("締め切り")) {
-                    DatePicker("", selection: .constant(todo.deadline ?? Date()))
+                    DatePicker("", selection: .constant(todo.deadline))
                 }
                 Section(header: Text("メモ")) {
-                    TextEditor(text: .constant(todo.note ?? ""))
+                    TextEditor(text: .constant(todo.note))
                         .foregroundColor(.black)
                         .frame(height: 200)
                 }
             }
             .navigationTitle("詳細")
-        }
+       // }
     }
 }
 

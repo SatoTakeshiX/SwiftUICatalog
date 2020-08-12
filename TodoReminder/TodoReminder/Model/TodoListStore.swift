@@ -46,13 +46,14 @@ final class TodoListStore {
         try saveContext()
     }
 
-    func fetchAll() throws -> [TodoList] {
+    func fetchAll() throws -> [TodoListData] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TodoListStore.entityName)
         do {
             guard let result = try persistentContainer.viewContext.fetch(fetchRequest) as? [Entity] else {
                 throw CoreDataStoreError.failureFetch
             }
-            return result
+            let todoList = result.compactMap { $0.convert() }
+            return todoList
         } catch let error {
             throw error
         }

@@ -10,8 +10,9 @@ import SwiftUI
 struct AddTodoView: View {
     @State var newTodo: TodoListData = TodoListData(deadline: Date(), note: "", priority: 0, title: "")
     @State var priority: Int = 0
+    @Binding var isShow: Bool
     var body: some View {
-       //NavigationView {
+       NavigationView {
             Form {
                 Section(header: Text("タイトル")) {
                     TextField("例：ミーティング", text: $newTodo.title)
@@ -37,37 +38,24 @@ struct AddTodoView: View {
                         .frame(height: 200)
                 }
             }
-
             .navigationTitle("何をしますか？")
-//            .navigationBarItems(trailing: Button(action: {
-//                isShow.toggle()
-//            }, label: {
-//                Text("決定")
-//            }))
-      // }
-        .onAppear(perform: {
-            let todoStore = TodoListStore()
-            do {
-                let list = try todoStore.fetchAll()
-                print("list count is \(list.count)")
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        })
-        .onDisappear(perform: {
-            let todoStore = TodoListStore()
-            do {
-                try todoStore.insert(item: newTodo)
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        })
-
+            .navigationBarItems(trailing: Button(action: {
+                let todoStore = TodoListStore()
+                do {
+                    try todoStore.insert(item: newTodo)
+                    isShow.toggle()
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            }, label: {
+                Text("決定")
+            }))
+       }
     }
 }
 
 struct AddTodoView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTodoView()
+        AddTodoView(isShow: .constant(true))
     }
 }

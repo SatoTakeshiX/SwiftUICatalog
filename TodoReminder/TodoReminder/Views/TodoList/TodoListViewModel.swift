@@ -11,19 +11,30 @@ final class TodoListViewModel: ObservableObject {
 
     enum Inputs {
         case onAppear
-        case addTodo
+        case onDismissAddTodo
         case didTapDetailCell
     }
-    @Published var todoList: [TodoListData] = [TodoListData(deadline: Date(), note: "jijiji", priority: 0, title: "todotodo")]
+    @Published var todoList: [TodoListData] = []
 
+    private let todoStore = TodoListStore()
     func apply(inputs: Inputs) {
         switch inputs {
             case .onAppear:
-                break
-            case .addTodo:
-                break
+                updateTodo()
+            case .onDismissAddTodo:
+                updateTodo()
             case .didTapDetailCell:
                 break
+        }
+    }
+
+    private func updateTodo() {
+        do {
+            let list = try todoStore.fetchAll()
+            print("list count is \(list.count)")
+            todoList = list
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
 }
