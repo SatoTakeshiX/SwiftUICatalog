@@ -92,6 +92,7 @@ struct Provider: TimelineProvider {
 
 // View構築に必要なデータを定義する
 // relevanceも定義できる。これを定義するとsmart stackで指定ができる
+//https://developer.apple.com/documentation/widgetkit/timelineentryrelevance
 struct SimpleEntry: TimelineEntry {
     let date: Date
 }
@@ -127,6 +128,7 @@ struct TodoWidget: Widget {
 struct TodoWidget_Previews: PreviewProvider {
     static var previews: some View {
         TodoWidgetEntryView(entry: SimpleEntry(date: Date()))
+            // previewContextでwidgetの大きさをプレビューできる
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
