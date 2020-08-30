@@ -12,12 +12,15 @@ struct NavigationLinkSample: View {
     var body: some View {
         NavigationLink(destination: Text("navigation")) {
             Text("NavigationViewSample")
+                .navigationBarTitle(Text("NavigationLinkSample"))
         }
     }
 }
 
 struct NavigationViewSample_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationLinkSample()
+        NavigationView {
+            NavigationLinkSample()
+        }
     }
 }
