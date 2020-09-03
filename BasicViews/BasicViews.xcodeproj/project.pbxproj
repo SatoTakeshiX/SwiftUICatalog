@@ -28,6 +28,9 @@
 		3099B79223F121C70060553A /* AlertSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79123F121C70060553A /* AlertSample.swift */; };
 		3099B79423F12F000060553A /* SheetSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79323F12F000060553A /* SheetSample.swift */; };
 		3099B79623F1301C0060553A /* ActionSheetSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79523F1301C0060553A /* ActionSheetSample.swift */; };
+		9583242325014B6B00523396 /* LazyVStackSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583242225014B6B00523396 /* LazyVStackSample.swift */; };
+		9583242525014D7500523396 /* GridSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583242425014D7500523396 /* GridSample.swift */; };
+		9583242725014E8500523396 /* OutlineGroupSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583242625014E8500523396 /* OutlineGroupSample.swift */; };
 		959C69FE24FBED390039744F /* TabViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959C69FD24FBED390039744F /* TabViewSample.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +79,9 @@
 		3099B79123F121C70060553A /* AlertSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSample.swift; sourceTree = "<group>"; };
 		3099B79323F12F000060553A /* SheetSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetSample.swift; sourceTree = "<group>"; };
 		3099B79523F1301C0060553A /* ActionSheetSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetSample.swift; sourceTree = "<group>"; };
+		9583242225014B6B00523396 /* LazyVStackSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVStackSample.swift; sourceTree = "<group>"; };
+		9583242425014D7500523396 /* GridSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSample.swift; sourceTree = "<group>"; };
+		9583242625014E8500523396 /* OutlineGroupSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineGroupSample.swift; sourceTree = "<group>"; };
 		959C69FD24FBED390039744F /* TabViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewSample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +175,7 @@
 		3099B77D23F0F0D60060553A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9583242125014B3900523396 /* iOS14 */,
 				3099B77F23F0F10E0060553A /* TextSamples.swift */,
 				3099B78123F0F8360060553A /* ImageSample.swift */,
 				3099B78323F10A420060553A /* ButtonSample.swift */,
@@ -192,6 +199,16 @@
 				3099B77A23F0E2400060553A /* BasicViewsNavigation.swift */,
 			);
 			path = ViewPresentations;
+			sourceTree = "<group>";
+		};
+		9583242125014B3900523396 /* iOS14 */ = {
+			isa = PBXGroup;
+			children = (
+				9583242225014B6B00523396 /* LazyVStackSample.swift */,
+				9583242425014D7500523396 /* GridSample.swift */,
+				9583242625014E8500523396 /* OutlineGroupSample.swift */,
+			);
+			path = iOS14;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,9 +342,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9583242525014D7500523396 /* GridSample.swift in Sources */,
 				3099B78023F0F10E0060553A /* TextSamples.swift in Sources */,
 				3099B78423F10A420060553A /* ButtonSample.swift in Sources */,
 				3099B78623F10E030060553A /* PathSample.swift in Sources */,
+				9583242325014B6B00523396 /* LazyVStackSample.swift in Sources */,
 				959C69FE24FBED390039744F /* TabViewSample.swift in Sources */,
 				3099B74B23F0E1C20060553A /* AppDelegate.swift in Sources */,
 				3099B74D23F0E1C20060553A /* SceneDelegate.swift in Sources */,
@@ -337,6 +356,7 @@
 				3099B78223F0F8360060553A /* ImageSample.swift in Sources */,
 				3099B78A23F113AA0060553A /* NavigationLinkSample.swift in Sources */,
 				3099B79023F11F780060553A /* TextFieldSample.swift in Sources */,
+				9583242725014E8500523396 /* OutlineGroupSample.swift in Sources */,
 				3099B79623F1301C0060553A /* ActionSheetSample.swift in Sources */,
 				3099B79223F121C70060553A /* AlertSample.swift in Sources */,
 				3099B78823F111E30060553A /* RectangleSample.swift in Sources */,
