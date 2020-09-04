@@ -43,7 +43,14 @@ struct Provider: TimelineProvider {
 
 
      https://fivestars.blog/code/swiftui-widgetkit.html
+     If we have a Text("Five Stars") view, adding a .redacted(reason: .placeholder) modifier replaces the text with a rounded rectangle of the same length of the text, the same color as the text foreground, and some opacity to let the background still show through the rectangle.
 
+     During WWDC this modifier was announced as .isPlaceholder(_:): with the new .redacted(reason:) API, the SwiftUI team can add different placeholder styles (a.k.a. RedactionReasons) in the future.
+
+     Why is this for WidgetKit
+     When making widgets, a requirement is to provide a generic preview of our widget to be displayed in the Widget Gallery: the purpose of this gallery is to give a glimpse of the actual widget.
+
+     .redacted(reason:) is perfect for this scenario, as each widget can create its own custom preview, while still being consistent with the rest.
 
      https://developer.apple.com/forums/thread/655358
      Code Block
@@ -57,6 +64,14 @@ struct Provider: TimelineProvider {
      こうかける。
 
      placeholderでisPlaceHolderViewを渡すようにしよう
+
+     Appleからの回答
+     placeholderは同期的な処理。素早く返す必要がある。
+     自動的に.redacted(reason: .placeholder)がたされるみたい？
+     やりにくいな。本当に自動的になっているのか説明しにくい。
+     You should implement placeholder(with: Context) to return a TimelineEntry that contains whatever you need for your placeholder. Note that unlike snapshot and timeline which are asynchronous with a completion block, the placeholder method is synchronous and you return a timeline entry immediately. So you want to be fast to return that entry.
+
+     When your widget's view is rendered for placeholder purposes it's given the placeholder entry and you can render your view accordingly. Note, there's some new SwiftUI support for marking a view as redacted. What should happen is that when WidgetKit renders the widget's view using the placeholder timeline entry, it would automatically render the view using .redacted(reason: .placeholder). Unfortunately that isn't working in Beta 3, but should be fixed in an upcoming seed.
      */
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date())
