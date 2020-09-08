@@ -9,17 +9,36 @@
 import SwiftUI
 
 @available(iOS 14.0, *)
+let threeColums = [
+    GridItem(spacing: 0),
+    GridItem(spacing: 0),
+    GridItem(spacing: 0)
+]
+
+@available(iOS 14.0, *)
+let fixedThreeColums = [
+    GridItem(.fixed(100)),
+    GridItem(.fixed(100)),
+    GridItem(.fixed(100))
+]
+
+@available(iOS 14.0, *)
+let flexibleColums = [
+    GridItem(.flexible(minimum: 100))
+]
+
+@available(iOS 14.0, *)
+let adaptiveColums = [
+    GridItem(.adaptive(minimum: 100))
+]
+
+
+@available(iOS 14.0, *)
 struct GridSample: View {
-    let columns = [
-        GridItem(spacing: 0),
-        GridItem(spacing: 0),
-        GridItem(spacing: 0)
-    ]
-    let mim100Colums = [
-        GridItem(.adaptive(minimum: 100))]
+    let colums: [GridItem]
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: mim100Colums, spacing: 0) {
+            LazyVGrid(columns: colums, spacing: 0) {
                 ForEach(0 ..< 100) { _ in
                     Image("seal_\(Int.random(in: 1 ... 3))")
                         .resizable()
@@ -34,10 +53,14 @@ struct GridSample: View {
 struct GridSample_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            GridSample()
+            GridSample(colums: threeColums)
                     .previewDevice(PreviewDevice(rawValue: "iPhone X"))
-            GridSample()
-                .previewDevice(PreviewDevice(rawValue: "iPad8,1"))
+            GridSample(colums: fixedThreeColums)
+                    .previewDevice(PreviewDevice(rawValue: "iPhone X"))
+            GridSample(colums: flexibleColums)
+                    .previewDevice(PreviewDevice(rawValue: "iPhone X"))
+            GridSample(colums: adaptiveColums)
+                    .previewDevice(PreviewDevice(rawValue: "iPhone X"))
         }
     }
 }
