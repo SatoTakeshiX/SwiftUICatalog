@@ -25,7 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: TabViewSample())
+            if #available(iOS 14.0, *) {
+                window.rootViewController = UIHostingController(rootView: LinkSample())
+            } else {
+                window.rootViewController = UIHostingController(rootView: TabViewSample())
+            }
             self.window = window
             window.makeKeyAndVisible()
         }

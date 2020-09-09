@@ -28,6 +28,9 @@
 		3099B79223F121C70060553A /* AlertSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79123F121C70060553A /* AlertSample.swift */; };
 		3099B79423F12F000060553A /* SheetSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79323F12F000060553A /* SheetSample.swift */; };
 		3099B79623F1301C0060553A /* ActionSheetSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79523F1301C0060553A /* ActionSheetSample.swift */; };
+		30FE853125097F6500661074 /* LinkSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE853025097F6500661074 /* LinkSample.swift */; };
+		30FE85332509809C00661074 /* LabelSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE85322509809C00661074 /* LabelSample.swift */; };
+		30FE85352509817400661074 /* MapViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE85342509817400661074 /* MapViewSample.swift */; };
 		9508C4EA2507E03700C78A29 /* TextEditorSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508C4E92507E03700C78A29 /* TextEditorSample.swift */; };
 		9508C4EC2507E36400C78A29 /* ProgressViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */; };
 		9583242325014B6B00523396 /* LazyVStackSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583242225014B6B00523396 /* LazyVStackSample.swift */; };
@@ -80,6 +83,9 @@
 		3099B79123F121C70060553A /* AlertSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSample.swift; sourceTree = "<group>"; };
 		3099B79323F12F000060553A /* SheetSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetSample.swift; sourceTree = "<group>"; };
 		3099B79523F1301C0060553A /* ActionSheetSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetSample.swift; sourceTree = "<group>"; };
+		30FE853025097F6500661074 /* LinkSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkSample.swift; sourceTree = "<group>"; };
+		30FE85322509809C00661074 /* LabelSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSample.swift; sourceTree = "<group>"; };
+		30FE85342509817400661074 /* MapViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewSample.swift; sourceTree = "<group>"; };
 		9508C4E92507E03700C78A29 /* TextEditorSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorSample.swift; sourceTree = "<group>"; };
 		9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewSample.swift; sourceTree = "<group>"; };
 		9583242225014B6B00523396 /* LazyVStackSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVStackSample.swift; sourceTree = "<group>"; };
@@ -210,6 +216,9 @@
 				9583242425014D7500523396 /* GridSample.swift */,
 				9508C4E92507E03700C78A29 /* TextEditorSample.swift */,
 				9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */,
+				30FE853025097F6500661074 /* LinkSample.swift */,
+				30FE85322509809C00661074 /* LabelSample.swift */,
+				30FE85342509817400661074 /* MapViewSample.swift */,
 			);
 			path = iOS14;
 			sourceTree = "<group>";
@@ -354,6 +363,8 @@
 				9583242325014B6B00523396 /* LazyVStackSample.swift in Sources */,
 				959C69FE24FBED390039744F /* TabViewSample.swift in Sources */,
 				3099B74B23F0E1C20060553A /* AppDelegate.swift in Sources */,
+				30FE85352509817400661074 /* MapViewSample.swift in Sources */,
+				30FE853125097F6500661074 /* LinkSample.swift in Sources */,
 				3099B74D23F0E1C20060553A /* SceneDelegate.swift in Sources */,
 				3099B78E23F118370060553A /* ScrollViewSample.swift in Sources */,
 				3099B79423F12F000060553A /* SheetSample.swift in Sources */,
@@ -364,6 +375,7 @@
 				3099B79623F1301C0060553A /* ActionSheetSample.swift in Sources */,
 				3099B79223F121C70060553A /* AlertSample.swift in Sources */,
 				3099B78823F111E30060553A /* RectangleSample.swift in Sources */,
+				30FE85332509809C00661074 /* LabelSample.swift in Sources */,
 				3099B77B23F0E2400060553A /* BasicViewsNavigation.swift in Sources */,
 				3099B74F23F0E1C20060553A /* ContentView.swift in Sources */,
 			);
