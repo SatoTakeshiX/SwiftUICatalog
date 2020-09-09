@@ -28,9 +28,10 @@
 		3099B79223F121C70060553A /* AlertSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79123F121C70060553A /* AlertSample.swift */; };
 		3099B79423F12F000060553A /* SheetSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79323F12F000060553A /* SheetSample.swift */; };
 		3099B79623F1301C0060553A /* ActionSheetSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3099B79523F1301C0060553A /* ActionSheetSample.swift */; };
+		9508C4EA2507E03700C78A29 /* TextEditorSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508C4E92507E03700C78A29 /* TextEditorSample.swift */; };
+		9508C4EC2507E36400C78A29 /* ProgressViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */; };
 		9583242325014B6B00523396 /* LazyVStackSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583242225014B6B00523396 /* LazyVStackSample.swift */; };
 		9583242525014D7500523396 /* GridSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583242425014D7500523396 /* GridSample.swift */; };
-		9583242725014E8500523396 /* OutlineGroupSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583242625014E8500523396 /* OutlineGroupSample.swift */; };
 		959C69FE24FBED390039744F /* TabViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959C69FD24FBED390039744F /* TabViewSample.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,9 +80,10 @@
 		3099B79123F121C70060553A /* AlertSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSample.swift; sourceTree = "<group>"; };
 		3099B79323F12F000060553A /* SheetSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetSample.swift; sourceTree = "<group>"; };
 		3099B79523F1301C0060553A /* ActionSheetSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetSample.swift; sourceTree = "<group>"; };
+		9508C4E92507E03700C78A29 /* TextEditorSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorSample.swift; sourceTree = "<group>"; };
+		9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewSample.swift; sourceTree = "<group>"; };
 		9583242225014B6B00523396 /* LazyVStackSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVStackSample.swift; sourceTree = "<group>"; };
 		9583242425014D7500523396 /* GridSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSample.swift; sourceTree = "<group>"; };
-		9583242625014E8500523396 /* OutlineGroupSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineGroupSample.swift; sourceTree = "<group>"; };
 		959C69FD24FBED390039744F /* TabViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewSample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,7 +208,8 @@
 			children = (
 				9583242225014B6B00523396 /* LazyVStackSample.swift */,
 				9583242425014D7500523396 /* GridSample.swift */,
-				9583242625014E8500523396 /* OutlineGroupSample.swift */,
+				9508C4E92507E03700C78A29 /* TextEditorSample.swift */,
+				9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */,
 			);
 			path = iOS14;
 			sourceTree = "<group>";
@@ -344,7 +347,9 @@
 			files = (
 				9583242525014D7500523396 /* GridSample.swift in Sources */,
 				3099B78023F0F10E0060553A /* TextSamples.swift in Sources */,
+				9508C4EC2507E36400C78A29 /* ProgressViewSample.swift in Sources */,
 				3099B78423F10A420060553A /* ButtonSample.swift in Sources */,
+				9508C4EA2507E03700C78A29 /* TextEditorSample.swift in Sources */,
 				3099B78623F10E030060553A /* PathSample.swift in Sources */,
 				9583242325014B6B00523396 /* LazyVStackSample.swift in Sources */,
 				959C69FE24FBED390039744F /* TabViewSample.swift in Sources */,
@@ -356,7 +361,6 @@
 				3099B78223F0F8360060553A /* ImageSample.swift in Sources */,
 				3099B78A23F113AA0060553A /* NavigationLinkSample.swift in Sources */,
 				3099B79023F11F780060553A /* TextFieldSample.swift in Sources */,
-				9583242725014E8500523396 /* OutlineGroupSample.swift in Sources */,
 				3099B79623F1301C0060553A /* ActionSheetSample.swift in Sources */,
 				3099B79223F121C70060553A /* AlertSample.swift in Sources */,
 				3099B78823F111E30060553A /* RectangleSample.swift in Sources */,
