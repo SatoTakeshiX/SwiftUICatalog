@@ -12,10 +12,10 @@ import SwiftUI
 struct LabelSample: View {
     var body: some View {
         List {
-            Label("camera", systemImage: "camera")
-            
+            Label("sun", systemImage: "sun.max.fill")
+            Label("cloud", systemImage: "cloud")
+            Label("rain", systemImage: "cloud.rain.fill")
         }
-
     }
 }
 

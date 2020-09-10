@@ -26,5 +26,6 @@ struct ContainerRelativeShapeSample: View {
 struct ContainerRelativeShapeSample_Previews: PreviewProvider {
     static var previews: some View {
         ContainerRelativeShapeSample()
+           // .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

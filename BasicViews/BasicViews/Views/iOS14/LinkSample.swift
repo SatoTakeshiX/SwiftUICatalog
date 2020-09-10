@@ -10,9 +10,19 @@ import SwiftUI
 
 @available(iOS 14.0, *)
 struct LinkSample: View {
+    @Environment(\.openURL) private var openURL
+    let googleURL = URL(string: "https://google.com")!
     var body: some View {
-        VStack {
-            Link("google", destination: URL(string: "https://google.com")!)
+        List {
+            Link("google", destination: googleURL)
+            Link(destination: googleURL) {
+                Label("google", systemImage: "link")
+            }
+            Button(action: {
+                openURL(googleURL)
+            }, label: {
+                Text("google with button")
+            })
         }
     }
 }
