@@ -31,6 +31,7 @@
 		30FE853125097F6500661074 /* LinkSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE853025097F6500661074 /* LinkSample.swift */; };
 		30FE85332509809C00661074 /* LabelSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE85322509809C00661074 /* LabelSample.swift */; };
 		30FE85352509817400661074 /* MapViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE85342509817400661074 /* MapViewSample.swift */; };
+		30FE85372509989C00661074 /* ContainerRelativeShapeSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE85362509989C00661074 /* ContainerRelativeShapeSample.swift */; };
 		9508C4EA2507E03700C78A29 /* TextEditorSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508C4E92507E03700C78A29 /* TextEditorSample.swift */; };
 		9508C4EC2507E36400C78A29 /* ProgressViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */; };
 		9583242325014B6B00523396 /* LazyVStackSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9583242225014B6B00523396 /* LazyVStackSample.swift */; };
@@ -86,6 +87,7 @@
 		30FE853025097F6500661074 /* LinkSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkSample.swift; sourceTree = "<group>"; };
 		30FE85322509809C00661074 /* LabelSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSample.swift; sourceTree = "<group>"; };
 		30FE85342509817400661074 /* MapViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewSample.swift; sourceTree = "<group>"; };
+		30FE85362509989C00661074 /* ContainerRelativeShapeSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerRelativeShapeSample.swift; sourceTree = "<group>"; };
 		9508C4E92507E03700C78A29 /* TextEditorSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorSample.swift; sourceTree = "<group>"; };
 		9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewSample.swift; sourceTree = "<group>"; };
 		9583242225014B6B00523396 /* LazyVStackSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVStackSample.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				9508C4EB2507E36400C78A29 /* ProgressViewSample.swift */,
 				30FE853025097F6500661074 /* LinkSample.swift */,
 				30FE85322509809C00661074 /* LabelSample.swift */,
+				30FE85362509989C00661074 /* ContainerRelativeShapeSample.swift */,
 				30FE85342509817400661074 /* MapViewSample.swift */,
 			);
 			path = iOS14;
@@ -365,6 +368,7 @@
 				3099B74B23F0E1C20060553A /* AppDelegate.swift in Sources */,
 				30FE85352509817400661074 /* MapViewSample.swift in Sources */,
 				30FE853125097F6500661074 /* LinkSample.swift in Sources */,
+				30FE85372509989C00661074 /* ContainerRelativeShapeSample.swift in Sources */,
 				3099B74D23F0E1C20060553A /* SceneDelegate.swift in Sources */,
 				3099B78E23F118370060553A /* ScrollViewSample.swift in Sources */,
 				3099B79423F12F000060553A /* SheetSample.swift in Sources */,
