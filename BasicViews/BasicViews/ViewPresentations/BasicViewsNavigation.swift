@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Home: View {
+struct BasicViewsNavigation: View {
     var body: some View {
         NavigationView {
             Form {
@@ -62,6 +62,6 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        BasicViewsNavigation()
     }
 }

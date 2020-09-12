@@ -20,12 +20,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let home = Home()
+        let basicViewsNav = BasicViewsNavigation()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: home)
+            if #available(iOS 14.0, *) {
+                window.rootViewController = UIHostingController(rootView: MapViewSample())
+            } else {
+                window.rootViewController = UIHostingController(rootView: TabViewSample())
+            }
             self.window = window
             window.makeKeyAndVisible()
         }
