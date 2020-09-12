@@ -41,21 +41,13 @@ import SwiftUI
  */
 @available(iOS 14.0, *)
 struct ProgressViewSample: View {
-    @State private var downloadAmount = 0.0
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-
     var body: some View {
         ScrollView {
             ProgressView("Downloading…")
                 .padding()
-            ProgressView("Downloading…", value: downloadAmount, total: 100)
+            ProgressView("Downloading…", value: 30, total: 100)
                 .padding()
 
-        }
-        .onReceive(timer) { _ in
-            if downloadAmount < 100 {
-                downloadAmount += 2
-            }
         }
     }
 }

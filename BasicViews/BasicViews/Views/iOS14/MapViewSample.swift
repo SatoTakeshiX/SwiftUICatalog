@@ -15,12 +15,12 @@ import MapKit
 struct MapViewSample: View {
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
-            latitude: 25.7617,
-            longitude: 80.1918
+            latitude: 35.6593912,
+            longitude: 139.7003861
         ),
         span: MKCoordinateSpan(
-            latitudeDelta: 10,
-            longitudeDelta: 10
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
         )
     )
 

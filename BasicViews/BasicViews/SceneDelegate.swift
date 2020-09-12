@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             if #available(iOS 14.0, *) {
-                window.rootViewController = UIHostingController(rootView: LinkSample())
+                window.rootViewController = UIHostingController(rootView: MapViewSample())
             } else {
                 window.rootViewController = UIHostingController(rootView: TabViewSample())
             }
