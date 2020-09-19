@@ -3,11 +3,13 @@
 import SwiftUI
 import PlaygroundSupport
 struct ParentView: View {
+    let title = "title"
     var body: some View {
         HStack {
             ChildView(color: .blue)
             ChildView(color: .yellow)
             ChildView(color: .red)
+            Text(title)
         }
     }
 }

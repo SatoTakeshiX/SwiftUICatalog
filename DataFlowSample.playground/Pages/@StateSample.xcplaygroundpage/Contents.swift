@@ -6,24 +6,11 @@ import PlaygroundSupport
 struct ParentView: View {
     @State var counter = 0
     var body: some View {
-        HStack {
-            ChildView(counter: $counter)
-                .frame(width: .infinity)
-        }
-
-    }
-}
-
-struct ChildView: View {
-    @Binding var counter: Int
-    var body: some View {
         Button(action: {
             counter += 1
         }, label: {
-            Text("\(counter)")
-                .font(.title)
+            Text("counter is \(counter)")
         })
-        .border(Color.red)
     }
 }
 
