@@ -9,7 +9,6 @@ struct ParentView: View {
             ChildView(color: .yellow)
             ChildView(color: .red)
         }
-
     }
 }
 
