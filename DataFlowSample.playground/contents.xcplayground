@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true'>
+    <pages>
+        <page name='PropertySample'/>
+        <page name='@StateSample'/>
+        <page name='@StateObjectSample'/>
+        <page name='Envirment'/>
+        <page name='@Object'/>
+    </pages>
+</playground>
