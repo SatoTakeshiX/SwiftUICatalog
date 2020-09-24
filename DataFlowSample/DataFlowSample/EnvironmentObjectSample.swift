@@ -31,7 +31,7 @@ struct GrandChildView: View {
 }
 
 struct DataFlowSampleApp_Previews: PreviewProvider {
-    @StateObject static var dataSource = DataSource()
+    @StateObject static private var dataSource = DataSource()
     static var previews: some View {
         ParentView().environmentObject(dataSource)
     }

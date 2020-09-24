@@ -17,7 +17,12 @@ struct ParentView: View {
 struct ChildView: View {
     @ObservedObject var dataSource: DataSource
     var body: some View {
-        Text("\(dataSource.counter)")
+        VStack {
+            Button("increment counter") {
+                dataSource.counter += 1
+            }
+            Text("count： \(dataSource.counter)")
+        }
     }
 }
 

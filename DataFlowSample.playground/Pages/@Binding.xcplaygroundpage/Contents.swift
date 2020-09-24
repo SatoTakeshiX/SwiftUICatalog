@@ -10,10 +10,8 @@ struct ParentView: View {
             ChildView(counter: $counter)
                 .frame(width: .infinity)
         }
-
     }
 }
-
 struct ChildView: View {
     @Binding var counter: Int
     var body: some View {

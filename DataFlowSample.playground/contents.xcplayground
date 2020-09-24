@@ -7,5 +7,6 @@
         <page name='@StateObjectSample'/>
         <page name='@ObservedObjectSample'/>
         <page name='ToggleView'/>
+        <page name='@ObservedObjectLifecycle'/>
     </pages>
 </playground>

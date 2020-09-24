@@ -8,7 +8,7 @@ final class DataSource: ObservableObject {
 }
 
 struct CounterView: View {
-    @StateObject private var dataSource = DataSource()
+    @ObservedObject private var dataSource = DataSource()
     var body: some View {
         VStack {
             Button("increment counter") {
@@ -37,4 +37,5 @@ struct SwitchColor: View {
 }
 PlaygroundPage.current.setLiveView(SwitchColor()
                                     .frame(width: 500, height: 200).padding())
+
 //: [Next](@next)
