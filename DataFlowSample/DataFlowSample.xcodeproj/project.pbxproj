@@ -14,6 +14,7 @@
 		305106522512EAE9001227DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 305106512512EAE9001227DA /* Preview Assets.xcassets */; };
 		3051065D2512EAE9001227DA /* DataFlowSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3051065C2512EAE9001227DA /* DataFlowSampleTests.swift */; };
 		305106682512EAE9001227DA /* DataFlowSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305106672512EAE9001227DA /* DataFlowSampleUITests.swift */; };
+		30A590132518CB7A000AB77F /* EnvironmentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A590122518CB7A000AB77F /* EnvironmentSample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		305106632512EAE9001227DA /* DataFlowSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataFlowSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		305106672512EAE9001227DA /* DataFlowSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowSampleUITests.swift; sourceTree = "<group>"; };
 		305106692512EAE9001227DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30A590122518CB7A000AB77F /* EnvironmentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentSample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				3051064E2512EAE9001227DA /* Assets.xcassets */,
 				305106532512EAE9001227DA /* Info.plist */,
 				305106502512EAE9001227DA /* Preview Content */,
+				30A590122518CB7A000AB77F /* EnvironmentSample.swift */,
 			);
 			path = DataFlowSample;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3051064D2512EAE8001227DA /* EnvironmentObjectSample.swift in Sources */,
+				30A590132518CB7A000AB77F /* EnvironmentSample.swift in Sources */,
 				301867EF2515AD3700D4A2A4 /* StorageSampleView.swift in Sources */,
 				3051064B2512EAE8001227DA /* DataFlowSampleApp.swift in Sources */,
 			);
