@@ -67,6 +67,7 @@ final class TodoListStore {
     // MARK: - private
     // https://stackoverflow.com/questions/41684256/accessing-core-data-from-both-container-app-and-extension
     //https://developer.apple.com/forums/thread/51803
+    // https://qiita.com/YosukeMitsugi/items/75687114775e7251f5dd
     private lazy var persistentContainer: NSPersistentContainer = {
         /*
          let container = NSPersistentContainer(name: "Data")
@@ -75,7 +76,9 @@ final class TodoListStore {
             // do things!
          }
          */
+
         let container = NSPersistentContainer(name: TodoListStore.containerName)
+        container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.personal-factory.todo-reminder")!.appendingPathComponent("\(TodoListStore.containerName).sqlite"))]
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")

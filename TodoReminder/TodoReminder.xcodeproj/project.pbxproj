@@ -91,6 +91,8 @@
 		30941D5924E7BB50002566B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30941D6124E83B00002566B9 /* TodoSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSingleView.swift; sourceTree = "<group>"; };
 		30941D6524E83BDC002566B9 /* DateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListView.swift; sourceTree = "<group>"; };
+		30A5901B251E0A55000AB77F /* TodoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodoWidgetExtension.entitlements; sourceTree = "<group>"; };
+		30A5901C251E0ABB000AB77F /* TodoReminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodoReminder.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		30941D0024E21ECD002566B9 = {
 			isa = PBXGroup;
 			children = (
+				30A5901B251E0A55000AB77F /* TodoWidgetExtension.entitlements */,
 				30941D0B24E21ECD002566B9 /* TodoReminder */,
 				30941D1D24E21ECF002566B9 /* TodoReminderTests */,
 				30941D2824E21ECF002566B9 /* TodoReminderUITests */,
@@ -153,6 +156,7 @@
 		30941D0B24E21ECD002566B9 /* TodoReminder */ = {
 			isa = PBXGroup;
 			children = (
+				30A5901C251E0ABB000AB77F /* TodoReminder.entitlements */,
 				30941D4724E2DAEF002566B9 /* App */,
 				30941D3D24E2D368002566B9 /* Views */,
 				30941D3724E21F24002566B9 /* Model */,
@@ -601,6 +605,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TodoReminder/TodoReminder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TodoReminder/Preview Content\"";
 				DEVELOPMENT_TEAM = WNEUDLL4LF;
@@ -624,6 +629,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TodoReminder/TodoReminder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TodoReminder/Preview Content\"";
 				DEVELOPMENT_TEAM = WNEUDLL4LF;
@@ -730,6 +736,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TodoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WNEUDLL4LF;
 				INFOPLIST_FILE = TodoWidget/Info.plist;
@@ -751,6 +758,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TodoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WNEUDLL4LF;
 				INFOPLIST_FILE = TodoWidget/Info.plist;
