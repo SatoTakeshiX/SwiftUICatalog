@@ -24,11 +24,13 @@ extension TodoList {
     func convert() -> TodoListData? {
         guard let deadline = deadline,
               let note = note,
-              let title = title else { return nil }
+              let title = title,
+              let id = id else { return nil }
         return TodoListData(deadline: deadline,
                             note: note,
                             priority: Int(priority),
-                            title: title)
+                            title: title,
+                            id: id)
     }
 }
 
@@ -43,6 +45,7 @@ final class TodoListStore {
         newItem?.note = item.note
         newItem?.priority = Int32(item.priority)
         newItem?.title = item.title
+        newItem?.id = item.id
         try saveContext()
     }
 
@@ -69,14 +72,6 @@ final class TodoListStore {
     //https://developer.apple.com/forums/thread/51803
     // https://qiita.com/YosukeMitsugi/items/75687114775e7251f5dd
     private lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         let container = NSPersistentContainer(name: "Data")
-         container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: try FileManager.default.containerURLForSecurityApplicationGroupIdentifier("your.group.identifier")!.appendingPathComponent("Data.sqlite"))]
-         container.loadPersistentStores { (persistentStoreDescription, error) in
-            // do things!
-         }
-         */
-
         let container = NSPersistentContainer(name: TodoListStore.containerName)
         container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.personal-factory.todo-reminder")!.appendingPathComponent("\(TodoListStore.containerName).sqlite"))]
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

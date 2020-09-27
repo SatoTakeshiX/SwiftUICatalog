@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodoListView: View {
     @State var isShow = false
-    @ObservedObject var viewModel = TodoListViewModel()
+    @StateObject var viewModel = TodoListViewModel()
     var body: some View {
         NavigationView {
             List {
@@ -33,7 +33,9 @@ struct TodoListView: View {
                             VStack(alignment: .leading) {
                                 Text("\(todo.title)")
                                     .font(.title)
-                                Text("\(todo.deadline.description)")
+                                Text(todo.deadline, style: .date)
+                                    .font(.subheadline)
+                                Text(todo.deadline, style: .time)
                                     .font(.subheadline)
                             }
                         }

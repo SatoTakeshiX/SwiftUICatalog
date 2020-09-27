@@ -73,8 +73,22 @@ struct Provider: TimelineProvider {
 
      When your widget's view is rendered for placeholder purposes it's given the placeholder entry and you can render your view accordingly. Note, there's some new SwiftUI support for marking a view as redacted. What should happen is that when WidgetKit renders the widget's view using the placeholder timeline entry, it would automatically render the view using .redacted(reason: .placeholder). Unfortunately that isn't working in Beta 3, but should be fixed in an upcoming seed.
      */
+
+
+    /**
+     0926 追記
+        widgetは最初redacted(reason:)でviewを描画して、
+     placeholderメソッドのentryを元に描画する。
+     同期的な処理になるので、（getSnapshot, get timelineは非同期処理）
+     素早く返す必要がある
+
+     .redacted(reason: .placeholder)で描画
+
+     このデータをもとにプレースホルダーを作るという意味か。
+     データが増えてUIコンポーネントも増えたら
+     */
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        SimpleEntry(date: Date(timeIntervalSince1970: 111111))
     }
 
     // 一時的な状態で呼ばれる。Widgetをユーザーが追加したときなど
