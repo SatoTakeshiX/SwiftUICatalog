@@ -114,7 +114,7 @@ struct Provider: TimelineProvider {
         // policy .atEndはtimelineの最後に更新する
         // .after(_ data)は指定時間後に更新する
         // .neverは更新しない。　新しいタイムラインが利用可能になったときにアプリがWidgetKitにプロンプ​​トを出すことを指定するポリシー。：タイムラインが更新されたらappがwidgetに通知することで更新させる。
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(200)))
         completion(timeline)
     }
 }
@@ -144,6 +144,8 @@ struct TodoWidget: Widget {
         // 編集がないWidget
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             TodoWidgetEntryView(entry: entry)
+                .unredacted()
+                
         }
         // Widget gallary のタイトル
         .configurationDisplayName("My Widget")

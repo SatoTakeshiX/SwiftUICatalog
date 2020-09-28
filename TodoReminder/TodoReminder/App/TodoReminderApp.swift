@@ -6,34 +6,19 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 @main
 struct TodoReminderApp: App {
-    @State var isShow: Bool = false
+    @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
             TodoListView()
-//            Button(action: {
-//                isShow.toggle()
-//            }, label: {
-//                Text("tapped")
-//            })
-//            .onAppear(perform: {
-//                print("onAppear")
-//            })
-//            .sheet(isPresented: $isShow, onDismiss: {
-//                print("ssss")
-//            }, content: {
-//                VStack {
-//                    Text("ddd")
-//                    Button(action: {
-//                        isShow.toggle()
-//                    }, label: {
-//                        Text("tapped")
-//                    })
-//                }
-//
-//            })
+                .onChange(of: scenePhase) { newScenePhase in
+                    if newScenePhase == .active {
+                        WidgetCenter.shared.reloadTimelines(ofKind: "TodoWidget")
+                    }
+                }
         }
     }
 }
