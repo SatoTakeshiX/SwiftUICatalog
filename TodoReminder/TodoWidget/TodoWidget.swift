@@ -88,7 +88,7 @@ struct Provider: TimelineProvider {
      データが増えてUIコンポーネントも増えたら
      */
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(timeIntervalSince1970: 111111))
+        SimpleEntry(date: Date())
     }
 
     // 一時的な状態で呼ばれる。Widgetをユーザーが追加したときなど

@@ -28,7 +28,7 @@ struct TodoDetailView: View {
                 }
 
                 Section(header: Text("締め切り")) {
-                    DatePicker("", selection: .constant(todo.deadline))
+                    DatePicker("", selection: .constant(todo.startDate))
                 }
                 Section(header: Text("メモ")) {
                     TextEditor(text: .constant(todo.note))
@@ -43,6 +43,6 @@ struct TodoDetailView: View {
 
 struct TodoDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoDetailView(todo: TodoListData(deadline: Date(), note: "iiiiii", priority: 0, title: "jijiji"))
+        TodoDetailView(todo: TodoListData(startDate: Date(), note: "iiiiii", priority: 0, title: "jijiji"))
     }
 }

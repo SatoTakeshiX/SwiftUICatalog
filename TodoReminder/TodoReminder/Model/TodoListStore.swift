@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 struct TodoListData: Identifiable {
-    var deadline: Date
+    var startDate: Date
     var note: String
     var priority: Int
     var title: String
@@ -22,11 +22,11 @@ enum CoreDataStoreError: Error {
 
 extension TodoList {
     func convert() -> TodoListData? {
-        guard let deadline = deadline,
+        guard let startDate = startDate,
               let note = note,
               let title = title,
               let id = id else { return nil }
-        return TodoListData(deadline: deadline,
+        return TodoListData(startDate: startDate,
                             note: note,
                             priority: Int(priority),
                             title: title,
@@ -41,7 +41,7 @@ final class TodoListStore {
 
     func insert(item: TodoListData) throws {
         let newItem = NSEntityDescription.insertNewObject(forEntityName: TodoListStore.entityName, into: persistentContainer.viewContext) as? Entity
-        newItem?.deadline = item.deadline
+        newItem?.startDate = item.startDate
         newItem?.note = item.note
         newItem?.priority = Int32(item.priority)
         newItem?.title = item.title

@@ -33,9 +33,9 @@ struct TodoListView: View {
                             VStack(alignment: .leading) {
                                 Text("\(todo.title)")
                                     .font(.title)
-                                Text(todo.deadline, style: .date)
+                                Text(todo.startDate, style: .date)
                                     .font(.subheadline)
-                                Text(todo.deadline, style: .time)
+                                Text(todo.startDate, style: .time)
                                     .font(.subheadline)
                             }
                         }

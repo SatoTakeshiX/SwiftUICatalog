@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddTodoView: View {
-    @State var newTodo: TodoListData = TodoListData(deadline: Date(), note: "", priority: 0, title: "")
+    @State var newTodo: TodoListData = TodoListData(startDate: Date(), note: "", priority: 0, title: "")
     @State var priority: Int = 0
     @Binding var isShow: Bool
     var body: some View {
@@ -30,7 +30,7 @@ struct AddTodoView: View {
                 }
 
                 Section(header: Text("締め切り")) {
-                    DatePicker("", selection: $newTodo.deadline)
+                    DatePicker("", selection: $newTodo.startDate)
                 }
                 Section(header: Text("メモ")) {
                     TextEditor(text: $newTodo.note)
