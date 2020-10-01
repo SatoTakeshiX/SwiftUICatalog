@@ -25,6 +25,8 @@
 		30941D5C24E7BB50002566B9 /* TodoWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30941D4E24E7BB4F002566B9 /* TodoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		30941D6324E83B00002566B9 /* TodoSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30941D6124E83B00002566B9 /* TodoSingleView.swift */; };
 		30941D6724E83BDC002566B9 /* DateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30941D6524E83BDC002566B9 /* DateListView.swift */; };
+		30A590822524BDC5000AB77F /* TodoListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30941D3B24E2223F002566B9 /* TodoListStore.swift */; };
+		30A590872524BDD8000AB77F /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30941D3824E21FB1002566B9 /* Todo.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -457,6 +459,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				30941D6724E83BDC002566B9 /* DateListView.swift in Sources */,
+				30A590872524BDD8000AB77F /* Todo.xcdatamodeld in Sources */,
+				30A590822524BDC5000AB77F /* TodoListStore.swift in Sources */,
 				30941D6324E83B00002566B9 /* TodoSingleView.swift in Sources */,
 				30941D5624E7BB4F002566B9 /* TodoWidget.swift in Sources */,
 			);

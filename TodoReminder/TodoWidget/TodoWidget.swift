@@ -15,15 +15,38 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (RecentTodoEntry) -> ()) {
-        let entry = RecentTodoEntry(date: Date(), title: "Widget開発", priority: 2)
-        completion(entry)
+        if context.isPreview {
+            let entry = RecentTodoEntry(date: Date(), title: "Widget開発", priority: 2)
+            completion(entry)
+        } else {
+            do {
+                let store = TodoListStore()
+                let todoLists = try store.fetchTodayTodo()
+                let entries = todoLists.map { (todoList) -> RecentTodoEntry in
+                    RecentTodoEntry(todo: todoList)
+                }
+                guard let first = entries.first else {
+                    return
+                }
+                completion(first)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [RecentTodoEntry] = []
-        entries.append(RecentTodoEntry(date: Date(), title: "Widget開発", priority: 2))
-        let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(200)))
-        completion(timeline)
+        do {
+            let store = TodoListStore()
+            let todoLists = try store.fetchTodayTodo()
+            let entries = todoLists.map { (todoList) -> RecentTodoEntry in
+                RecentTodoEntry(todo: todoList)
+            }
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -35,6 +58,18 @@ struct RecentTodoEntry: TimelineEntry {
     let date: Date
     let title: String
     let priority: Int
+
+    init(date: Date, title: String, priority: Int) {
+        self.date = date
+        self.title = title
+        self.priority = priority
+    }
+
+    init(todo: TodoListData) {
+        self.date = todo.startDate
+        self.title = todo.title
+        self.priority = todo.priority
+    }
 }
 
 // Widgetを表示するView
@@ -91,9 +126,9 @@ struct TodoWidget: Widget {
             TodoWidgetEntryView(entry: entry)
         }
         // Widget gallary のタイトル
-        .configurationDisplayName("My Widget")
+        .configurationDisplayName("Todo Reminder")
         // Widget gallaryの説明
-        .description("This is an example widget.")
+        .description("直近のTodoListをお知らせします")
         .supportedFamilies([.systemSmall])
     }
 }

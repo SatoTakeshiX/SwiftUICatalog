@@ -62,6 +62,31 @@ final class TodoListStore {
         }
     }
 
+    func fetchTodayTodo() throws -> [TodoListData] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TodoListStore.entityName)
+        fetchRequest.predicate = makeTodayTodoPredicate()
+        do {
+            guard let result = try persistentContainer.viewContext.fetch(fetchRequest) as? [Entity] else {
+                throw CoreDataStoreError.failureFetch
+            }
+            let todoList = result.compactMap { $0.convert() }
+            return todoList
+        } catch let error {
+            throw error
+        }
+    }
+
+    private func makeTodayTodoPredicate() -> NSPredicate {
+        let now = Date()
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now)
+        components.hour = 23
+        components.minute = 59
+        components.second = 59
+        let endDate = calendar.date(from: components)!
+        return NSPredicate(format: "startDate >= %@ AND startDate =< %@", argumentArray: [now, endDate])
+    }
+
     func delete(item: TodoList) throws {
         persistentContainer.viewContext.delete(persistentContainer.viewContext.object(with: item.objectID))
         try saveContext()
@@ -84,7 +109,6 @@ final class TodoListStore {
 
     private func saveContext() throws {
         let context = persistentContainer.viewContext
-        //let ii = NSEntityDescription.insertNewObject(forEntityName: "Entity", into: context) as? Entity
         if context.hasChanges {
             do {
                 try context.save()
