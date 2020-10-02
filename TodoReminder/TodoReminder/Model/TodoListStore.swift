@@ -18,6 +18,7 @@ struct TodoListData: Identifiable {
 
 enum CoreDataStoreError: Error {
     case failureFetch
+    case fetchError(reason: String)
 }
 
 extension TodoList {
@@ -71,6 +72,23 @@ final class TodoListStore {
             }
             let todoList = result.compactMap { $0.convert() }
             return todoList
+        } catch let error {
+            throw error
+        }
+    }
+
+    func fetch(by uuid: UUID) throws -> TodoListData {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TodoListStore.entityName)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
+        do {
+            guard let result = try persistentContainer.viewContext.fetch(fetchRequest) as? [Entity] else {
+                throw CoreDataStoreError.failureFetch
+            }
+            let todoList = result.compactMap { $0.convert() }
+            guard let todo = todoList.first else {
+                throw CoreDataStoreError.fetchError(reason: "there is no element")
+            }
+            return todo
         } catch let error {
             throw error
         }
