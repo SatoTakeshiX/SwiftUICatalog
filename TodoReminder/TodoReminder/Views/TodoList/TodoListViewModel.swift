@@ -32,7 +32,7 @@ final class TodoListViewModel: ObservableObject {
     /// WidgetのURLSchemeからidを取得する
     /// - Parameter url: WidgetからのDeepLink URL. todolist://detail?id=xxxxxx.
     /// - Returns: id
-    func getWidgetTodoItem(from url: URL) -> String? {
+    func getWidgetTodoItem(from url: URL) -> UUID? {
         guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             return nil
         }
@@ -42,8 +42,11 @@ final class TodoListViewModel: ObservableObject {
         guard urlComponents.host == "detail" else {
             return nil
         }
-        if urlComponents.queryItems?.first?.name == "id" {
-            return urlComponents.queryItems?.first?.value
+        guard urlComponents.queryItems?.first?.name == "id" else {
+            return nil
+        }
+        if let idValue = urlComponents.queryItems?.first?.value {
+            return UUID(uuidString: idValue)
         } else {
             return nil
         }

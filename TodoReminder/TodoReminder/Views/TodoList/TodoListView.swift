@@ -19,7 +19,11 @@ struct TodoListView: View {
                 NavigationLink(
                     destination: TodoDetailView(todo: todoItem)) {
                     Text("\(todoItem.title)")
+
+
                 }
+
+                
 //                ForEach(viewModel.todoList) { todo in
 //                    NavigationLink(
 //                        destination: TodoDetailView(todo: todo)) {
