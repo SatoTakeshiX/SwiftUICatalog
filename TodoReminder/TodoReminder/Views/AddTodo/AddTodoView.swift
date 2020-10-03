@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddTodoView: View {
-    @State var newTodo: TodoListData = TodoListData(startDate: Date(), note: "", priority: 0, title: "")
+    @State var newTodo: TodoListItem = TodoListItem(startDate: Date(), note: "", priority: 0, title: "")
     @State var priority: Int = 0
     @Binding var isShow: Bool
     var body: some View {

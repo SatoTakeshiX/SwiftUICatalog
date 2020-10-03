@@ -8,19 +8,12 @@
 import SwiftUI
 
 final class TodoListViewModel: ObservableObject {
-
-    struct WidgetContent {
-        let todoList: TodoListData
-        let isShow: Bool = false
-    }
-
     enum Inputs {
         case onAppear
         case onDismissAddTodo
         case openFromWidget(url: URL)
     }
-    @Published var todoList: [TodoListData] = []
-    @Published var widgetContent: WidgetContent?
+    @Published var todoList: [TodoListItem] = []
 
     private let todoStore = TodoListStore()
     func apply(inputs: Inputs) {
@@ -30,17 +23,16 @@ final class TodoListViewModel: ObservableObject {
             case .onDismissAddTodo:
                 updateTodo()
             case .openFromWidget(let url):
-
-
-                break
+                if let id = getWidgetTodoItem(from: url) {
+                    print(id)
+                }
         }
     }
-
 
     /// WidgetのURLSchemeからidを取得する
     /// - Parameter url: WidgetからのDeepLink URL. todolist://detail?id=xxxxxx.
     /// - Returns: id
-    func getWidgetTodoId(from url: URL) -> String? {
+    func getWidgetTodoItem(from url: URL) -> String? {
         guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             return nil
         }
@@ -65,5 +57,9 @@ final class TodoListViewModel: ObservableObject {
         } catch let error {
             print(error.localizedDescription)
         }
+    }
+
+    private func fechtTodoItem(by id: String) {
+        
     }
 }

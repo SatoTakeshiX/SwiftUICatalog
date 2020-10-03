@@ -21,7 +21,7 @@ struct Provider: TimelineProvider {
         } else {
             do {
                 let store = TodoListStore()
-                let todoLists = try store.fetchTodayTodo()
+                let todoLists = try store.fetchTodayItems()
                 let entries = todoLists.map { (todoList) -> RecentTodoEntry in
                     RecentTodoEntry(todo: todoList)
                 }
@@ -38,7 +38,7 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         do {
             let store = TodoListStore()
-            let todoLists = try store.fetchTodayTodo()
+            let todoLists = try store.fetchTodayItems()
             let entries = todoLists.map { (todoList) -> RecentTodoEntry in
                 RecentTodoEntry(todo: todoList)
             }
@@ -65,7 +65,7 @@ struct RecentTodoEntry: TimelineEntry {
         self.priority = priority
     }
 
-    init(todo: TodoListData) {
+    init(todo: TodoListItem) {
         self.date = todo.startDate
         self.title = todo.title
         self.priority = todo.priority

@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct TodoListData: Identifiable {
+struct TodoListItem: Identifiable {
     var startDate: Date
     var note: String
     var priority: Int
@@ -22,12 +22,12 @@ enum CoreDataStoreError: Error {
 }
 
 extension TodoList {
-    func convert() -> TodoListData? {
+    func convert() -> TodoListItem? {
         guard let startDate = startDate,
               let note = note,
               let title = title,
               let id = id else { return nil }
-        return TodoListData(startDate: startDate,
+        return TodoListItem(startDate: startDate,
                             note: note,
                             priority: Int(priority),
                             title: title,
@@ -40,7 +40,7 @@ final class TodoListStore {
     static var containerName: String = "Todo"
     static var entityName: String = "TodoList"
 
-    func insert(item: TodoListData) throws {
+    func insert(item: TodoListItem) throws {
         let newItem = NSEntityDescription.insertNewObject(forEntityName: TodoListStore.entityName, into: persistentContainer.viewContext) as? Entity
         newItem?.startDate = item.startDate
         newItem?.note = item.note
@@ -50,7 +50,7 @@ final class TodoListStore {
         try saveContext()
     }
 
-    func fetchAll() throws -> [TodoListData] {
+    func fetchAll() throws -> [TodoListItem] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TodoListStore.entityName)
         do {
             guard let result = try persistentContainer.viewContext.fetch(fetchRequest) as? [Entity] else {
@@ -63,9 +63,9 @@ final class TodoListStore {
         }
     }
 
-    func fetchTodayTodo() throws -> [TodoListData] {
+    func fetchTodayItems() throws -> [TodoListItem] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TodoListStore.entityName)
-        fetchRequest.predicate = makeTodayTodoPredicate()
+        fetchRequest.predicate = makeTodayItemsPredicate()
         do {
             guard let result = try persistentContainer.viewContext.fetch(fetchRequest) as? [Entity] else {
                 throw CoreDataStoreError.failureFetch
@@ -77,7 +77,7 @@ final class TodoListStore {
         }
     }
 
-    func fetch(by uuid: UUID) throws -> TodoListData {
+    func fetch(by uuid: UUID) throws -> TodoListItem {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TodoListStore.entityName)
         fetchRequest.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
         do {
@@ -86,7 +86,7 @@ final class TodoListStore {
             }
             let todoList = result.compactMap { $0.convert() }
             guard let todo = todoList.first else {
-                throw CoreDataStoreError.fetchError(reason: "there is no element")
+                throw CoreDataStoreError.fetchError(reason: "there is no item")
             }
             return todo
         } catch let error {
@@ -94,7 +94,7 @@ final class TodoListStore {
         }
     }
 
-    private func makeTodayTodoPredicate() -> NSPredicate {
+    private func makeTodayItemsPredicate() -> NSPredicate {
         let now = Date()
         let calendar = Calendar.current
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now)
@@ -112,8 +112,6 @@ final class TodoListStore {
 
     // MARK: - private
     // https://stackoverflow.com/questions/41684256/accessing-core-data-from-both-container-app-and-extension
-    //https://developer.apple.com/forums/thread/51803
-    // https://qiita.com/YosukeMitsugi/items/75687114775e7251f5dd
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: TodoListStore.containerName)
         container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.personal-factory.todo-reminder")!.appendingPathComponent("\(TodoListStore.containerName).sqlite"))]
