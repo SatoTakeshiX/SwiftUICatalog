@@ -30,22 +30,30 @@ final class TodoListViewModel: ObservableObject {
             case .onDismissAddTodo:
                 updateTodo()
             case .openFromWidget(let url):
-                // todolist://detail?id=xxxxxx
 
-                guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-                    return
-                }
-                guard urlComponents.host == "todolist" else {
-                    return
-                }
-                guard urlComponents.path == "detail" else {
-                    return
-                }
-                if urlComponents.queryItems?.first?.name == "id" {
-                    urlComponents.queryItems?.first?.value
-                }
 
                 break
+        }
+    }
+
+
+    /// WidgetのURLSchemeからidを取得する
+    /// - Parameter url: WidgetからのDeepLink URL. todolist://detail?id=xxxxxx.
+    /// - Returns: id
+    func getWidgetTodoId(from url: URL) -> String? {
+        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            return nil
+        }
+        guard urlComponents.scheme == "todolist" else {
+            return nil
+        }
+        guard urlComponents.host == "detail" else {
+            return nil
+        }
+        if urlComponents.queryItems?.first?.name == "id" {
+            return urlComponents.queryItems?.first?.value
+        } else {
+            return nil
         }
     }
 
