@@ -12,46 +12,35 @@ struct TodoListView: View {
     @StateObject var viewModel = TodoListViewModel()
     var body: some View {
         NavigationView {
-
-            /// https://www.donnywals.com/handling-deeplinks-in-ios-14-with-onopenurl/
-            /// この書き方が必要
             List(viewModel.todoList) { todoItem in
                 NavigationLink(
-                    destination: TodoDetailView(todo: todoItem)) {
-                    Text("\(todoItem.title)")
-
-
+                    destination: TodoDetailView(todo: todoItem),
+                    tag: todoItem.id,
+                    selection: $viewModel.activeTodoId) {
+                    HStack {
+                        if todoItem.priority == 0 {
+                            Circle()
+                                .fill(Color.green)
+                                .frame(width: 40)
+                        } else if todoItem.priority == 1 {
+                            Circle()
+                                .fill(Color.yellow)
+                                .frame(width: 40)
+                        } else if todoItem.priority == 2 {
+                            Circle()
+                                .fill(Color.red)
+                                .frame(width: 40)
+                        }
+                        VStack(alignment: .leading) {
+                            Text("\(todoItem.title)")
+                                .font(.title)
+                            Text(todoItem.startDate, style: .date)
+                                .font(.subheadline)
+                            Text(todoItem.startDate, style: .time)
+                                .font(.subheadline)
+                        }
+                    }
                 }
-
-                
-//                ForEach(viewModel.todoList) { todo in
-//                    NavigationLink(
-//                        destination: TodoDetailView(todo: todo)) {
-//                        HStack {
-//                            if todo.priority == 0 {
-//                                Circle()
-//                                    .fill(Color.green)
-//                                    .frame(width: 40)
-//                            } else if todo.priority == 1 {
-//                                Circle()
-//                                    .fill(Color.yellow)
-//                                    .frame(width: 40)
-//                            } else if todo.priority == 2 {
-//                                Circle()
-//                                    .fill(Color.red)
-//                                    .frame(width: 40)
-//                            }
-//                            VStack(alignment: .leading) {
-//                                Text("\(todo.title)")
-//                                    .font(.title)
-//                                Text(todo.startDate, style: .date)
-//                                    .font(.subheadline)
-//                                Text(todo.startDate, style: .time)
-//                                    .font(.subheadline)
-//                            }
-//                        }
-//                    }
-//                }
             }
             .navigationTitle("TodoList")
             .navigationBarItems(trailing: Button(action: {
@@ -69,6 +58,9 @@ struct TodoListView: View {
         }, content: {
             AddTodoView(isShow: $isShow)
         })
+        .onOpenURL { url in
+            viewModel.apply(inputs: .openFromWidget(url: url))
+        }
     }
 }
 

@@ -14,6 +14,7 @@ final class TodoListViewModel: ObservableObject {
         case openFromWidget(url: URL)
     }
     @Published var todoList: [TodoListItem] = []
+    @Published var activeTodoId: UUID?
 
     private let todoStore = TodoListStore()
     func apply(inputs: Inputs) {
@@ -23,8 +24,8 @@ final class TodoListViewModel: ObservableObject {
             case .onDismissAddTodo:
                 updateTodo()
             case .openFromWidget(let url):
-                if let id = getWidgetTodoItem(from: url) {
-                    print(id)
+                if let selectedId = getWidgetTodoItem(from: url) {
+                    activeTodoId = selectedId
                 }
         }
     }
