@@ -127,7 +127,6 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                             VStack(alignment: .leading) {
                                 ForEach(entry.todoList) { todoItem in
                                     TodoCell(todoTitle: todoItem.title)
-                                        .widgetURL(makeURLScheme(id: todoItem.id))
                                 }
                                 Spacer()
                             }
