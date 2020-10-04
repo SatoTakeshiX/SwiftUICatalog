@@ -50,12 +50,36 @@ struct PriorityWidgetEntryView: View {
     var body: some View {
         switch family {
             case .systemSmall:
-                Text("sss")
+                VStack {
+                    HStack {
+                        VStack {
+                            PriorityCircle(priority: entry.priority)
+                            Spacer()
+                        }
+                        VStack(alignment: .leading) {
+                            TodoCell(todoTitle: "widget開発")
+                            TodoCell(todoTitle: "widget開発")
+                            TodoCell(todoTitle: "widget開発")
+                            Spacer()
+                        }
+                    }
+                    Text(entry.date, style: .date)
+                        .font(.footnote)
+                }
+                .padding(.all)
             case .systemMedium:
                 Text("ddd")
             default:
                 EmptyView()
         }
+    }
+
+    func makeURLScheme(id: UUID) -> URL {
+        let url = URL(string: "todolist://detail")!
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        urlComponents?.queryItems = [URLQueryItem(name: "id", value: id.uuidString)]
+        print("urlcom \(urlComponents)")
+        return urlComponents!.url!
     }
 }
 
@@ -79,6 +103,38 @@ struct PriorityWidget_Previews: PreviewProvider {
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
             PriorityWidgetEntryView(entry: .init(date: Date(), priority: 2, todoList: [TodoListItem(startDate: Date(), note: "", priority: 2, title: "Widget開発")]))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
+        }
+    }
+}
+
+struct TodoCell: View {
+    let todoTitle: String
+    var body: some View {
+        VStack(spacing: 0) {
+            Text(todoTitle)
+            Divider()
+        }
+    }
+}
+
+struct PriorityCircle: View {
+    let priority: Int
+    var body: some View {
+        Circle()
+            .foregroundColor(makePriorityColor(priority: priority))
+            .frame(width: 20, height: 20)
+    }
+
+    private func makePriorityColor(priority: Int) -> Color {
+        switch priority {
+            case 0:
+                return .green
+            case 1:
+                return .yellow
+            case 2:
+                return .red
+            default:
+                return .black
         }
     }
 }
