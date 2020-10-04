@@ -22,9 +22,9 @@ enum CoreDataStoreError: Error {
 }
 
 enum TodoPriority: Int {
-    case high = 0
+    case low = 0
     case medium
-    case low
+    case high
 
     var name: String {
         switch self {
