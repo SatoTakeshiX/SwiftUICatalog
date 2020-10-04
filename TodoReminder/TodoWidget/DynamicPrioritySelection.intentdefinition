@@ -47,7 +47,7 @@
 						<key>INIntentParameterMetadataMaximumValue</key>
 						<integer>2</integer>
 						<key>INIntentParameterMetadataType</key>
-						<string>Field</string>
+						<string>Stepper</string>
 					</dict>
 					<key>INIntentParameterName</key>
 					<string>priority</string>
