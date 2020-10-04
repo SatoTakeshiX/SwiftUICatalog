@@ -68,9 +68,66 @@ struct PriorityWidgetEntryView: View {
                 }
                 .padding(.all)
             case .systemMedium:
-                Text("ddd")
+                HStack {
+                    Rectangle()
+                        .foregroundColor(makePriorityColor(priority: entry.priority))
+                        .overlay(
+                            VStack {
+                                Text("今日のTodo")
+                                    .fontWeight(.bold)
+                                Text("優先度: 高")
+                                    .fontWeight(.bold)
+                            }
+
+                            .foregroundColor(.white)
+                        )
+                    VStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text("widget開発")
+                                Text(Date(), style: .time)
+                                    .font(.caption)
+                            }
+
+                            Divider()
+                        }
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text("widget開発")
+                                Text(Date(), style: .time)
+                                    .font(.caption)
+                            }
+                            Divider()
+                        }
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack {
+                                Text("widget開発")
+                                Text(Date(), style: .time)
+                                    .font(.caption)
+                            }
+
+                            Divider()
+                        }
+
+                        Text(entry.date, style: .date)
+                            .font(.footnote)
+                    }
+                }
             default:
                 EmptyView()
+        }
+    }
+
+    private func makePriorityColor(priority: Int) -> Color {
+        switch priority {
+            case 0:
+                return .green
+            case 1:
+                return .yellow
+            case 2:
+                return .red
+            default:
+                return .black
         }
     }
 
@@ -78,7 +135,7 @@ struct PriorityWidgetEntryView: View {
         let url = URL(string: "todolist://detail")!
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         urlComponents?.queryItems = [URLQueryItem(name: "id", value: id.uuidString)]
-        print("urlcom \(urlComponents)")
+        print("urlcom \(String(describing: urlComponents))")
         return urlComponents!.url!
     }
 }
