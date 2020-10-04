@@ -10,6 +10,7 @@
 		306BA4A225287DDB004A6B6A /* TodoListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306BA4A125287DDB004A6B6A /* TodoListViewModelTests.swift */; };
 		306BA4AB2528BD86004A6B6A /* DynamicPrioritySelection.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 306BA4AA2528BD86004A6B6A /* DynamicPrioritySelection.intentdefinition */; };
 		306BA4B52528BFA5004A6B6A /* PriorityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306BA4B42528BFA5004A6B6A /* PriorityWidget.swift */; };
+		306BA4BF2529A3AC004A6B6A /* TodoWidgetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306BA4BE2529A3AC004A6B6A /* TodoWidgetType.swift */; };
 		30941D0D24E21ECD002566B9 /* TodoReminderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30941D0C24E21ECD002566B9 /* TodoReminderApp.swift */; };
 		30941D1124E21ECF002566B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30941D1024E21ECF002566B9 /* Assets.xcassets */; };
 		30941D1424E21ECF002566B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30941D1324E21ECF002566B9 /* Preview Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		306BA4A125287DDB004A6B6A /* TodoListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModelTests.swift; sourceTree = "<group>"; };
 		306BA4AA2528BD86004A6B6A /* DynamicPrioritySelection.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = DynamicPrioritySelection.intentdefinition; sourceTree = "<group>"; };
 		306BA4B42528BFA5004A6B6A /* PriorityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityWidget.swift; sourceTree = "<group>"; };
+		306BA4BE2529A3AC004A6B6A /* TodoWidgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoWidgetType.swift; sourceTree = "<group>"; };
 		30941D0924E21ECD002566B9 /* TodoReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30941D0C24E21ECD002566B9 /* TodoReminderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoReminderApp.swift; sourceTree = "<group>"; };
 		30941D1024E21ECF002566B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				30941D5924E7BB50002566B9 /* Info.plist */,
 				30941D6124E83B00002566B9 /* TodoSingleView.swift */,
 				30941D6524E83BDC002566B9 /* DateListView.swift */,
+				306BA4BE2529A3AC004A6B6A /* TodoWidgetType.swift */,
 			);
 			path = TodoWidget;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				306BA4B52528BFA5004A6B6A /* PriorityWidget.swift in Sources */,
 				30941D6724E83BDC002566B9 /* DateListView.swift in Sources */,
 				306BA4AB2528BD86004A6B6A /* DynamicPrioritySelection.intentdefinition in Sources */,
+				306BA4BF2529A3AC004A6B6A /* TodoWidgetType.swift in Sources */,
 				30A590872524BDD8000AB77F /* Todo.xcdatamodeld in Sources */,
 				30A590822524BDC5000AB77F /* TodoListStore.swift in Sources */,
 				30941D6324E83B00002566B9 /* TodoSingleView.swift in Sources */,

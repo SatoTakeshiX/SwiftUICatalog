@@ -39,8 +39,11 @@ struct Provider: TimelineProvider {
         do {
             let store = TodoListStore()
             let todoLists = try store.fetchTodayItems()
-            let entries = todoLists.map { (todoList) -> RecentTodoEntry in
+            var entries = todoLists.map { (todoList) -> RecentTodoEntry in
                 RecentTodoEntry(todoItem: todoList)
+            }
+            if entries.isEmpty {
+                entries.append(.init(date: Date(), title: "Todoはありません", priority: 0, id: UUID()))
             }
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
@@ -76,7 +79,7 @@ struct RecentTodoEntry: TimelineEntry {
 }
 
 // Widgetを表示するView
-struct TodoWidgetEntryView : View {
+struct TodoWidgetEntryView : View, TodoWidgetType {
     var entry: Provider.Entry
 
     var body: some View {
@@ -102,27 +105,6 @@ struct TodoWidgetEntryView : View {
         }
         .padding(8)
         .widgetURL(makeURLScheme(id: entry.id))
-    }
-
-    private func makePriorityColor(priority: Int) -> Color {
-        switch priority {
-            case 0:
-                return .green
-            case 1:
-                return .yellow
-            case 2:
-                return .red
-            default:
-                return .black
-        }
-    }
-
-    func makeURLScheme(id: UUID) -> URL {
-        let url = URL(string: "todolist://detail")!
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        urlComponents?.queryItems = [URLQueryItem(name: "id", value: id.uuidString)]
-        print("urlcom \(urlComponents)")
-        return urlComponents!.url!
     }
 }
 

@@ -42,7 +42,7 @@ struct PriorityEntry: TimelineEntry {
     let todoList: [TodoListItem]
 }
 
-struct PriorityWidgetEntryView: View {
+struct PriorityWidgetEntryView: View, TodoWidgetType {
     var entry: PriorityProvider.Entry
 
     @Environment(\.widgetFamily) var family
@@ -117,27 +117,6 @@ struct PriorityWidgetEntryView: View {
                 EmptyView()
         }
     }
-
-    private func makePriorityColor(priority: Int) -> Color {
-        switch priority {
-            case 0:
-                return .green
-            case 1:
-                return .yellow
-            case 2:
-                return .red
-            default:
-                return .black
-        }
-    }
-
-    func makeURLScheme(id: UUID) -> URL {
-        let url = URL(string: "todolist://detail")!
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        urlComponents?.queryItems = [URLQueryItem(name: "id", value: id.uuidString)]
-        print("urlcom \(String(describing: urlComponents))")
-        return urlComponents!.url!
-    }
 }
 
 struct PriorityWidget: Widget {
@@ -167,31 +146,18 @@ struct PriorityWidget_Previews: PreviewProvider {
 struct TodoCell: View {
     let todoTitle: String
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 4) {
             Text(todoTitle)
             Divider()
         }
     }
 }
 
-struct PriorityCircle: View {
+struct PriorityCircle: View, TodoWidgetType {
     let priority: Int
     var body: some View {
         Circle()
             .foregroundColor(makePriorityColor(priority: priority))
             .frame(width: 20, height: 20)
-    }
-
-    private func makePriorityColor(priority: Int) -> Color {
-        switch priority {
-            case 0:
-                return .green
-            case 1:
-                return .yellow
-            case 2:
-                return .red
-            default:
-                return .black
-        }
     }
 }
