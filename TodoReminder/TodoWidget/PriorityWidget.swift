@@ -41,6 +41,7 @@ struct PriorityProvider: IntentTimelineProvider {
 
         do {
             let todoList = try fetchPriority(for: configuration)
+            print("priority: \(todoList.description)")
             let dividedTodoList = divideByThree(todoList: todoList)
             var entries: [PriorityEntry] = []
             dividedTodoList.forEach { (todoList) in
@@ -78,6 +79,13 @@ struct PriorityProvider: IntentTimelineProvider {
         var dividedTodoList: [[TodoListItem]] = []
         var startRange = 0
         var endRange = 3
+
+        if todoList.count <= endRange {
+            let new = todoList[startRange ..< todoList.count]
+            dividedTodoList.append(Array(new))
+            return dividedTodoList
+        }
+
         while todoList.count >= endRange {
             let new = todoList[startRange ..< endRange]
             dividedTodoList.append(Array(new))
@@ -147,9 +155,10 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                         Text("今日のTodoはありません")
                             .padding()
                     } else {
-                        VStack {
+                        VStack(alignment: .leading) {
                             ForEach(entry.todoList) { todoItem in
                                 TodoMediumCell(todoTitle: todoItem.title, startDate: todoItem.startDate)
+                                    .widgetURL(makeURLScheme(id: todoItem.id))
 
                             }
                             Text(entry.date, style: .date)
