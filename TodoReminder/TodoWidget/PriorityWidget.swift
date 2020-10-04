@@ -127,6 +127,7 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                             VStack(alignment: .leading) {
                                 ForEach(entry.todoList) { todoItem in
                                     TodoCell(todoTitle: todoItem.title)
+                                        .widgetURL(makeURLScheme(id: todoItem.id))
                                 }
                                 Spacer()
                             }
@@ -157,9 +158,9 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                     } else {
                         VStack(alignment: .leading) {
                             ForEach(entry.todoList) { todoItem in
-                                TodoMediumCell(todoTitle: todoItem.title, startDate: todoItem.startDate)
+                                TodoMediumCell(todoTitle: todoItem.title,
+                                               startDate: todoItem.startDate)
                                     .widgetURL(makeURLScheme(id: todoItem.id))
-
                             }
                             Text(entry.date, style: .date)
                                 .font(.footnote)
@@ -192,10 +193,10 @@ let dummyTodoItem: TodoListItem = .init(startDate: Date(),
 
 let dummyPriorityEntry: PriorityEntry = .init(date: Date(),
                                               priority: .high,
-                                                todoList: [dummyTodoItem,
-                                                           dummyTodoItem,
-                                                           dummyTodoItem
-                                                ])
+                                              todoList: [dummyTodoItem,
+                                                         dummyTodoItem,
+                                                         dummyTodoItem
+                                              ])
 
 let dummyEmptyEntry: PriorityEntry = .init(date: Date(), priority: .low, todoList: [])
 
