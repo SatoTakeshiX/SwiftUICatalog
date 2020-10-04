@@ -132,12 +132,19 @@ struct PriorityWidget: Widget {
     }
 }
 
+let dummyPriorityEntry: PriorityEntry = .init(date: Date(),
+                                                priority: 2,
+                                                todoList: [.init(startDate: Date(), note: "", priority: 2, title: "Widget開発"),
+                                                           .init(startDate: Date(), note: "", priority: 2, title: "Widget開発"),
+                                                           .init(startDate: Date(), note: "", priority: 2, title: "Widget開発")
+                                                ])
+
 struct PriorityWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PriorityWidgetEntryView(entry: .init(date: Date(), priority: 2, todoList: [TodoListItem(startDate: Date(), note: "", priority: 2, title: "Widget開発")]))
+            PriorityWidgetEntryView(entry: dummyPriorityEntry)
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-            PriorityWidgetEntryView(entry: .init(date: Date(), priority: 2, todoList: [TodoListItem(startDate: Date(), note: "", priority: 2, title: "Widget開発")]))
+            PriorityWidgetEntryView(entry: dummyPriorityEntry)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
         }
     }
