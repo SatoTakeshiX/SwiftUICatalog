@@ -108,7 +108,6 @@ struct TodoWidgetEntryView : View, TodoWidgetType {
     }
 }
 
-@main
 struct TodoWidget: Widget {
     // widgetの種類識別子
     let kind: String = "TodoWidget"
