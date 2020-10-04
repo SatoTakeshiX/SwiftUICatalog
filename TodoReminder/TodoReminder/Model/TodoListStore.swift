@@ -11,7 +11,7 @@ import CoreData
 struct TodoListItem: Identifiable {
     var startDate: Date
     var note: String
-    var priority: Int
+    var priority: TodoPriority
     var title: String
     var id: UUID = UUID()
 }
@@ -19,6 +19,23 @@ struct TodoListItem: Identifiable {
 enum CoreDataStoreError: Error {
     case failureFetch
     case fetchError(reason: String)
+}
+
+enum TodoPriority: Int {
+    case high = 0
+    case medium
+    case low
+
+    var name: String {
+        switch self {
+            case .high:
+                return "高"
+            case .medium:
+                return "中"
+            case .low:
+                return "低"
+        }
+    }
 }
 
 extension TodoList {
@@ -29,7 +46,7 @@ extension TodoList {
               let id = id else { return nil }
         return TodoListItem(startDate: startDate,
                             note: note,
-                            priority: Int(priority),
+                            priority: TodoPriority(rawValue: Int(priority))!,
                             title: title,
                             id: id)
     }
@@ -44,7 +61,7 @@ final class TodoListStore {
         let newItem = NSEntityDescription.insertNewObject(forEntityName: TodoListStore.entityName, into: persistentContainer.viewContext) as? Entity
         newItem?.startDate = item.startDate
         newItem?.note = item.note
-        newItem?.priority = Int32(item.priority)
+        newItem?.priority = Int32(item.priority.rawValue)
         newItem?.title = item.title
         newItem?.id = item.id
         try saveContext()

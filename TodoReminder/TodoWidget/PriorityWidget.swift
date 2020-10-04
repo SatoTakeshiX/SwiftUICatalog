@@ -13,7 +13,7 @@ struct PriorityProvider: IntentTimelineProvider {
     typealias Entry = PriorityEntry
 
     func placeholder(in context: Context) -> PriorityEntry {
-        PriorityEntry(date: Date(), priority: 2, todoList: [])
+        PriorityEntry(date: Date(), priority: .high, todoList: [])
     }
 
     func getSnapshot(for configuration: DynamicPrioritySelectionIntent,
@@ -38,7 +38,7 @@ struct PriorityProvider: IntentTimelineProvider {
 
 struct PriorityEntry: TimelineEntry {
     let date: Date
-    let priority: Int
+    let priority: TodoPriority
     let todoList: [TodoListItem]
 }
 
@@ -133,10 +133,10 @@ struct PriorityWidget: Widget {
 }
 
 let dummyPriorityEntry: PriorityEntry = .init(date: Date(),
-                                                priority: 2,
-                                                todoList: [.init(startDate: Date(), note: "", priority: 2, title: "Widget開発"),
-                                                           .init(startDate: Date(), note: "", priority: 2, title: "Widget開発"),
-                                                           .init(startDate: Date(), note: "", priority: 2, title: "Widget開発")
+                                              priority: .high,
+                                                todoList: [.init(startDate: Date(), note: "", priority: .high, title: "Widget開発"),
+                                                           .init(startDate: Date(), note: "", priority: .high, title: "Widget開発"),
+                                                           .init(startDate: Date(), note: "", priority: .high, title: "Widget開発")
                                                 ])
 
 struct PriorityWidget_Previews: PreviewProvider {
@@ -161,7 +161,7 @@ struct TodoCell: View {
 }
 
 struct PriorityCircle: View, TodoWidgetType {
-    let priority: Int
+    let priority: TodoPriority
     var body: some View {
         Circle()
             .foregroundColor(makePriorityColor(priority: priority))

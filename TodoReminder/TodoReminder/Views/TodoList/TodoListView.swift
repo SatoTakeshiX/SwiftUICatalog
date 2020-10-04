@@ -18,18 +18,20 @@ struct TodoListView: View {
                     tag: todoItem.id,
                     selection: $viewModel.activeTodoId) {
                     HStack {
-                        if todoItem.priority == 0 {
-                            Circle()
-                                .fill(Color.green)
-                                .frame(width: 40)
-                        } else if todoItem.priority == 1 {
-                            Circle()
-                                .fill(Color.yellow)
-                                .frame(width: 40)
-                        } else if todoItem.priority == 2 {
-                            Circle()
-                                .fill(Color.red)
-                                .frame(width: 40)
+                        switch todoItem.priority {
+                            case .low:
+                                Circle()
+                                    .fill(Color.green)
+                                    .frame(width: 40)
+                            case .medium:
+                                Circle()
+                                    .fill(Color.yellow)
+                                    .frame(width: 40)
+                            case .high:
+
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 40)
                         }
                         VStack(alignment: .leading) {
                             Text("\(todoItem.title)")

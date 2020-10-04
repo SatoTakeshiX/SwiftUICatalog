@@ -11,12 +11,12 @@ import SwiftUI
 struct Provider: TimelineProvider {
 
     func placeholder(in context: Context) -> RecentTodoEntry {
-        RecentTodoEntry(date: Date(), title: "Widget開発", priority: 2, id: UUID())
+        RecentTodoEntry(date: Date(), title: "Widget開発", priority: .high, id: UUID())
     }
 
     func getSnapshot(in context: Context, completion: @escaping (RecentTodoEntry) -> ()) {
         if context.isPreview {
-            let entry = RecentTodoEntry(date: Date(), title: "Widget開発", priority: 2, id: UUID())
+            let entry = RecentTodoEntry(date: Date(), title: "Widget開発", priority: .high, id: UUID())
             completion(entry)
         } else {
             do {
@@ -43,7 +43,7 @@ struct Provider: TimelineProvider {
                 RecentTodoEntry(todoItem: todoList)
             }
             if entries.isEmpty {
-                entries.append(.init(date: Date(), title: "Todoはありません", priority: 0, id: UUID()))
+                entries.append(.init(date: Date(), title: "Todoはありません", priority: .low, id: UUID()))
             }
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
@@ -60,10 +60,10 @@ struct SimpleEntry: TimelineEntry {
 struct RecentTodoEntry: TimelineEntry {
     let date: Date
     let title: String
-    let priority: Int
+    let priority: TodoPriority
     let id: UUID
 
-    init(date: Date, title: String, priority: Int, id: UUID) {
+    init(date: Date, title: String, priority: TodoPriority, id: UUID) {
         self.date = date
         self.title = title
         self.priority = priority
@@ -129,7 +129,7 @@ struct TodoWidget: Widget {
 
 struct TodoWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TodoWidgetEntryView(entry: RecentTodoEntry(date: Date(), title: "Widget開発", priority: 2, id: UUID()))
+        TodoWidgetEntryView(entry: RecentTodoEntry(date: Date(), title: "Widget開発", priority: .high, id: UUID()))
             // previewContextでwidgetの大きさをプレビューできる
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }

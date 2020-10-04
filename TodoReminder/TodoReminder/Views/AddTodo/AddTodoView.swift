@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct AddTodoView: View {
-    @State var newTodo: TodoListItem = TodoListItem(startDate: Date(), note: "", priority: 0, title: "")
-    @State var priority: Int = 0
+    @State var newTodo: TodoListItem = TodoListItem(startDate: Date(), note: "", priority: .low, title: "")
     @Binding var isShow: Bool
     var body: some View {
        NavigationView {
@@ -20,11 +19,11 @@ struct AddTodoView: View {
                 Section(header: Text("優先度")) {
                     Picker("優先度", selection: $newTodo.priority) {
                         Text("低")
-                            .tag(0)
+                            .tag(TodoPriority.low)
                         Text("中")
-                            .tag(1)
+                            .tag(TodoPriority.medium)
                         Text("高")
-                            .tag(2)
+                            .tag(TodoPriority.high)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
@@ -42,6 +41,7 @@ struct AddTodoView: View {
             .navigationBarItems(trailing: Button(action: {
                 let todoStore = TodoListStore()
                 do {
+
                     try todoStore.insert(item: newTodo)
                     isShow.toggle()
                 } catch let error {

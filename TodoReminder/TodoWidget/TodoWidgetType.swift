@@ -8,21 +8,19 @@
 import SwiftUI
 
 protocol TodoWidgetType {
-    func makePriorityColor(priority: Int) -> Color
+    func makePriorityColor(priority: TodoPriority) -> Color
     func makeURLScheme(id: UUID) -> URL?
 }
 
 extension TodoWidgetType {
-    func makePriorityColor(priority: Int) -> Color {
+    func makePriorityColor(priority: TodoPriority) -> Color {
         switch priority {
-            case 0:
-                return .green
-            case 1:
-                return .yellow
-            case 2:
+            case .high:
                 return .red
-            default:
-                return .black
+            case .medium:
+                return .yellow
+            case .low:
+                return .green
         }
     }
 
