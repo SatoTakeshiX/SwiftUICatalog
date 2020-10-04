@@ -19,8 +19,6 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
-			<key>INIntentConfigurable</key>
-			<true/>
 			<key>INIntentDescription</key>
 			<string>Select Priority</string>
 			<key>INIntentDescriptionID</key>
@@ -31,16 +29,6 @@
 			<true/>
 			<key>INIntentLastParameterTag</key>
 			<integer>7</integer>
-			<key>INIntentManagedParameterCombinations</key>
-			<dict>
-				<key>priority</key>
-				<dict>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationUpdatesLinked</key>
-					<true/>
-				</dict>
-			</dict>
 			<key>INIntentName</key>
 			<string>DynamicPrioritySelection</string>
 			<key>INIntentParameters</key>

@@ -51,6 +51,9 @@ struct PriorityProvider: IntentTimelineProvider {
             let timeLine = Timeline(entries: entries, policy: .atEnd)
             completion(timeLine)
         } catch {
+            let entry = PriorityEntry(date: Date(), priority: .low, todoList: [])
+            let timeLine = Timeline(entries: [entry], policy: .never)
+            completion(timeLine)
             print(error.localizedDescription)
         }
     }
