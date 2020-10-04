@@ -30,7 +30,7 @@
 			<key>INIntentIneligibleForSuggestions</key>
 			<true/>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>7</integer>
 			<key>INIntentManagedParameterCombinations</key>
 			<dict>
 				<key>priority</key>
@@ -79,7 +79,7 @@
 						</dict>
 					</array>
 					<key>INIntentParameterTag</key>
-					<integer>5</integer>
+					<integer>7</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
 				</dict>

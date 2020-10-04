@@ -42,11 +42,12 @@ extension TodoList {
     func convert() -> TodoListItem? {
         guard let startDate = startDate,
               let note = note,
+              let priority = TodoPriority(rawValue: Int(priority)),
               let title = title,
               let id = id else { return nil }
         return TodoListItem(startDate: startDate,
                             note: note,
-                            priority: TodoPriority(rawValue: Int(priority))!,
+                            priority: priority,
                             title: title,
                             id: id)
     }
@@ -106,6 +107,23 @@ final class TodoListStore {
                 throw CoreDataStoreError.fetchError(reason: "there is no item")
             }
             return todo
+        } catch let error {
+            throw error
+        }
+    }
+
+    func fetchTodayItems(by priorityValue: Int) throws -> [TodoListItem] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: TodoListStore.entityName)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            makeTodayItemsPredicate(),
+            NSPredicate(format: "priority == %d", priorityValue)
+        ])
+        do {
+            guard let result = try persistentContainer.viewContext.fetch(fetchRequest) as? [Entity] else {
+                throw CoreDataStoreError.failureFetch
+            }
+            let todoList = result.compactMap { $0.convert() }
+            return todoList
         } catch let error {
             throw error
         }
