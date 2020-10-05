@@ -119,18 +119,17 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                         Text("今日のTodoはありません")
                             .padding(.bottom)
                     } else {
-                        HStack {
+                        HStack(spacing: 4) {
                             VStack {
                                 PriorityCircle(priority: entry.priority)
                                 Spacer()
                             }
                             VStack(alignment: .leading) {
-                                ForEach(entry.todoList) { todoItem in
-                                    TodoCell(todoTitle: todoItem.title)
-                                }
+                                TodoCell(todoTitle: entry.todoList.first!.title)
                                 Spacer()
                             }
                         }
+                        .widgetURL(makeURLScheme(id: entry.todoList.first!.id))
                     }
 
                     Text(entry.date, style: .date)
@@ -217,9 +216,9 @@ struct PriorityWidget_Previews: PreviewProvider {
 struct TodoCell: View {
     let todoTitle: String
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 8) {
             Text(todoTitle)
-                .font(.callout)
+                .font(.title)
             Divider()
         }
     }
@@ -245,6 +244,6 @@ struct PriorityCircle: View, TodoWidgetType {
     var body: some View {
         Circle()
             .foregroundColor(makePriorityColor(priority: priority))
-            .frame(width: 20, height: 20)
+            .frame(width: 20, height: 30)
     }
 }

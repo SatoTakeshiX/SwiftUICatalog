@@ -18,7 +18,6 @@ struct TodoListItem: Identifiable {
 
 enum CoreDataStoreError: Error {
     case failureFetch
-    case fetchError(reason: String)
 }
 
 enum TodoPriority: Int {
@@ -104,7 +103,7 @@ final class TodoListStore {
             }
             let todoList = result.compactMap { $0.convert() }
             guard let todo = todoList.first else {
-                throw CoreDataStoreError.fetchError(reason: "there is no item")
+                throw CoreDataStoreError.failureFetch
             }
             return todo
         } catch let error {
@@ -150,7 +149,7 @@ final class TodoListStore {
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: TodoListStore.containerName)
         container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.personal-factory.todo-reminder")!.appendingPathComponent("\(TodoListStore.containerName).sqlite"))]
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (description, error) in
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")
             }
