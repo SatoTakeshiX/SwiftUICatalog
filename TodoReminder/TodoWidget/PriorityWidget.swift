@@ -70,7 +70,7 @@ struct PriorityProvider: IntentTimelineProvider {
                 throw error
             }
         } else {
-            throw CoreDataStoreError.fetchError(reason: "no priority value")
+            throw CoreDataStoreError.failureFetch
         }
     }
 
