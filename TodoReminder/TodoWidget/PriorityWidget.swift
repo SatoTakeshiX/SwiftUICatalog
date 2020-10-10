@@ -159,7 +159,6 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                                 Link(destination: makeURLScheme(id: todoItem.id)!, label: {
                                     TodoMediumCell(todoTitle: todoItem.title,
                                                    startDate: todoItem.startDate)
-                                        .background(Color.pink.opacity(0.5))
                                 })
                             }
                             Text(entry.date, style: .date)
