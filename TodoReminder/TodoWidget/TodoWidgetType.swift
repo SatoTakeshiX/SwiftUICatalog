@@ -12,7 +12,7 @@ protocol TodoWidgetType {
     func makeURLScheme(id: UUID) -> URL?
 }
 
-extension TodoWidgetType {
+extension TodoWidgetType where Self: View {
     func makePriorityColor(priority: TodoPriority) -> Color {
         switch priority {
             case .high:

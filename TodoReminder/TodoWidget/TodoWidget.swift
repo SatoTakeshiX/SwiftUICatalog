@@ -15,9 +15,10 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (RecentTodoEntry) -> ()) {
+        let dummyEntry = RecentTodoEntry(date: Date(), title: "Widget開発", priority: .high, id: UUID())
+        let emptyEntry = RecentTodoEntry(date: Date(), title: "Todoはありません", priority: .low, id: UUID())
         if context.isPreview {
-            let entry = RecentTodoEntry(date: Date(), title: "Widget開発", priority: .high, id: UUID())
-            completion(entry)
+            completion(dummyEntry)
         } else {
             do {
                 let store = TodoListStore()
@@ -26,16 +27,19 @@ struct Provider: TimelineProvider {
                     RecentTodoEntry(todoItem: todoList)
                 }
                 guard let first = entries.first else {
+                    completion(emptyEntry)
                     return
                 }
                 completion(first)
             } catch let error {
                 print(error.localizedDescription)
+                completion(emptyEntry)
             }
         }
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let emptyEntry = RecentTodoEntry(date: Date(), title: "Todoはありません", priority: .low, id: UUID())
         do {
             let store = TodoListStore()
             let todoLists = try store.fetchTodayItems()
@@ -43,12 +47,14 @@ struct Provider: TimelineProvider {
                 RecentTodoEntry(todoItem: todoList)
             }
             if entries.isEmpty {
-                entries.append(.init(date: Date(), title: "Todoはありません", priority: .low, id: UUID()))
+                entries.append(emptyEntry)
             }
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
         } catch let error {
             print(error.localizedDescription)
+            let timeline = Timeline(entries: [emptyEntry], policy: .atEnd)
+            completion(timeline)
         }
     }
 }
@@ -84,21 +90,17 @@ struct TodoWidgetEntryView : View, TodoWidgetType {
 
     var body: some View {
         VStack {
-            HStack {
-                Rectangle()
-                    .foregroundColor(makePriorityColor(priority: entry.priority))
-                    .clipShape(ContainerRelativeShape())
-                    .overlay (
-                        Text(entry.title)
-                            .font(.title)
-                            .lineLimit(nil)
-                            .foregroundColor(.white)
-                    )
-            }
+            Rectangle()
+                .foregroundColor(makePriorityColor(priority: entry.priority))
+                .clipShape(ContainerRelativeShape())
+                .overlay (
+                    Text(entry.title)
+                        .font(.title)
+                        .foregroundColor(.white)
+                )
             VStack(alignment: .trailing) {
                 Text(entry.date, style: .date)
                     .font(.caption)
-                    .multilineTextAlignment(.trailing)
                 Text(entry.date, style: .time)
                     .font(.caption)
             }
