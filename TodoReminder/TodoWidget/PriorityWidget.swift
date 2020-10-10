@@ -156,9 +156,11 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                     } else {
                         VStack(alignment: .leading) {
                             ForEach(entry.todoList) { todoItem in
-                                TodoMediumCell(todoTitle: todoItem.title,
-                                               startDate: todoItem.startDate)
-                                    .widgetURL(makeURLScheme(id: todoItem.id))
+                                Link(destination: makeURLScheme(id: todoItem.id)!, label: {
+                                    TodoMediumCell(todoTitle: todoItem.title,
+                                                   startDate: todoItem.startDate)
+                                        .background(Color.pink.opacity(0.5))
+                                })
                             }
                             Text(entry.date, style: .date)
                                 .font(.footnote)

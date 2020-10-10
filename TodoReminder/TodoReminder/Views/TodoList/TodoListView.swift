@@ -71,3 +71,25 @@ struct TodoListView_Previews: PreviewProvider {
         TodoListView()
     }
 }
+
+struct TodoSample: View {
+    @State private var selection: Int? = 0
+    var body: some View {
+        NavigationView {
+            List {
+                NavigationLink(destination: Text("detail"), tag: 1, selection: $selection) {
+                    Text("dddd")
+                }
+                Button("tap to next screen", action: {
+                    selection = 1
+                })
+            }
+        }
+    }
+}
+
+struct TodoSample_Previews: PreviewProvider {
+    static var previews: some View {
+        TodoSample()
+    }
+}
