@@ -9,14 +9,14 @@ import WidgetKit
 import SwiftUI
 
 struct PriorityProvider: IntentTimelineProvider {
-    typealias Intent = DynamicPrioritySelectionIntent
+    typealias Intent = PrioritySelectionIntent
     typealias Entry = PriorityEntry
 
     func placeholder(in context: Context) -> PriorityEntry {
         dummyPriorityEntry
     }
 
-    func getSnapshot(for configuration: DynamicPrioritySelectionIntent,
+    func getSnapshot(for configuration: PrioritySelectionIntent,
                      in context: Context,
                      completion: @escaping (PriorityEntry) -> Void) {
         if context.isPreview {
@@ -35,7 +35,7 @@ struct PriorityProvider: IntentTimelineProvider {
         }
     }
 
-    func getTimeline(for configuration: DynamicPrioritySelectionIntent,
+    func getTimeline(for configuration: PrioritySelectionIntent,
                      in context: Context,
                      completion: @escaping (Timeline<PriorityEntry>) -> Void) {
 
@@ -47,6 +47,8 @@ struct PriorityProvider: IntentTimelineProvider {
             dividedTodoList.forEach { (todoList) in
                 if let lastTodo = todoList.last {
                     entries.append(PriorityEntry(date: lastTodo.startDate, priority: lastTodo.priority, todoList: todoList))
+                } else {
+                    entries.append(PriorityEntry(date: Date(), priority: TodoPriority(rawValue: configuration.priority?.intValue ?? 0)!, todoList: []))
                 }
             }
             let timeLine = Timeline(entries: entries, policy: .atEnd)
@@ -59,7 +61,7 @@ struct PriorityProvider: IntentTimelineProvider {
         }
     }
 
-    func fetchPriority(for configuration: DynamicPrioritySelectionIntent) throws -> [TodoListItem] {
+    func fetchPriority(for configuration: PrioritySelectionIntent) throws -> [TodoListItem] {
         if let priorityValue = configuration.priority?.intValue {
             let store = TodoListStore()
             do {
@@ -176,7 +178,7 @@ struct PriorityWidget: Widget {
     let kind: String = "PriorityWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DynamicPrioritySelectionIntent.self, provider: PriorityProvider()) { entry in
+        IntentConfiguration(kind: kind, intent: PrioritySelectionIntent.self, provider: PriorityProvider()) { entry in
             PriorityWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Priority Sort")

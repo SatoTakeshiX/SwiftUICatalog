@@ -22,7 +22,8 @@
 	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>DynamicPrioritySelectionIntent</string>
+		<string>IntentIntent</string>
+		<string>PrioritySelectionIntent</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
