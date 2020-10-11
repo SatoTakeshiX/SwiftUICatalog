@@ -123,11 +123,18 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                     } else {
                         HStack(spacing: 4) {
                             VStack {
-                                PriorityCircle(priority: entry.priority)
+                                Circle()
+                                    .foregroundColor(makePriorityColor(priority: entry.priority))
+                                    .frame(width: 20, height: 30)
                                 Spacer()
                             }
                             VStack(alignment: .leading) {
-                                TodoCell(todoTitle: entry.todoList.first!.title)
+                                //TodoCell(todoTitle: entry.todoList.first!.title)
+                                VStack(spacing: 8) {
+                                    Text(entry.todoList.first!.title)
+                                        .font(.title)
+                                    Divider()
+                                }
                                 Spacer()
                             }
                         }
@@ -159,8 +166,16 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                         VStack(alignment: .leading) {
                             ForEach(entry.todoList) { todoItem in
                                 Link(destination: makeURLScheme(id: todoItem.id)!, label: {
-                                    TodoMediumCell(todoTitle: todoItem.title,
-                                                   startDate: todoItem.startDate)
+//                                    TodoMediumCell(todoTitle: todoItem.title,
+//                                                   startDate: todoItem.startDate)
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        HStack {
+                                            Text(todoItem.title)
+                                            Text(todoItem.startDate, style: .time)
+                                                .font(.caption)
+                                        }
+                                        Divider()
+                                    }
                                 })
                             }
                             Text(entry.date, style: .date)
