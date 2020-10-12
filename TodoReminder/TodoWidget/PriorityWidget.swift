@@ -48,7 +48,11 @@ struct PriorityProvider: IntentTimelineProvider {
                 if let lastTodo = todoList.last {
                     entries.append(PriorityEntry(date: lastTodo.startDate, priority: lastTodo.priority, todoList: todoList))
                 } else {
-                    entries.append(PriorityEntry(date: Date(), priority: TodoPriority(rawValue: configuration.priority?.intValue ?? 0)!, todoList: []))
+                    let selectedPriority = TodoPriority(rawValue: configuration.priority!.intValue)!
+                    let emptyEntry = PriorityEntry(date: Date(),
+                                                   priority: selectedPriority,
+                                                   todoList: [])
+                    entries.append(emptyEntry)
                 }
             }
             let timeLine = Timeline(entries: entries, policy: .atEnd)
@@ -165,18 +169,16 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                     } else {
                         VStack(alignment: .leading) {
                             ForEach(entry.todoList) { todoItem in
-                                Link(destination: makeURLScheme(id: todoItem.id)!, label: {
-//                                    TodoMediumCell(todoTitle: todoItem.title,
-//                                                   startDate: todoItem.startDate)
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        HStack {
-                                            Text(todoItem.title)
-                                            Text(todoItem.startDate, style: .time)
-                                                .font(.caption)
-                                        }
-                                        Divider()
+
+                                VStack(alignment: .leading, spacing: 4) {
+                                    HStack {
+                                        Text(todoItem.title)
+                                        Text(todoItem.startDate, style: .time)
+                                            .font(.caption)
                                     }
-                                })
+                                    Divider()
+                                }
+                                .widgetURL(makeURLScheme(id: todoItem.id))
                             }
                             Text(entry.date, style: .date)
                                 .font(.footnote)
