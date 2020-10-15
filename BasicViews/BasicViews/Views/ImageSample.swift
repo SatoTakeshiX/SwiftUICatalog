@@ -27,7 +27,7 @@ struct ImageSample: View {
                 Image(systemName: "moon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 100)
+                    .frame(width: 70, height: 100)
 
                 Image(systemName: "sunset.fill")
                     .resizable()

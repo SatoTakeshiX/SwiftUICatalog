@@ -20,11 +20,9 @@ struct ButtonSample: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
-                        Text("Select Phot")
+                        Text("Select Photo")
                     }.frame(width: 150, height: 100)
                 }
-                .border(Color.gray)
-                .cornerRadius(10)
 
                 Button(action: {
                     print("tapped button")
@@ -35,12 +33,11 @@ struct ButtonSample: View {
                             .renderingMode(.original)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
-                        Text("Select Phot")
+                        Text("Select Photo")
                             .foregroundColor(.black)
                     }
                     .frame(width: 150, height: 100)
                 }
-                .border(Color.gray)
 
                 Button(action: {
                     print("tapped button")
@@ -51,7 +48,7 @@ struct ButtonSample: View {
                             .renderingMode(.original)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
-                        Text("Select Phot")
+                        Text("Select Photo")
                             .foregroundColor(.black)
                     }
 
@@ -68,12 +65,13 @@ struct ButtonSample: View {
                             .renderingMode(.original)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
-                        Text("Select Phot")
+                        Text("Select Photo")
                             .foregroundColor(.black)
                     }
                     .frame(width: 150, height: 100)
                 }
                 .border(Color.gray)
+                .cornerRadius(10)
 
                 Button(action: {
                     print("tapped button")
@@ -84,7 +82,7 @@ struct ButtonSample: View {
                             .renderingMode(.original)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40, height: 40)
-                        Text("Select Phot")
+                        Text("Select Photo")
                             .foregroundColor(.black)
                     }
                     .frame(width: 150, height: 100)

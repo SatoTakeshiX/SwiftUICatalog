@@ -32,6 +32,16 @@ struct SpacerSample: View {
                 }
             }
 
+            HStack {
+                Image("wing")
+                Spacer()
+                Image("wing")
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                print("tapped")
+            }
+
         }
 
     }
