@@ -19,7 +19,7 @@ struct CounterView: View {
     }
 }
 
-struct SwitchColor: View {
+struct SwitchColorView: View {
     @State private var isDanger: Bool = false
     var body: some View {
         VStack {
@@ -35,6 +35,6 @@ struct SwitchColor: View {
         }
     }
 }
-PlaygroundPage.current.setLiveView(SwitchColor()
+PlaygroundPage.current.setLiveView(SwitchColorView()
                                     .frame(width: 500, height: 200).padding())
 //: [Next](@next)
