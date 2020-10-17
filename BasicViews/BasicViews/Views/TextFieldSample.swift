@@ -20,16 +20,16 @@ struct TextFieldSample: View {
                 }, onCommit: {
                     print("onCommit")
                 })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.asciiCapable)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.asciiCapable)
                 
                 TextField("input numbers", text: $inputTextTwo, onEditingChanged: {_ in
                     print("onEditingChanged")
                 }, onCommit: {
                     print("onCommit")
                 })
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .keyboardType(.decimalPad)
+                .textFieldStyle(PlainTextFieldStyle())
+                .keyboardType(.decimalPad)
             }
         }
         .padding()

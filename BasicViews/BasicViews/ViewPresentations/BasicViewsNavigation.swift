@@ -11,7 +11,7 @@ import SwiftUI
 struct BasicViewsNavigation: View {
     var body: some View {
         NavigationView {
-            Form {
+            List {
                 Section(header: Text("Views")) {
                     NavigationLink(destination: TextSamples()) {
                         Text("Text")
