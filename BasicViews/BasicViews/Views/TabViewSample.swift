@@ -37,7 +37,7 @@ struct TabViewSample_Previews: PreviewProvider {
 struct ListView: View {
     var body: some View {
         NavigationView {
-            Form {
+            List {
                 ForEach(0 ..< 10) { index in
                     
                     NavigationLink(
