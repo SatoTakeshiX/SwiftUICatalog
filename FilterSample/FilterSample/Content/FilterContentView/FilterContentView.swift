@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 struct FilterContentView: View {
-    @ObservedObject var viewModel = FilterContentViewModel()
+    @StateObject var viewModel = FilterContentViewModel()
     var body: some View {
         NavigationView {
             ZStack {
@@ -21,20 +21,20 @@ struct FilterContentView: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             withAnimation {
-                                self.viewModel.isShowBanner.toggle()
+                                viewModel.isShowBanner.toggle()
                             }
                     }
                 } else {
                     EmptyView()
                 }
-                FilterBannerView(isShowBanner: $viewModel.isShowBanner, selectedFilterType: $viewModel.selectedFilterType)
+                FilterBannerView(isShowBanner: $viewModel.isShowBanner, applyingFilter: $viewModel.applyingFilter)
                     .edgesIgnoringSafeArea(.bottom)
             }
             .navigationBarTitle("Filter App")
             .navigationBarItems(leading: EmptyView(), trailing: HStack {
                 Button(action: {
                     print("square.and.arrow.down")
-                    self.viewModel.apply(.tappedSaveIcon)
+                    viewModel.apply(.tappedSaveIcon)
                 }, label: {
                     Image(systemName: "square.and.arrow.down")
                         .resizable()
@@ -42,7 +42,7 @@ struct FilterContentView: View {
                         .frame(width: 30, height: 30)
                 })
                 Button(action: {
-                    self.viewModel.apply(.tappedImageIcon)
+                    viewModel.apply(.tappedImageIcon)
                 }, label: {
                     Image(systemName: "photo")
                         .resizable()
@@ -51,18 +51,38 @@ struct FilterContentView: View {
                 })
             })
             .onAppear {
-                self.viewModel.apply(.onAppear)
+                viewModel.apply(.onAppear)
             }
             .actionSheet(isPresented: $viewModel.isShowActionSheet) {
-                self.viewModel.actionSheet
+                actionSheet
             }
             .sheet(isPresented: $viewModel.isShowImagePickerView) {
-                ImagePicker(isShown: self.$viewModel.isShowImagePickerView, image: self.$viewModel.image, sourceType: self.viewModel.selectedSourceType)
+                ImagePicker(isShown: $viewModel.isShowImagePickerView, image: $viewModel.image, sourceType: viewModel.selectedSourceType)
             }
             .alert(isPresented: $viewModel.isShowAlert) {
-                Alert(title: Text(self.viewModel.alertTitle))
+                Alert(title: Text(viewModel.alertTitle))
             }
         }
+    }
+
+    private var actionSheet: ActionSheet {
+        var buttons: [ActionSheet.Button] = []
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraButton = ActionSheet.Button.default(Text("写真を撮る")) {
+                viewModel.apply(.tappedActionSheet(selectType: .camera))
+            }
+            buttons.append(cameraButton)
+        }
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let photoLibraryButton = ActionSheet.Button.default(Text("アルバムから選択")) {
+                viewModel.apply(.tappedActionSheet(selectType: .photoLibrary))
+            }
+            buttons.append(photoLibraryButton)
+        }
+        let cancelButton = ActionSheet.Button.cancel(Text("キャンセル"))
+        buttons.append(cancelButton)
+        let actionSheet = ActionSheet(title: Text("画像選択"), message: nil, buttons: buttons)
+        return actionSheet
     }
 }
 

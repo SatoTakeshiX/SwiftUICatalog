@@ -11,7 +11,7 @@ import Combine
 
 struct FilterBannerView: View {
     @Binding var isShowBanner: Bool
-    @Binding var selectedFilterType: FilterType?
+    @Binding var applyingFilter: FilterType?
     @State var selectingFilter: FilterType? = nil
     var body: some View {
         GeometryReader { geometry in
@@ -52,7 +52,7 @@ struct FilterBannerView: View {
                         Button(action: {
                             withAnimation {
                                 self.isShowBanner = false
-                                self.selectedFilterType = self.selectingFilter
+                                self.applyingFilter = self.selectingFilter
                                 self.selectingFilter = nil
                             }
                         }) {
@@ -79,7 +79,7 @@ struct FilterBannerView: View {
 
 struct FilterPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterBannerView(isShowBanner: .constant(true), selectedFilterType: .constant(.gaussianBlur))
+        FilterBannerView(isShowBanner: .constant(true), applyingFilter: .constant(.gaussianBlur))
             .edgesIgnoringSafeArea(.bottom)
     }
 }

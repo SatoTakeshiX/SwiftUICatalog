@@ -23,56 +23,33 @@ final class FilterContentViewModel: NSObject, ObservableObject {
     //MARK: Outputs
     @Published var image: UIImage?
     @Published var filteredImage: UIImage?
-    @Published var selectedFilterType: FilterType?
+    @Published var applyingFilter: FilterType?
     @Published var isShowActionSheet = false
     @Published var isShowImagePickerView = false
     @Published var selectedSourceType: UIImagePickerController.SourceType = .camera
     @Published var isShowBanner = false
     @Published var isShowAlert = false
     var alertTitle: String = ""
-    lazy var actionSheet: ActionSheet = {
-
-        var buttons: [ActionSheet.Button] = []
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraButton = ActionSheet.Button.default(Text("写真を撮る")) {
-                self.apply(.tappedActionSheet(selectType: .camera))
-            }
-            buttons.append(cameraButton)
-        }
-
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let photoLibraryButton = ActionSheet.Button.default(Text("アルバムから選択")) {
-                self.apply(.tappedActionSheet(selectType: .photoLibrary))
-            }
-            buttons.append(photoLibraryButton)
-        }
-
-        let cancelButton = ActionSheet.Button.cancel(Text("キャンセル"))
-        buttons.append(cancelButton)
-
-        let actionSheet = ActionSheet(title: Text("画像選択"), message: nil, buttons: buttons)
-        return actionSheet
-    }()
 
     var cancellables: [Cancellable] = []
 
     override init() {
         super.init()
-        let filterSubscriber = $selectedFilterType.sink { [weak self] (filterType) in
+        let filterCancellable = $applyingFilter.sink { [weak self] (filterType) in
             guard let self = self,
                 let filterType = filterType,
                 let image = self.image else { return }
             guard let filteredUIImage = self.updateImage(with: image, type: filterType) else { return }
             self.filteredImage = filteredUIImage
         }
-        cancellables.append(filterSubscriber)
+        cancellables.append(filterCancellable)
 
         //新しい画像に更新する
-        let imageSubscriber = $image.sink { [weak self] (uiimage) in
+        let imageCancellable = $image.sink { [weak self] (uiimage) in
             guard let self = self, let uiimage = uiimage else { return }
             self.filteredImage = uiimage
         }
-        cancellables.append(imageSubscriber)
+        cancellables.append(imageCancellable)
     }
 
     func apply(_ inputs: Inputs) {
@@ -82,7 +59,7 @@ final class FilterContentViewModel: NSObject, ObservableObject {
                     isShowActionSheet = true
                 }
             case .tappedImageIcon:
-                selectedFilterType = nil
+                applyingFilter = nil
                 isShowActionSheet = true
             case .tappedSaveIcon:
                 UIImageWriteToSavedPhotosAlbum(filteredImage!, self, #selector(imageSaveCompletion(_:didFinishSavingWithError:contextInfo:)), nil)
