@@ -13,8 +13,8 @@ struct FilterContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if viewModel.filteredImage != nil {
-                    Image(uiImage: viewModel.filteredImage!)
+                if let filteredImage = viewModel.filteredImage {
+                    Image(uiImage: filteredImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .border(Color.green, width: 4)
