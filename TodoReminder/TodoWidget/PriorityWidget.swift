@@ -82,27 +82,9 @@ struct PriorityProvider: IntentTimelineProvider {
 
     // 3つずつ区切る
     func divideByThree(todoList: [TodoListItem]) -> [[TodoListItem]] {
-        var dividedTodoList: [[TodoListItem]] = []
-        var startRange = 0
-        var endRange = 3
-
-        if todoList.count <= endRange {
-            let new = todoList[startRange ..< todoList.count]
-            dividedTodoList.append(Array(new))
-            return dividedTodoList
+        return stride(from: 0, to: todoList.count, by: 3).map {
+            Array(todoList[$0..<min($0 + 3, todoList.count)])
         }
-
-        while todoList.count >= endRange {
-            let new = todoList[startRange ..< endRange]
-            dividedTodoList.append(Array(new))
-            startRange += 3
-            if endRange + 3 > todoList.count {
-                endRange += todoList.count % 3
-            } else {
-                endRange += 3
-            }
-        }
-        return dividedTodoList
     }
 }
 
@@ -133,7 +115,6 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                                 Spacer()
                             }
                             VStack(alignment: .leading) {
-                                //TodoCell(todoTitle: entry.todoList.first!.title)
                                 VStack(spacing: 8) {
                                     Text(entry.todoList.first!.title)
                                         .font(.title)
@@ -169,16 +150,16 @@ struct PriorityWidgetEntryView: View, TodoWidgetType {
                     } else {
                         VStack(alignment: .leading) {
                             ForEach(entry.todoList) { todoItem in
-
-                                VStack(alignment: .leading, spacing: 4) {
-                                    HStack {
-                                        Text(todoItem.title)
-                                        Text(todoItem.startDate, style: .time)
-                                            .font(.caption)
+                                Link(destination: makeURLScheme(id: todoItem.id)!) {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        HStack {
+                                            Text(todoItem.title)
+                                            Text(todoItem.startDate, style: .time)
+                                                .font(.caption)
+                                        }
+                                        Divider()
                                     }
-                                    Divider()
                                 }
-                                .widgetURL(makeURLScheme(id: todoItem.id))
                             }
                             Text(entry.date, style: .date)
                                 .font(.footnote)

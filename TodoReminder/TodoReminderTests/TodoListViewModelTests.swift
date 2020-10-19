@@ -13,7 +13,7 @@ class TodoListViewModelTests: XCTestCase {
         let viewModel = TodoListViewModel()
         XCTContext.runActivity(named: "url") { _ in
             let url = URL(string: "todolist://detail?id=E621E1F8-C36C-495A-93FC-0C247A3E6E5F")!
-            if let id = viewModel.getWidgetTodoItem(from: url) {
+            if let id = viewModel.getWidgetTodoItemID(from: url) {
                 XCTAssertEqual(id, UUID(uuidString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")!)
             } else {
                 XCTFail("id is nil")
