@@ -11,11 +11,11 @@ import SwiftUI
 struct FilterImage: View {
     @State private var image: Image?
     let filterType: FilterType
-    @Binding var selectedFilter: FilterType?
+    @Binding var selectingFilter: FilterType?
     let uiimage: UIImage? = UIImage(named: "photo_icon")
     var body: some View {
         Button(action: {
-            self.selectedFilter = self.filterType
+            selectingFilter = filterType
         }) {
             VStack {
                 image?
@@ -26,7 +26,7 @@ struct FilterImage: View {
             }
         }
         .frame(width: 70, height: 80)
-        .border(Color.white, width: selectedFilter == filterType ? 4 : 0)
+        .border(Color.white, width: selectingFilter == filterType ? 4 : 0)
         .onAppear(perform: loadImage)
     }
 
@@ -52,7 +52,7 @@ struct FileterImage_Previews: PreviewProvider {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
-                FilterImage(filterType: .pixellate, selectedFilter: .constant(nil))
+                FilterImage(filterType: .pixellate, selectingFilter: .constant(nil))
                 
             }
             .previewLayout(.fixed(width: 200, height: 200))
@@ -62,7 +62,7 @@ struct FileterImage_Previews: PreviewProvider {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
-                FilterImage(filterType: .sepiaTone, selectedFilter: .constant(nil))
+                FilterImage(filterType: .sepiaTone, selectingFilter: .constant(nil))
                 
             }
             .previewLayout(.fixed(width: 200, height: 200))
@@ -72,7 +72,7 @@ struct FileterImage_Previews: PreviewProvider {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
-                FilterImage(filterType: .sharpenLuminance, selectedFilter: .constant(nil))
+                FilterImage(filterType: .sharpenLuminance, selectingFilter: .constant(nil))
                     .previewLayout(.fixed(width: 200, height: 200))
                 
             }
@@ -83,7 +83,7 @@ struct FileterImage_Previews: PreviewProvider {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
-                FilterImage(filterType: .photoEffectMono, selectedFilter: .constant(nil))
+                FilterImage(filterType: .photoEffectMono, selectingFilter: .constant(nil))
                     .previewLayout(.fixed(width: 200, height: 200))
                 
             }
@@ -94,7 +94,7 @@ struct FileterImage_Previews: PreviewProvider {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
-                FilterImage(filterType: .gaussianBlur, selectedFilter: .constant(nil))
+                FilterImage(filterType: .gaussianBlur, selectingFilter: .constant(nil))
                     .previewLayout(.fixed(width: 200, height: 200))
                 
             }
