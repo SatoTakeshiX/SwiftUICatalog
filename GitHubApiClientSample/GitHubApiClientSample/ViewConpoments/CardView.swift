@@ -67,7 +67,6 @@ struct CardView: View {
             Text(input.description ?? "")
                 .foregroundColor(.black)
                 .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(24)
         .overlay(

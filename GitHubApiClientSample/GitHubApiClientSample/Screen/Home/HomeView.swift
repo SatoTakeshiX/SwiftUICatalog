@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var viewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
     @State private var text = ""
     var body: some View {
         // https://stackoverflow.com/questions/57499359/adding-a-textfield-to-navigationbar-with-swiftui
         NavigationView {
-            if self.viewModel.isLoading {
+            if viewModel.isLoading {
                 Text("読込中...")
                     .font(.headline)
                     .foregroundColor(.gray)
@@ -24,7 +24,7 @@ struct HomeView: View {
                 ScrollView(showsIndicators: false) {
                     ForEach(viewModel.cardViewInputs) { input in
                         Button(action: {
-                            self.viewModel.apply(inputs: .tappedCardView(urlString: input.url))
+                            viewModel.apply(inputs: .tappedCardView(urlString: input.url))
                         }) {
                             CardView(input: input)
                         }
@@ -34,14 +34,14 @@ struct HomeView: View {
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: HStack {
                     TextField("検索キーワードを入力", text: $text, onCommit: {
-                        self.viewModel.apply(inputs: .onCommit(text: self.text))
+                        viewModel.apply(inputs: .onCommit(text: text))
                     })
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.asciiCapable)
                         .frame(width: UIScreen.main.bounds.width - 40)
                 })
                     .sheet(isPresented: $viewModel.isShowSheet) {
-                        SafariView(url: URL(string: self.viewModel.repositoryUrl)!)
+                        SafariView(url: URL(string: viewModel.repositoryUrl)!)
                 }
                 .alert(isPresented: $viewModel.isShowError) {
                     Alert(title: Text("通信時にエラーが発生しました。もう一度やり直してください"))
