@@ -23,19 +23,19 @@ struct Canvas: View {
                     .gesture(
                         DragGesture(minimumDistance: 0)
                             .onChanged({ (value) in
-                                self.tmpDrawPoints.points.append(value.location)
-                                self.tmpDrawPoints.color = self.selectedColor.color
+                                tmpDrawPoints.points.append(value.location)
+                                tmpDrawPoints.color = selectedColor.color
                             })
                             .onEnded({ (value) in
-                                self.endedDrawPoints.append(self.tmpDrawPoints)
-                                self.tmpDrawPoints = DrawPoints(points: [], color: self.selectedColor.color)
+                                endedDrawPoints.append(tmpDrawPoints)
+                                tmpDrawPoints = DrawPoints(points: [], color: selectedColor.color)
                             })
                 )
                     .onAppear {
-                        self.canvasRect = geometry.frame(in: .local)
+                        canvasRect = geometry.frame(in: .local)
                 }
 
-                ForEach(self.endedDrawPoints) { data in
+                ForEach(endedDrawPoints) { data in
                     Path { path in
                         path.addLines(data.points)
                     }
@@ -44,9 +44,9 @@ struct Canvas: View {
                 
                 // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
                 Path { path in
-                    path.addLines(self.tmpDrawPoints.points)
+                    path.addLines(tmpDrawPoints.points)
                 }
-                .stroke(self.tmpDrawPoints.color, lineWidth: 10)
+                .stroke(tmpDrawPoints.color, lineWidth: 10)
             }
         }
     }

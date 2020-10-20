@@ -13,19 +13,19 @@ struct DrawingView: View {
     @State var startPoint: CGPoint = CGPoint.zero
     @State var selectedColor: DrawColor = .red
     @State var canvasRect: CGRect = .zero
-    @ObservedObject var viewModel = DrawingViewModel()
+    @StateObject var viewModel = DrawingViewModel()
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 Canvas(
-                    endedDrawPoints: self.$endedDrawPoints,
-                    selectedColor: self.$selectedColor,
-                    canvasRect: self.$canvasRect)
+                    endedDrawPoints: $endedDrawPoints,
+                    selectedColor: $selectedColor,
+                    canvasRect: $canvasRect)
                 HStack(spacing: 10) {
                     Spacer()
                     Button(action: {
-                        self.selectedColor = .red
+                        selectedColor = .red
                         
                     }) {
                         Text("赤")
@@ -36,7 +36,7 @@ struct DrawingView: View {
                     }
                     
                     Button(action: {
-                        self.selectedColor = .clear
+                        selectedColor = .clear
                     }) {
                         Text("消しゴム")
                             .frame(width: 80, height: 100, alignment: .center)
@@ -50,8 +50,8 @@ struct DrawingView: View {
                     }
                     
                     Button(action: {
-                        let captureImage = self.capture(rect: geometry.frame(in: .global))
-                        self.viewModel.apply(inputs: .tappedCaptureButton(canvasRect: self.canvasRect, image: captureImage))
+                        let captureImage = capture(rect: geometry.frame(in: .global))
+                        viewModel.apply(inputs: .tappedCaptureButton(canvasRect: canvasRect, image: captureImage))
                         
                     }) {
                         Text("保存")
@@ -66,8 +66,8 @@ struct DrawingView: View {
                     Spacer()
                 }
             }
-            .alert(isPresented: self.$viewModel.isShowAlert) {
-                Alert(title: Text(self.viewModel.alertTitle))
+            .alert(isPresented: $viewModel.isShowAlert) {
+                Alert(title: Text(viewModel.alertTitle))
             }
         }
     }
