@@ -20,7 +20,7 @@ struct AlertSample: View {
     var body: some View {
         VStack {
             Button(action: {
-                self.isShowOkAlert = true
+                isShowOkAlert = true
             }) {
                 Image(systemName: "square.and.arrow.down")
                 .resizable()
@@ -28,10 +28,10 @@ struct AlertSample: View {
                 .frame(width: 44, height: 44)
             }
             .alert(isPresented: $isShowOkAlert) { () -> Alert in
-                self.okAlert
+                okAlert
             }
             Button(action: {
-                self.isShowErrorAlert = true
+                isShowErrorAlert = true
             }) {
                 Image(systemName: "play")
                 .resizable()
@@ -39,11 +39,11 @@ struct AlertSample: View {
                 .frame(width: 44, height: 44)
             }
             .alert(isPresented: $isShowErrorAlert) { () -> Alert in
-                self.errorAlert
+                errorAlert
             }
 
             Button(action: {
-                self.isShowRetryAlert = true
+                isShowRetryAlert = true
             }) {
                 Image(systemName: "person.badge.plus")
                 .resizable()
@@ -51,7 +51,7 @@ struct AlertSample: View {
                 .frame(width: 44, height: 44)
             }
             .alert(isPresented: $isShowRetryAlert) { () -> Alert in
-                self.retryAlert
+                retryAlert
             }
         }
     }

@@ -13,7 +13,7 @@ struct ActionSheetSample: View {
     @State private var isShowActionSheet: Bool = false
     var body: some View {
         Button(action: {
-            self.isShowActionSheet = true
+            isShowActionSheet = true
         }) {
             Image(systemName: "car")
                 .resizable()

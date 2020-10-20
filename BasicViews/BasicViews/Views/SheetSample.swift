@@ -12,7 +12,7 @@ struct SheetSample: View {
     @State private var isShowSheet: Bool = false
     var body: some View {
         Button(action: {
-            self.isShowSheet = true
+            isShowSheet = true
         }) {
             Image(systemName: "photo.on.rectangle")
             .resizable()
@@ -21,7 +21,7 @@ struct SheetSample: View {
         }
         .sheet(isPresented: $isShowSheet) {
             Button(action: {
-                self.isShowSheet = false
+                isShowSheet = false
             }) {
                 Text("Dismiss")
             }
