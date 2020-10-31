@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var viewModel: HomeViewModel
+    @StateObject private var viewModel: HomeViewModel
     @State private var text = ""
     var body: some View {
         // https://stackoverflow.com/questions/57499359/adding-a-textfield-to-navigationbar-with-swiftui

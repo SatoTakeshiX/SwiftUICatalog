@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TodoListView: View {
-    @State var isShow = false
-    @StateObject var viewModel = TodoListViewModel()
+    @State private var isShow = false
+    @StateObject private var viewModel = TodoListViewModel()
     var body: some View {
         NavigationView {
             List(viewModel.todoList) { todoItem in

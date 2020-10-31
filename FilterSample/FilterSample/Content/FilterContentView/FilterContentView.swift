@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 struct FilterContentView: View {
-    @StateObject var viewModel = FilterContentViewModel()
+    @StateObject private var viewModel = FilterContentViewModel()
     var body: some View {
         NavigationView {
             ZStack {

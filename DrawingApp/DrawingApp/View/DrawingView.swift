@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct DrawingView: View {
-    @State var endedDrawPoints: [DrawPoints] = []
-    @State var startPoint: CGPoint = CGPoint.zero
-    @State var selectedColor: DrawColor = .red
-    @State var canvasRect: CGRect = .zero
-    @StateObject var viewModel = DrawingViewModel()
+    @State private var endedDrawPoints: [DrawPoints] = []
+    @State private var startPoint: CGPoint = CGPoint.zero
+    @State private var selectedColor: DrawColor = .red
+    @State private var canvasRect: CGRect = .zero
+    @StateObject private var viewModel = DrawingViewModel()
     
     var body: some View {
         GeometryReader { geometry in

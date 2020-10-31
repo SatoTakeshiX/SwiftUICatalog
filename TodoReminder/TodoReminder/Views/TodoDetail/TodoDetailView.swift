@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodoDetailView: View {
-    @State var todo: TodoListItem
+    let todo: TodoListItem
     var body: some View {
         Form {
             Section(header: Text("Title")) {
@@ -28,6 +28,7 @@ struct TodoDetailView: View {
 
             Section(header: Text("締め切り")) {
                 DatePicker("", selection: .constant(todo.startDate))
+                    .disabled(true)
             }
             Section(header: Text("メモ")) {
                 TextEditor(text: .constant(todo.note))

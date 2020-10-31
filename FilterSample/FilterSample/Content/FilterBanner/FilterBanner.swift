@@ -12,7 +12,7 @@ import Combine
 struct FilterBannerView: View {
     @Binding var isShowBanner: Bool
     @Binding var applyingFilter: FilterType?
-    @State var selectingFilter: FilterType? = nil
+    @State private var selectingFilter: FilterType? = nil
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {

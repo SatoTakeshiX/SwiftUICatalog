@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddTodoView: View {
-    @State var newTodo: TodoListItem = TodoListItem(startDate: Date(), note: "", priority: .low, title: "")
+    @State private var newTodo: TodoListItem = TodoListItem(startDate: Date(), note: "", priority: .low, title: "")
     @Binding var isShow: Bool
     var body: some View {
        NavigationView {
