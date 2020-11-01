@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var viewModel: HomeViewModel
+    @StateObject private var viewModel: HomeViewModel = .init(apiService: APIService())
     @State private var text = ""
     var body: some View {
         // https://stackoverflow.com/questions/57499359/adding-a-textfield-to-navigationbar-with-swiftui
@@ -53,6 +53,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: .init(apiService: APIService()))
+        HomeView()
     }
 }
