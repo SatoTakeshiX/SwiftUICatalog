@@ -4,7 +4,7 @@ import SwiftUI
 import PlaygroundSupport
 
 struct ParentView: View {
-    @State var counter = 0
+    @State private var counter = 0
     var body: some View {
         Button(action: {
             counter += 1
