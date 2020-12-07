@@ -33,7 +33,6 @@ struct ObservedObjcetCounterView: View {
     }
 }
 
-
 struct SwitchColorView: View {
     @State private var isDanger: Bool = false
     var body: some View {
