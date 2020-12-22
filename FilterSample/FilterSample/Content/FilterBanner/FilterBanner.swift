@@ -13,6 +13,7 @@ struct FilterBannerView: View {
     @Binding var isShowBanner: Bool
     @Binding var applyingFilter: FilterType?
     @State private var selectingFilter: FilterType? = nil
+    let bottomSafeAreaInsets: CGFloat
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
@@ -31,7 +32,7 @@ struct FilterBannerView: View {
                 .offset(x: 0, y: self.isShowBanner ? 0 : geometry.size.height)
                 Rectangle()
                     .foregroundColor(Color.black.opacity(0.8))
-                    .frame(height: geometry.safeAreaInsets.bottom)
+                    .frame(height: bottomSafeAreaInsets)
                     .edgesIgnoringSafeArea(.bottom)
                     .offset(x: 0, y: self.isShowBanner ? 0 : geometry.size.height)
             }
@@ -41,7 +42,7 @@ struct FilterBannerView: View {
 
 struct FilterPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterBannerView(isShowBanner: .constant(true), applyingFilter: .constant(.gaussianBlur))
+        FilterBannerView(isShowBanner: .constant(true), applyingFilter: .constant(.gaussianBlur), bottomSafeAreaInsets: 32.0)
             .edgesIgnoringSafeArea(.bottom)
     }
 }
