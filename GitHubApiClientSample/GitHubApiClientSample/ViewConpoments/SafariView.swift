@@ -11,7 +11,7 @@ import SafariServices
 
 struct SafariView: UIViewControllerRepresentable {
     typealias UIViewControllerType = SFSafariViewController
-    var url: URL
+    let url: URL
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
         return SFSafariViewController(url: url)
