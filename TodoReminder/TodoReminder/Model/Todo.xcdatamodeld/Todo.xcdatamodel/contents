@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AnimalData" representedClassName="AnimalData" syncable="YES" codeGenerationType="class">
-        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="TodoList" representedClassName="TodoList" syncable="YES">
+    <entity name="TodoList" representedClassName="TodoList" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="priority" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -13,6 +9,5 @@
     </entity>
     <elements>
         <element name="TodoList" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="AnimalData" positionX="-63" positionY="18" width="128" height="73"/>
     </elements>
 </model>
