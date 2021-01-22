@@ -6,10 +6,8 @@ import PlaygroundSupport
 struct ParentView: View {
     @State var counter = 0
     var body: some View {
-        HStack {
-            ChildView(counter: $counter)
-                .frame(width: .infinity)
-        }
+        ChildView(counter: $counter)
+            .frame(width: .infinity)
     }
 }
 struct ChildView: View {
