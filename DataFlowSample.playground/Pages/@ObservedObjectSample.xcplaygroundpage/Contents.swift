@@ -8,7 +8,7 @@ final class DataSource: ObservableObject {
 }
 
 struct ParentView: View {
-    @StateObject var dataSource = DataSource()
+    @StateObject private var dataSource = DataSource()
     var body: some View {
         ChildView(dataSource: dataSource)
     }

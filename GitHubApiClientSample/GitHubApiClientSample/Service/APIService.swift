@@ -44,7 +44,9 @@ final class APIService: APIServiceType {
         .map { data, urlResponse in data }
         .mapError { _ in APIServiceError.responseError }
         .decode(type: Request.Response.self, decoder: decorder)
-        .mapError(APIServiceError.parseError)
+        .mapError({ (error) -> APIServiceError in
+            APIServiceError.parseError(error)
+        })
         .receive(on: RunLoop.main)
         .eraseToAnyPublisher()
     }

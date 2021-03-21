@@ -27,8 +27,10 @@ struct FilterContentView: View {
                 } else {
                     EmptyView()
                 }
-                FilterBannerView(isShowBanner: $viewModel.isShowBanner, applyingFilter: $viewModel.applyingFilter)
-                    .edgesIgnoringSafeArea(.bottom)
+                GeometryReader { geometry in
+                    FilterBannerView(isShowBanner: $viewModel.isShowBanner, applyingFilter: $viewModel.applyingFilter, bottomSafeAreaInsets: geometry.safeAreaInsets.bottom)
+                        .edgesIgnoringSafeArea(.bottom)
+                }
             }
             .navigationBarTitle("Filter App")
             .navigationBarItems(leading: EmptyView(), trailing: HStack {
