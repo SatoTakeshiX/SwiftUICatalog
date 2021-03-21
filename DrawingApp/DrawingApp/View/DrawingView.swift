@@ -66,6 +66,7 @@ struct DrawingView: View {
                     Spacer()
                 }
             }
+            .background(Color.white)
             .alert(isPresented: $viewModel.isShowAlert) {
                 Alert(title: Text(viewModel.alertTitle))
             }

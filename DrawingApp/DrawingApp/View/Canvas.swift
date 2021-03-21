@@ -13,27 +13,16 @@ struct Canvas: View {
     @State private var tmpDrawPoints: DrawPoints = DrawPoints(points: [], color: .red)
     @Binding var selectedColor: DrawColor
     @Binding var canvasRect: CGRect
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 Rectangle()
                     .foregroundColor(Color.white)
                     .border(Color.black, width: 2)
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged({ (value) in
-                                tmpDrawPoints.points.append(value.location)
-                                tmpDrawPoints.color = selectedColor.color
-                            })
-                            .onEnded({ (value) in
-                                endedDrawPoints.append(tmpDrawPoints)
-                                tmpDrawPoints = DrawPoints(points: [], color: selectedColor.color)
-                            })
-                )
                     .onAppear {
                         canvasRect = geometry.frame(in: .local)
-                }
+                    }
 
                 ForEach(endedDrawPoints) { data in
                     Path { path in
@@ -48,6 +37,17 @@ struct Canvas: View {
                 }
                 .stroke(tmpDrawPoints.color, lineWidth: 10)
             }
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ (value) in
+                        tmpDrawPoints.points.append(value.location)
+                        tmpDrawPoints.color = selectedColor.color
+                    })
+                    .onEnded({ (value) in
+                        endedDrawPoints.append(tmpDrawPoints)
+                        tmpDrawPoints = DrawPoints(points: [], color: selectedColor.color)
+                    })
+            )
         }
     }
 }
