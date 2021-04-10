@@ -26,14 +26,27 @@ struct Canvas: View {
 
                 ForEach(endedDrawPoints) { data in
                     Path { path in
-                        path.addLines(data.points)
+                        let uniq = data.points.reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
+                        if uniq.count == 1 {
+                            path.addArc(center: data.points[0], radius: 1, startAngle: Angle(degrees: 0.0), endAngle: Angle(degrees: 360), clockwise: true)
+                        } else {
+                            path.addLines(data.points)
+                        }
                     }
                     .stroke(data.color, lineWidth: 10)
                 }
                 
                 // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
                 Path { path in
-                    path.addLines(tmpDrawPoints.points)
+
+                    // 重複を排除
+                    let uniq = tmpDrawPoints.points.reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
+                    // 重複排除して個数が一つだったら円を描く
+                    if uniq.count == 1 {
+                        path.addArc(center: tmpDrawPoints.points[0], radius: 1, startAngle: Angle(degrees: 0.0), endAngle: Angle(degrees: 360), clockwise: true)
+                    } else {
+                        path.addLines(tmpDrawPoints.points)
+                    }
                 }
                 .stroke(tmpDrawPoints.color, lineWidth: 10)
             }
@@ -55,6 +68,7 @@ struct Canvas: View {
                         endedDrawPoints.append(tmpDrawPoints)
                         tmpDrawPoints = DrawPoints(points: [], color: selectedColor.color)
                     })
+                    .sequenced(before: TapGesture().onEnded {})
             )
         }
     }
