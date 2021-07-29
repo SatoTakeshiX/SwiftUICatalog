@@ -55,7 +55,7 @@ SwiftUIを使いこなして思いどおりのアプリをつくろう！
 
 「1人でアプリを作る人を支えるSwiftUI開発レシピ」には掲載していませんが、SwiftUIとUIImagePickerを組み合わせるサンプルアプリもあります。
 
-[サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/CameraSample)
+[サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/FilterSample)
 
 アプリの詳細はの資料を御覧ください。
 https://speakerdeck.com/satotakeshi/swiftuitekamerakarahua-xiang-woqu-de-suru
