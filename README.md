@@ -58,11 +58,11 @@ SwiftUIを使いこなして思いどおりのアプリをつくろう！
   * ユーザーが指でなぞると絵が描けるお絵かきアプリをつくましょう。消しゴム機能やキャンバス機能もあります。
   * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/DrawingApp)
 * 第１０章「レシピ：写真フィルターアプリ」
-　* 写真にフィルター加工を施すアプリを作りましょう。Image Pickerとの連携や画像をフィルター加工する方法、親Viewと子Viewのデータの受け渡し方法が学べます。
-　* [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/FilterSample)
+  * 写真にフィルター加工を施すアプリを作りましょう。Image Pickerとの連携や画像をフィルター加工する方法、親Viewと子Viewのデータの受け渡し方法が学べます。
+  * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/FilterSample)
 * 第１１章「iOS 14新機能: Widget」 
- * iOS 14から登場した目玉機能、Widgetを学びます。Viewの実装にはSwiftUIが必要なので、WidgetからSwiftUIを導入するのもよいでしょう。
- * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/TodoReminder)
+  * iOS 14から登場した目玉機能、Widgetを学びます。Viewの実装にはSwiftUIが必要なので、WidgetからSwiftUIを導入するのもよいでしょう。
+  * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/TodoReminder)
 
 # 改定歴
 
