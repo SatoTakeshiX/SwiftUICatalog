@@ -36,7 +36,7 @@ final class APIService: APIServiceType {
     var urlComponents = URLComponents(url: pathURL, resolvingAgainstBaseURL: true)!
     urlComponents.queryItems = request.queryItems
     var request = URLRequest(url: urlComponents.url!)
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
 
     let decorder = JSONDecoder()
     decorder.keyDecodingStrategy = .convertFromSnakeCase
