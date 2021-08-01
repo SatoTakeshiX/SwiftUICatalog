@@ -1,6 +1,6 @@
 # SwiftUICatalog
 
-「1人でアプリを作る人を支えるSwiftUI開発レシピ」のサンプルコードです。
+「[1人でアプリを作る人を支えるSwiftUI開発レシピ](https://nextpublishing.jp/book/12491.html)」のサンプルコードです。
 
 SwiftUIのサンプルアプリ集です。
 
@@ -14,10 +14,10 @@ SwiftUIを使いこなして思いどおりのアプリをつくろう！
 
 本書は次の環境で検証しています。
 
- * iOS 13.3
- * Xcode 11.3
- * Swift 5.1
- * macOS 10.15
+ * iOS 14.0
+ * Xcode 12.0.1
+ * Swift 5.3
+ * macOS 10.15.5
 
 # 対象読者
 
@@ -41,25 +41,32 @@ SwiftUIを使いこなして思いどおりのアプリをつくろう！
  * 第４章「基本Viewの使い方」
     * `Text`や`Image`などSwiftUIで提供されている基本的なViewの使い方を解説します。
     * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/BasicViews)
- * 第５章「Combine」
+ * 第５章「iOS 14新機能: App、Scene、WindowGroup」
+   * iOS 14からSwiftUIのみでアプリを作成できるようになりました。どのようにアプリを構築するのかをみていきます。
+   * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/AppSceneSample)
+* 第６章「SwiftUIのデータ管理」
+   * SwiftUIはステートドリブンでViewが更新されます。Viewとデータの紐付け方法を学び、適切にView更新ができるようになりましょう。
+   * [サンプルプレイグランド](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/DataFlowSample.playground) 
+   * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/DataFlowSample)
+* 第７章「Combine」
   * SwiftUIとともにiOS 13から導入された非同期イベントフレームワークCombine。SwiftUIとともに使われる機会が増えていくのでじっくり理解しましょう。
   * [サンプルコード](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/CombineIntroduce/CombineIntroduce.playground)
- * 第６章「レシピ：GitHubAPIリポジトリ検索アプリ」
+* 第８章「レシピ：GitHubAPIリポジトリ検索アプリ」
   * GitHubAPIを使ってリポジトリ情報をアプリに表示しましょう。ネットワークとSwiftUIの連携方法が学べます。
   * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/GitHubApiClientSample)
- * 第７章「レシピ：お絵かきアプリ」
+* 第９章「レシピ：お絵かきアプリ」
   * ユーザーが指でなぞると絵が描けるお絵かきアプリをつくましょう。消しゴム機能やキャンバス機能もあります。
   * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/DrawingApp)
+* 第１０章「レシピ：写真フィルターアプリ」
+　* 写真にフィルター加工を施すアプリを作りましょう。Image Pickerとの連携や画像をフィルター加工する方法、親Viewと子Viewのデータの受け渡し方法が学べます。
+　* [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/FilterSample)
+* 第１１章「iOS 14新機能: Widget」 
+ * iOS 14から登場した目玉機能、Widgetを学びます。Viewの実装にはSwiftUIが必要なので、WidgetからSwiftUIを導入するのもよいでしょう。
+ * [サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/TodoReminder)
 
-# 追加アプリ
+# 改定歴
 
-「1人でアプリを作る人を支えるSwiftUI開発レシピ」には掲載していませんが、SwiftUIとUIImagePickerを組み合わせるサンプルアプリもあります。
-
-[サンプルアプリ](https://github.com/SatoTakeshiX/SwiftUICatalog/tree/master/FilterSample)
-
-アプリの詳細はの資料を御覧ください。
-https://speakerdeck.com/satotakeshi/swiftuitekamerakarahua-xiang-woqu-de-suru
-
+[リリースページ](https://github.com/SatoTakeshiX/SwiftUICatalog/releases)をご覧ください。
 
 # ライセンス
 
