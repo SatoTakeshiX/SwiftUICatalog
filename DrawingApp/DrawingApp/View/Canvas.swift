@@ -28,14 +28,14 @@ struct Canvas: View {
                     Path { path in
                         path.addLines(data.points)
                     }
-                    .stroke(data.color, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .bevel, miterLimit: 0, dash: [], dashPhase: 0))
+                    .stroke(data.color, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
                 }
                 
                 // ドラッグ中の描画。指を離したらここの描画は消えるがDrawPathViewが上書きするので見た目は問題ない
                 Path { path in
                     path.addLines(tmpDrawPoints.points)
                 }
-                .stroke(tmpDrawPoints.color, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .bevel, miterLimit: 0, dash: [], dashPhase: 0))
+                .stroke(tmpDrawPoints.color, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
             }
             .gesture(
                 DragGesture(minimumDistance: 0)
