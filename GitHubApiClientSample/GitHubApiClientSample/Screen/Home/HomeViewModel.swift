@@ -85,22 +85,17 @@ final class HomeViewModel: ObservableObject {
 
     private func convertInput(repositories: [Repository]) -> [CardView.Input] {
         return repositories.compactMap { (repo) -> CardView.Input? in
-            do {
-                guard let url = URL(string: repo.owner.avatarUrl) else {
-                    return nil
-                }
-                let data = try Data(contentsOf: url)
-                guard let image = UIImage(data: data) else { return nil }
-                return CardView.Input(iconImage: image,
-                                      title: repo.name,
-                                      language: repo.language,
-                                      star: repo.stargazersCount,
-                                      description: repo.description,
-                                      url: repo.htmlUrl)
-
-            } catch {
+            guard let url = URL(string: repo.owner.avatarUrl) else {
                 return nil
             }
+            let data = try? Data(contentsOf: url)
+            let image = UIImage(data: data ?? Data()) ?? UIImage()
+            return CardView.Input(iconImage: image,
+                                  title: repo.name,
+                                  language: repo.language,
+                                  star: repo.stargazersCount,
+                                  description: repo.description,
+                                  url: repo.htmlUrl)
         }
     }
 }
