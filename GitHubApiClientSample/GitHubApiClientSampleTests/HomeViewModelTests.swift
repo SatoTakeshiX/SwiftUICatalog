@@ -12,8 +12,6 @@ import XCTest
 class HomeViewModelTests: XCTestCase {
 
     func testOnEnter() {
-    //    let viewModel = HomeViewModel(apiService: <#T##APIServiceType#>)
-
         let apiService = MockAPIService()
         apiService.stub(for: SearchRepositoryRequest.self) { _ in
             Result.Publisher(
@@ -23,7 +21,8 @@ class HomeViewModelTests: XCTestCase {
                           name: "takeshi",
                           description: "brabrabara",
                           stargazersCount: 100,
-                          language: "Swift", htmlUrl: "https://example.com",
+                          language: "Swift",
+                          htmlUrl: "https://example.com",
                           owner: Owner(id: 1,
                                        avatarUrl: "https://example.com/photo.png"))
                                     ]
@@ -32,7 +31,7 @@ class HomeViewModelTests: XCTestCase {
         }
 
         let viewModel = HomeViewModel(apiService: apiService)
-        viewModel.apply(inputs: .onCommit(text: "sss"))
+        viewModel.apply(inputs: .onCommit(text: "test"))
         XCTAssertTrue(!viewModel.cardViewInputs.isEmpty)
     }
 
@@ -44,7 +43,9 @@ class HomeViewModelTests: XCTestCase {
             ).eraseToAnyPublisher()
         }
         let viewModel = HomeViewModel(apiService: apiService)
-        viewModel.apply(inputs: .onCommit(text: "sss"))
+        viewModel.apply(inputs: .onCommit(text: "test"))
         XCTAssertTrue(viewModel.isShowError)
     }
+
+
 }
