@@ -44,7 +44,6 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Private
     private let apiService: APIServiceType
     private let onCommitSubject = PassthroughSubject<String, Never>()
-    private let responseSubject = PassthroughSubject<SearchRepositoryResponse, Never>()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
     private var cancellables: [AnyCancellable] = []
 
